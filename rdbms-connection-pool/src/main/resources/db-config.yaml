@@ -1,0 +1,6 @@
+databaseName: "pds"
+host: "172.31.249.53"
+port: 3306
+username : "toto"
+password: "toto"
+poolSize: 1
