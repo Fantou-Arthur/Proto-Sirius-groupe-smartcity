@@ -1,6 +1,6 @@
 databaseName: "pds"
-host: "172.31.249.53"
+host: "172.0.0.1"
 port: 3306
-username : "toto"
-password: "toto"
+username : "accesDBbackend"
+password: "qsAhxuqiz6Jnnh6bp1ht"
 poolSize: 1
