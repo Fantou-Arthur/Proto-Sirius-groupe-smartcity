@@ -5,7 +5,12 @@ username : "accesDBbackend"
 password: "qsAhxuqiz6Jnnh6bp1ht"
 poolSize: 1
 
-# VM credentials
+# VM credentials for Back
 # host : "172.31.253.27"
 # username : dracofeu
 # password : smartc1t9
+
+# VM credentials for DB
+# host : "172.31.252.201"
+# username : bobeponge
+# password : smartc1t9DB
