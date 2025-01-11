@@ -4,3 +4,8 @@ port: 3306
 username : "accesDBbackend"
 password: "qsAhxuqiz6Jnnh6bp1ht"
 poolSize: 1
+
+# VM credentials
+# host : "172.31.253.27"
+# username : dracofeu
+# password : smartc1t9
