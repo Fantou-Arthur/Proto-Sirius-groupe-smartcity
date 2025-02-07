@@ -1,16 +1,6 @@
 databaseName: "pds"
-host: "172.0.0.1"
+host: "localhost"
 port: 3306
-username : "accesDBbackend"
+username : "accessDBbackend"
 password: "qsAhxuqiz6Jnnh6bp1ht"
 poolSize: 1
-
-# VM credentials for Back
-# host : "172.31.253.27"
-# username : dracofeu
-# password : smartc1t9
-
-# VM credentials for DB
-# host : "172.31.252.201"
-# username : bobeponge
-# password : smartc1t9DB
