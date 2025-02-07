@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xmart-zity-backend</artifactId>
+    <artifactId>xmart-city-backend</artifactId>
 
     <build>
         <plugins>
