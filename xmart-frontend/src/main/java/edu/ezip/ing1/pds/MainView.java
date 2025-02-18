@@ -24,7 +24,7 @@ public class MainView extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainView.class.getResource( "/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainView.class.getResource( "/views/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
