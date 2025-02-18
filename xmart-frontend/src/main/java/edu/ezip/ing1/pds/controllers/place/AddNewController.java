@@ -1,4 +1,4 @@
-package edu.ezip.ing1.pds.controllers;
+package edu.ezip.ing1.pds.controllers.place;
 
 import edu.ezip.ing1.pds.MainView;
 import javafx.fxml.FXML;
