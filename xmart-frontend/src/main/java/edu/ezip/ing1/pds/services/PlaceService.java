@@ -36,7 +36,6 @@ public class PlaceService {
     int birthdate = 0;
 
     public void insertPlace(Place place) throws JsonProcessingException {
-        final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
