@@ -51,7 +51,10 @@
                   <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
                </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Capteurs" />
+        <Menu mnemonicParsing="false" text="Capteurs">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#GoToCapteurView" text="Show Capteurs" />
+               </items></Menu>
         <Menu mnemonicParsing="false" text="Affluences" />
       </menus>
     </MenuBar>

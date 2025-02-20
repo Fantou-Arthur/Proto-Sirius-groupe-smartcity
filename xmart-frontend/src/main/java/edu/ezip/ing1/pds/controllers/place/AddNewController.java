@@ -39,6 +39,12 @@ public class AddNewController {
         MainView.setRoot("listPlaces");
     }
 
+    @FXML
+    private void GoToCapteurView() throws IOException {
+        System.out.println("GoToCapteurView");
+        MainView.setRoot("CapteurView");
+    }
+
     public void addNewPlace(){
         String name = nameTextField.getText();
         String address = addressTextField.getText();
