@@ -7,17 +7,15 @@ import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.PlaceService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-public class AddNewController {
+public class AddNewPlaceController {
 
-    private final static String LoggingLabel = "FrontEnd - PlaceService";
+    private final static String LoggingLabel = "A d d -  N e w - P l a c e -  C o n t r o l l e r";
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
     private final static String networkConfigFile = "network.yaml";
     final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
@@ -57,13 +55,13 @@ public class AddNewController {
 
         Place place = new Place("1",name,address,capacity);
         PlaceService placeService = new PlaceService(networkConfig);
+
         try {
             placeService.insertPlace(place);
+            System.out.println("Place added successfully");
         } catch (JsonProcessingException e) {
             logger.debug(e.getMessage());
         }
-
-        logger.info(name+" "+address+" "+ capacity);
 
     }
     
