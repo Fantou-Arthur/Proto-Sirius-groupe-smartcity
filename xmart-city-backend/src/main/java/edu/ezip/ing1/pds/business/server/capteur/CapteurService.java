@@ -28,8 +28,8 @@ public class CapteurService {
         final Capteur capteur = mapper.readValue(request.getRequestBody(), Capteur.class);
         final PreparedStatement statement = connection.prepareStatement(CapteurQueries.INSERT_CAPTEUR.getQuery());
         statement.setString(1, capteur.getName());
-        statement.setString(2, capteur.getAddress());
-        statement.setInt(3, capteur.getMaxCapacity());
+        statement.setBoolean(2, capteur.getState());
+        statement.setString(3, capteur.getId_lieu());
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from Capteurs");
@@ -47,8 +47,8 @@ public class CapteurService {
         while (res.next()) {
             Capteur capteur = new Capteur();
             capteur.setName(res.getString(1));
-            capteur.setAddress(res.getString(2));
-            capteur.setMaxCapacity(res.getInt(3));
+            capteur.setState(res.getBoolean(2));
+            capteur.setId_lieu(res.getString(3));
             capteurs.add(capteur);
         }
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(capteurs));
