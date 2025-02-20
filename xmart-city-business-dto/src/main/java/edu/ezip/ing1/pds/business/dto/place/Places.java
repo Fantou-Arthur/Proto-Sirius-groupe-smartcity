@@ -1,17 +1,18 @@
 package edu.ezip.ing1.pds.business.dto.place;
 
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Places {
-    private Set<Place> places = new LinkedHashSet<Place>();
+    private ArrayList<Place> places = new ArrayList<>();
 
-    public Set<Place> getPlaces() {
+    public ArrayList<Place> getPlaces() {
         return places;
     }
 
-    public void setStudents(Set<Place> places) {
+    public void setPlaces(ArrayList<Place> places) {
         this.places = places;
     }
 
@@ -22,8 +23,6 @@ public class Places {
 
     @Override
     public String toString() {
-        return "Students{" +
-                "students=" + places +
-                '}';
+        return  " Places : " + places;
     }
 }

@@ -3,83 +3,79 @@ package edu.ezip.ing1.pds.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import edu.ezip.ing1.pds.business.dto.place.Place;
-import edu.ezip.ing1.pds.business.dto.place.Places;
-import edu.ezip.ing1.pds.client.commons.ClientRequest;
+import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
+import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
-import edu.ezip.ing1.pds.requests.place.InsertPlaceClientRequest;
-import edu.ezip.ing1.pds.requests.place.SelectAllPlacesClientRequest;
+import edu.ezip.ing1.pds.requests.capteur.InsertCapteurClientRequest;
+import edu.ezip.ing1.pds.requests.capteur.SelectCapteursClientRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.UUID;
 
-public class PlaceService {
+public class CapteurService {
 
-    private final static String LoggingLabel = "FrontEnd - PlaceService";
+    private final static String LoggingLabel = "FrontEnd - CapteurService";
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     enum RequestOrder {
-        INSERT_PLACE, SELECT_ALL_PLACES,
+        INSERT_CAPTEUR, SELECT_ALL_CAPTEUR, EDIT_CAPTEUR,
     };
 
     private NetworkConfig networkConfig;
 
-    public  PlaceService(NetworkConfig networkConfig) {
+    public  CapteurService(NetworkConfig networkConfig) {
         this.networkConfig = networkConfig;
     }
 
     int birthdate = 0;
 
-    public void insertPlace(Place place) throws JsonProcessingException {
+    public void insertCapteur(Capteur capteur) throws JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
         request.setRequestId(requestId);
-        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(place));
-        request.setRequestOrder(RequestOrder.INSERT_PLACE.toString());
+        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(capteur));
+        request.setRequestOrder(CapteurService.RequestOrder.INSERT_CAPTEUR.toString());
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         try {
-            final InsertPlaceClientRequest insertPlaceClientRequest = new InsertPlaceClientRequest(
+            final InsertCapteurClientRequest insertCapteurClientRequest = new InsertCapteurClientRequest(
                     networkConfig,
-                    birthdate++, request, place, requestBytes);
+                    birthdate++, request, capteur, requestBytes);
 
-            insertPlaceClientRequest.join();
-            // Get the place and log
-            Place newPlace = (Place) insertPlaceClientRequest.getInfo();
-            logger.info("New place inserted : " + newPlace);
+            insertCapteurClientRequest.join();
+            // Get the capteur and log
+            Capteur newCapteur = (Capteur) insertCapteurClientRequest.getInfo();
+            logger.info("New capteur inserted : " + newCapteur);
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());
         }
     }
 
-    public Places selectAllPlaces() throws IOException {
+    public void selectAllCapteur() throws JsonProcessingException {
         int birthdate = 0;
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
 
         request.setRequestId(requestId);
-        request.setRequestOrder(RequestOrder.SELECT_ALL_PLACES.toString());
+        request.setRequestOrder(CapteurService.RequestOrder.SELECT_ALL_CAPTEUR.toString());
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         try {
-            final SelectAllPlacesClientRequest selectAllPlaceClientRequest = new SelectAllPlacesClientRequest(
+            final SelectCapteursClientRequest selectCapteurClientRequest = new SelectCapteursClientRequest(
                     networkConfig,
                     birthdate++, request, null, requestBytes);
-            selectAllPlaceClientRequest.join();
-            // Get the places and log
-            Places places = selectAllPlaceClientRequest.getResult();
-            return places;
+            selectCapteurClientRequest.join();
+            // Get the capteurs and log
+            Capteurs capteurs = (Capteurs) selectCapteurClientRequest.getInfo();
+            logger.info("List of capteurs: " + capteurs);
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());
         }
-        return null;
     }
 
 }
