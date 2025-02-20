@@ -62,7 +62,7 @@
                               <Text layoutX="211.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
                               <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État du capteur (0 ou 1)" />
                               <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
-                              <Button layoutX="348.0" layoutY="121.0" mnemonicParsing="false" text="Valider" />
+                              <Button fx:id="confirmEditSensorButton" layoutX="348.0" layoutY="121.0" mnemonicParsing="false" onAction="#confirmEditSensor" text="Valider" />
                               <Button fx:id="AboartEditSensorButton" layoutX="196.0" layoutY="121.0" mnemonicParsing="false" onAction="#LeaveEditCapteurView" text="Annuler" />
                            </children>
                         </AnchorPane>
@@ -81,7 +81,7 @@
                               <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État du capteur (0 ou 1)" />
                               <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
                               <Button fx:id="AboartAddSensorButton" layoutX="196.0" layoutY="118.0" mnemonicParsing="false" onAction="#LeaveAddCapteurView" text="Annuler" />
-                              <Button layoutX="349.0" layoutY="118.0" mnemonicParsing="false" text="Valider" />
+                              <Button fx:id="confirmAddSensorButton" layoutX="349.0" layoutY="118.0" mnemonicParsing="false" onAction="#confirmAddSensor" text="Valider" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -92,7 +92,7 @@
                            <children>
                               <Text layoutX="34.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voulez-vous vraiment supprimer le capteur ?" />
                               <Button fx:id="AboartDeletCapteur" layoutX="67.0" layoutY="87.0" mnemonicParsing="false" onAction="#LeaveDeleteCapteurView" text="Annuler" />
-                              <Button layoutX="183.0" layoutY="87.0" mnemonicParsing="false" text="Valider" />
+                              <Button fx:id="confirmDeleteSensorButton" layoutX="183.0" layoutY="87.0" mnemonicParsing="false" onAction="#confirmDeleteSensor" text="Valider" />
                            </children>
                         </AnchorPane>
                     </content>

@@ -6,17 +6,17 @@ import java.util.Set;
 public class Capteur {
     private String id;
     private String name;
-    private String address;
-    private int maxCapacity;
+    private boolean state;
+    private String id_lieu;
 
 
     public Capteur() {}
 
-    public Capteur(final String id, final String name, final String address, final int maxCapacity) {
+    public Capteur(final String id, final String name, final boolean state, final String id_lieu) {
         this.id = id;
         this.name = name;
-        this.address = address;
-        this.maxCapacity = maxCapacity;
+        this.state = state;
+        this.id_lieu = id_lieu;
     }
 
     // Getters and Setters
@@ -32,21 +32,21 @@ public class Capteur {
     public void setName(String name) {
         this.name = name;
     }
-    public String getAddress() {
-        return address;
+    public boolean getState() {
+        return state;
     }
-    public void setAddress(String address) {
-        this.address = address;
+    public void setState(boolean state) {
+        this.state = state;
     }
-    public int getMaxCapacity() {
-        return maxCapacity;
+    public String getId_lieu() {
+        return id_lieu;
     }
-    public void setMaxCapacity(int maxCapacity) {
-        this.maxCapacity = maxCapacity;
+    public void setId_lieu(String id_lieu) {
+        this.id_lieu = id_lieu;
     }
 
     public String toString() {
-        return "Capteur [id=" + id + ", name=" + name + ", address=" + address + ", maxCapacity=" + maxCapacity+"]";
+        return "Capteur [id=" + id + ", name=" + name + ", state=" + state + ", id_lieu=" + id_lieu+"]";
     }
 
 

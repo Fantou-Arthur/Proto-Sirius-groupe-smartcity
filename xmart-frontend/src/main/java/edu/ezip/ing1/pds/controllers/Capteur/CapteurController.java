@@ -66,7 +66,7 @@ public class CapteurController {
     }
 
     @FXML
-    private void ConfirmEditSensor() throws IOException {
+    private void confirmEditSensor() throws IOException {
         TitlePaneEditCapteur .setVisible(false);
         //gérer requête sql ?
     }
