@@ -11,5 +11,10 @@ public class MainViewController {
     private void createNewPlace() throws IOException {
         MainView.setRoot("addNewPlace");
     }
+
+    @FXML
+    private void  listPlaces() throws IOException {
+        MainView.setRoot("listPlaces");
+    }
     
 }
