@@ -23,6 +23,9 @@ public class MainViewController {
         MainView.setRoot("listPlaces");
     }
 
-
+    @FXML
+    private void  viewAffluence() throws IOException {
+        MainView.setRoot("Affluence");
+    }
 
 }
