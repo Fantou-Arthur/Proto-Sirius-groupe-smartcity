@@ -22,10 +22,13 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
                   <MenuItem mnemonicParsing="false" text="Edit" />
-                  <MenuItem mnemonicParsing="false" text="List" />
+                  <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Capteurs" />
+            <Menu mnemonicParsing="false" text="Capteurs">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#GoToCapteurView" text="Show Capteurs" />
+               </items></Menu>
             <Menu mnemonicParsing="false" text="Affluences" />
          </menus>
       </MenuBar>
@@ -74,17 +77,17 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <TextField minWidth="-Infinity" prefHeight="26.0" prefWidth="347.0" />
+                                          <TextField fx:id="nameTextField" minWidth="-Infinity" prefHeight="26.0" prefWidth="347.0" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <TextField minWidth="-Infinity" prefHeight="26.0" prefWidth="347.0" />
+                                          <TextField fx:id="addressTextField" minWidth="-Infinity" prefHeight="26.0" prefWidth="347.0" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <TextField minWidth="-Infinity" prefHeight="26.0" prefWidth="347.0" />
+                                          <TextField fx:id="capacitySpinner" prefHeight="26.0" prefWidth="348.0" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -99,7 +102,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="60.0" prefWidth="132.0">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #90a8f0;" text="Reset" textFill="WHITE">
+                              <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #90a8f0;" text="Reset" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -108,7 +111,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="60.0" prefWidth="132.0">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #2e5ff2;" text="Create" textFill="WHITE">
+                              <Button fx:id="createButton" mnemonicParsing="false" onAction="#addNewPlace" prefHeight="31.0" prefWidth="87.0" style="-fx-background-color: #2e5ff2;" text="Create" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

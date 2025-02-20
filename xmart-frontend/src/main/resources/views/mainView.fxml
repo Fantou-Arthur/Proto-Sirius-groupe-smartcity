@@ -48,7 +48,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
                   <MenuItem mnemonicParsing="false" text="Edit" />
-                  <MenuItem mnemonicParsing="false" text="List" />
+                  <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
                </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Capteurs">
