@@ -80,7 +80,6 @@ public abstract class ClientRequest<N,S> implements Runnable {
             logger.debug("Response = {}", response.toString());
 
             result = readResult(response.responseBody);
-
         } catch (IOException e) {
             logger.error("Connection fails, exception tells {} — {}", e.getMessage(), e.getClass());
         } catch (InterruptedException e) {
