@@ -24,7 +24,10 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#GoToCapteurView" text="Show Capteurs" />
                </items></Menu>
-            <Menu mnemonicParsing="false" text="Affluences" />
+            <Menu mnemonicParsing="false" text="Affluences">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#viewAffluence" text="View" />
+               </items></Menu>
          </menus>
       </MenuBar>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
