@@ -57,7 +57,7 @@
                </items></Menu>
         <Menu mnemonicParsing="false" text="Affluences">
                <items>
-                  <MenuItem mnemonicParsing="false" text="View" />
+                  <MenuItem mnemonicParsing="false" onAction="#viewAffluence" text="View" />
                </items></Menu>
       </menus>
     </MenuBar>
