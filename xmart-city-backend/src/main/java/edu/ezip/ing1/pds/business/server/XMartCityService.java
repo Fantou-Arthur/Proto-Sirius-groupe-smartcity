@@ -52,7 +52,6 @@ public class XMartCityService {
             default:
                 break;
         }
-
         return response;
     }
 
