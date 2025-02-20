@@ -11,11 +11,18 @@ public class MainViewController {
     private void createNewPlace() throws IOException {
         MainView.setRoot("addNewPlace");
     }
+
     @FXML
     private void GoToCapteurView() throws IOException {
         System.out.println("GoToCapteurView");
         MainView.setRoot("CapteurView");
     }
 
-    
+    @FXML
+    private void  listPlaces() throws IOException {
+        MainView.setRoot("listPlaces");
+    }
+
+
+
 }

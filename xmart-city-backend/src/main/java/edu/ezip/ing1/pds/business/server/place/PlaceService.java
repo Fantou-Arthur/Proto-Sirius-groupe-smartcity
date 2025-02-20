@@ -8,11 +8,16 @@ import edu.ezip.ing1.pds.business.dto.Students;
 import edu.ezip.ing1.pds.business.dto.place.Places;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.*;
 
 public class PlaceService {
+
+    private final static String LoggingLabel = "P l a c e - S e r v i c e";
+    private final Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     public PlaceService() {}
 
@@ -26,7 +31,7 @@ public class PlaceService {
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from Places");
-        resultSet.last();
+        resultSet.next();
         return  new Response(request.getRequestId(), mapper.writeValueAsString(place));
 
     }
