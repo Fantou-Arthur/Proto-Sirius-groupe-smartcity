@@ -16,5 +16,6 @@ public class MainViewController {
         System.out.println("GoToCapteurView");
         MainView.setRoot("CapteurView");
     }
+
     
 }
