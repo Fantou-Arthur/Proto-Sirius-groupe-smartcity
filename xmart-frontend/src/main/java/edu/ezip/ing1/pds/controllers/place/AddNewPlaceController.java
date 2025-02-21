@@ -6,6 +6,7 @@ import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.PlaceService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
@@ -64,5 +65,9 @@ public class AddNewPlaceController {
         }
 
     }
-    
+
+    @FXML
+    public void viewAffluence() throws IOException {
+        MainView.setRoot("Affluence");
+    }
 }
