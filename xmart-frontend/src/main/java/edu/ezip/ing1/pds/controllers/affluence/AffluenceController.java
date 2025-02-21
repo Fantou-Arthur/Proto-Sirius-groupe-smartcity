@@ -31,11 +31,11 @@ public class AffluenceController{
 	@FXML
     private TextField idPlaceTextField;
     @FXML
-    private TextField nbrPersTextField;
+    private TextField NbrPersTextField;
     @FXML
-    private TextField nbrDepartTextField;
+    private TextField NbrDepartTextField;
     @FXML
-    private TextField nbrArriveTextField;
+    private TextField NbrArriveTextField;
     @FXML
     private TextField idTextField;
 
@@ -65,9 +65,9 @@ public class AffluenceController{
     public void editAffluence(){
     	try{
 	    	int id_place = Integer.parseInt(idPlaceTextField.getText());
-	        int nbrPersones = Integer.parseInt(nbrPersTextField.getText());
-	        int nbrDepart = Integer.parseInt(nbrDepartTextField.getText());
-	        int nbrArriver = Integer.parseInt(nbrArriveTextField.getText());
+	        int nbrPersones = Integer.parseInt(NbrPersTextField.getText());
+	        int nbrDepart = Integer.parseInt(NbrDepartTextField.getText());
+	        int nbrArriver = Integer.parseInt(NbrArriveTextField.getText());
 	    }catch(NumberFormatException e){
 	    	logger.error(e.getMessage());
 	    }
@@ -78,9 +78,9 @@ public class AffluenceController{
     public void addAffluence(){
         try{
             int id_place = Integer.parseInt(idPlaceTextField.getText());
-            int nbrPersones = Integer.parseInt(nbrPersTextField.getText());
-            int nbrDepart = Integer.parseInt(nbrDepartTextField.getText());
-            int nbrArriver = Integer.parseInt(nbrArriveTextField.getText());
+            int nbrPersones = Integer.parseInt(NbrPersTextField.getText());
+            int nbrDepart = Integer.parseInt(NbrDepartTextField.getText());
+            int nbrArriver = Integer.parseInt(NbrArriveTextField.getText());
 
             Affluence affluence = new Affluence(id_place, nbrPersones, nbrDepart, nbrArriver);
             AffluenceService affluenceService = new AffluenceService(networkConfig);
