@@ -58,10 +58,6 @@ public class CapteurController {
     private void LeaveAddCapteurView() throws IOException {
         TitlePaneAddCapteur .setVisible(false);
     }
-    @FXML
-    private void confirmAddSensor() throws IOException {
-        TitlePaneAddCapteur .setVisible(false);
-    }
 
     @FXML
     private void GoToEditCapteurView() throws IOException {
@@ -71,12 +67,6 @@ public class CapteurController {
     @FXML
     private void LeaveEditCapteurView() throws IOException {
         TitlePaneEditCapteur .setVisible(false);
-    }
-
-    @FXML
-    private void confirmEditSensor() throws IOException {
-        TitlePaneEditCapteur .setVisible(false);
-        //gérer requête sql ?
     }
 
     @FXML
