@@ -4,8 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ezip.ing1.pds.business.dto.Student;
 import edu.ezip.ing1.pds.business.dto.Students;
+import edu.ezip.ing1.pds.business.server.capteur.CapteurQueries;
+import edu.ezip.ing1.pds.business.server.capteur.CapteurService;
 import edu.ezip.ing1.pds.business.server.place.PlaceQueries;
 import edu.ezip.ing1.pds.business.server.place.PlaceService;
+import edu.ezip.ing1.pds.business.server.queries.Queries;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 import org.slf4j.Logger;
@@ -39,10 +42,16 @@ public class XMartCityService {
             throws InvocationTargetException, IllegalAccessException, SQLException, IOException {
         Response response = null;
 
+        CapteurService capteurService = new CapteurService();
         PlaceService placeService = new PlaceService();
 
-        final PlaceQueries queryEnum = Enum.valueOf(PlaceQueries.class, request.getRequestOrder());
+        final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
         switch(queryEnum) {
+            case INSERT_CAPTEUR:
+                response = capteurService.InsertCapteur(request, connection);
+            case SELECT_ALL_CAPTEURS:
+                response = capteurService.SelectAllCapteurs(request, connection);
+                break;
             case SELECT_ALL_PLACES:
                 response = placeService.SelectAllPlaces(request, connection);
                 break;
