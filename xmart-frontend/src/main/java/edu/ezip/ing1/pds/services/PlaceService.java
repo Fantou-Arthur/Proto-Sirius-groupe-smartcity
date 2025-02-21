@@ -35,7 +35,7 @@ public class PlaceService {
 
     int birthdate = 0;
 
-    public void insertPlace(Place place) throws JsonProcessingException {
+    public Place insertPlace(Place place) throws JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
@@ -52,10 +52,12 @@ public class PlaceService {
             insertPlaceClientRequest.join();
             // Get the place and log
             Place newPlace = (Place) insertPlaceClientRequest.getInfo();
-            logger.info("New place inserted : " + newPlace);
+            logger.debug("New place inserted : {}", newPlace);
+            return newPlace;
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());
         }
+        return  null;
     }
 
     public Places selectAllPlaces() throws IOException {
