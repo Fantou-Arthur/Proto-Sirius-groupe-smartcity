@@ -57,13 +57,13 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="592.0" visible="false">
                            <children>
-                              <TextField layoutY="78.0" />
-                              <TextField layoutX="150.0" layoutY="78.0" />
-                              <TextField layoutX="300.0" layoutY="78.0" />
-                              <TextField layoutX="450.0" layoutY="78.0" />
+                              <TextField fx:id="Edit_Id" layoutY="78.0" />
+                              <TextField fx:id="Edit_Name" layoutX="150.0" layoutY="78.0" />
+                              <TextField fx:id="Edit_State" layoutX="300.0" layoutY="78.0" />
+                              <TextField fx:id="Edit_Id_lieu" layoutX="450.0" layoutY="78.0" />
                               <Text layoutX="47.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_capteur" />
                               <Text layoutX="211.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
-                              <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État du capteur (0 ou 1)" />
+                              <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État (true/false)" />
                               <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
                               <Button fx:id="confirmEditSensorButton" layoutX="348.0" layoutY="121.0" mnemonicParsing="false" onAction="#confirmEditSensor" text="Valider" />
                               <Button fx:id="AboartEditSensorButton" layoutX="196.0" layoutY="121.0" mnemonicParsing="false" onAction="#LeaveEditCapteurView" text="Annuler" />
@@ -75,13 +75,13 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="592.0" visible="false">
                            <children>
-                              <TextField layoutY="78.0" />
-                              <TextField layoutX="150.0" layoutY="78.0" />
-                              <TextField layoutX="300.0" layoutY="78.0" />
-                              <TextField layoutX="450.0" layoutY="78.0" />
+                              <TextField fx:id="Adder_Id" layoutY="78.0" />
+                              <TextField fx:id="Adder_Name" layoutX="150.0" layoutY="78.0" />
+                              <TextField fx:id="Adder_State" layoutX="300.0" layoutY="78.0" />
+                              <TextField fx:id="Adder_Id_lieu" layoutX="450.0" layoutY="78.0" />
                               <Text layoutX="47.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_capteur" />
                               <Text layoutX="211.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
-                              <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État du capteur (0 ou 1)" />
+                              <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État (true/false)" />
                               <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
                               <Button fx:id="AboartAddSensorButton" layoutX="196.0" layoutY="118.0" mnemonicParsing="false" onAction="#LeaveAddCapteurView" text="Annuler" />
                               <Button fx:id="confirmAddSensorButton" layoutX="349.0" layoutY="118.0" mnemonicParsing="false" onAction="#confirmAddSensor" text="Valider" />
