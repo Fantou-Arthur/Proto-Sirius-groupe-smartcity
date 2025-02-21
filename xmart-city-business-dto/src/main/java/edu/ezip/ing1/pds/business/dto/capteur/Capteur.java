@@ -4,15 +4,15 @@ package edu.ezip.ing1.pds.business.dto.capteur;
 import java.util.Set;
 
 public class Capteur {
-    private String id;
+    private int id;
     private String name;
     private boolean state;
-    private String id_lieu;
+    private int id_lieu;
 
 
     public Capteur() {}
 
-    public Capteur(final String id, final String name, final boolean state, final String id_lieu) {
+    public Capteur(final int id, final String name, final boolean state, final int id_lieu) {
         this.id = id;
         this.name = name;
         this.state = state;
@@ -20,10 +20,10 @@ public class Capteur {
     }
 
     // Getters and Setters
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getName() {
@@ -38,15 +38,15 @@ public class Capteur {
     public void setState(boolean state) {
         this.state = state;
     }
-    public String getId_lieu() {
+    public int getId_lieu() {
         return id_lieu;
     }
-    public void setId_lieu(String id_lieu) {
+    public void setId_lieu(int id_lieu) {
         this.id_lieu = id_lieu;
     }
 
     public String toString() {
-        return "Capteur [id=" + id + ", name=" + name + ", state=" + state + ", id_lieu=" + id_lieu+"]";
+        return "sensor [id=" + id + ", name=" + name + ", state=" + state + ", id_lieu=" + id_lieu+"]";
     }
 
 

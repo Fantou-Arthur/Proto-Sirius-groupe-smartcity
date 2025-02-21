@@ -107,8 +107,10 @@ public class CapteurController {
         String id_lieu = Edit_Id_lieu.getText();
         String id = Edit_Id.getText();
         logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
+        int int_id = Integer.parseInt(id);;
+        int int_id_lieu = Integer.parseInt(id_lieu);
         boolean statebool = Boolean.parseBoolean(state);
-        Capteur capteur = new Capteur(id,Edit_name,statebool,id_lieu);
+        Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
         TitlePaneEditCapteur .setVisible(false);
         NetworkConfig networkConfig = new NetworkConfig();
         CapteurService capteurService = new CapteurService(networkConfig);
@@ -133,9 +135,12 @@ public class CapteurController {
         String id = Adder_Id.getText();
         logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
         boolean statebool = Boolean.parseBoolean(state);
-        Capteur capteur = new Capteur(id,Edit_name,statebool,id_lieu);
+        int int_id = Integer.parseInt(id);;
+        int int_id_lieu = Integer.parseInt(id_lieu);
+        Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
         TitlePaneAddCapteur .setVisible(false);
-        NetworkConfig networkConfig = new NetworkConfig();
+        final String networkConfigFile = "network.yaml";
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         CapteurService capteurService = new CapteurService(networkConfig);
         capteurService.insertCapteur(capteur);
     }
