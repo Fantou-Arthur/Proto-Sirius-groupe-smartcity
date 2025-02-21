@@ -8,6 +8,8 @@ import edu.ezip.ing1.pds.business.server.capteur.CapteurQueries;
 import edu.ezip.ing1.pds.business.server.capteur.CapteurService;
 import edu.ezip.ing1.pds.business.server.place.PlaceQueries;
 import edu.ezip.ing1.pds.business.server.place.PlaceService;
+import edu.ezip.ing1.pds.business.server.affluence.AffluenceQueries;
+import edu.ezip.ing1.pds.business.server.affluence.AffluenceService;
 import edu.ezip.ing1.pds.business.server.queries.Queries;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
@@ -44,6 +46,7 @@ public class XMartCityService {
 
         CapteurService capteurService = new CapteurService();
         PlaceService placeService = new PlaceService();
+        AffluenceService affluenceService = new AffluenceService();
 
         final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
         switch(queryEnum) {
@@ -52,6 +55,8 @@ public class XMartCityService {
             case SELECT_ALL_CAPTEURS:
                 response = capteurService.SelectAllCapteurs(request, connection);
                 break;
+            case INSERT_AFFLUENCE:
+                response = affluenceService.InsertAffluence(request, connection);
             case SELECT_ALL_PLACES:
                 response = placeService.SelectAllPlaces(request, connection);
                 break;
