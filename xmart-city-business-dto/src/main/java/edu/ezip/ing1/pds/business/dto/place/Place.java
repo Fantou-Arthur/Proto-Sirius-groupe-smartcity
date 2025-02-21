@@ -3,7 +3,6 @@ package edu.ezip.ing1.pds.business.dto.place;
 import java.util.Set;
 
 public class Place {
-    private String id;
     private String name;
     private String address;
     private int maxCapacity;
@@ -11,20 +10,13 @@ public class Place {
 
     public Place() {}
 
-    public Place(final String id, final String name, final String address, final int maxCapacity) {
-        this.id = id;
+    public Place(final String name, final String address, final int maxCapacity) {
         this.name = name;
         this.address = address;
         this.maxCapacity = maxCapacity;
     }
 
     // Getters and Setters
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
     public String getName() {
         return name;
     }
@@ -45,7 +37,7 @@ public class Place {
     }
 
     public String toString() {
-        return "Place [id=" + id + ", name=" + name + ", address=" + address + ", maxCapacity=" + maxCapacity+"]";
+        return "Place [ name=" + name + ", address=" + address + ", maxCapacity=" + maxCapacity+"]";
     }
 
 
