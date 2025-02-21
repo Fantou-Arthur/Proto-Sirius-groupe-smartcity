@@ -16,6 +16,10 @@
             <Menu mnemonicParsing="false" text="Places">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
+
+
+
+                  
                   <MenuItem mnemonicParsing="false" text="Edit" />
                   <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
                </items>
