@@ -89,4 +89,8 @@ public class CapteurController {
     private void createNewPlace() throws IOException {
         MainView.setRoot("addNewPlace");
     }
+    @FXML
+    public void viewAffluence() throws IOException {
+        MainView.setRoot("Affluence");
+    }
 }

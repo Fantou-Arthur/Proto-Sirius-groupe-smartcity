@@ -79,4 +79,9 @@ public class ListPlacesController implements Initializable {
         logger.debug(  "Places list in ObservableList: " + placesList);
         placeListTable.setItems(placesList);
     }
+
+    @FXML
+    public void viewAffluence() throws IOException {
+        MainView.setRoot("Affluence");
+    }
 }
