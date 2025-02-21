@@ -9,15 +9,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.MainViewController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.place.ListPlacesController">
    <children>
       <MenuBar VBox.vgrow="NEVER">
          <menus>
             <Menu mnemonicParsing="false" text="Places">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
+
+
+
+                  
                   <MenuItem mnemonicParsing="false" text="Edit" />
-                  <MenuItem mnemonicParsing="false" text="List" />
+                  <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Capteurs">
@@ -34,11 +38,11 @@
          <children>
             <HBox alignment="CENTER" prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView prefHeight="373.0" prefWidth="526.0">
+                  <TableView fx:id="placeListTable" prefHeight="373.0" prefWidth="651.0">
                     <columns>
-                      <TableColumn prefWidth="164.0" text="Name" />
-                      <TableColumn prefWidth="258.0" text="Address" />
-                        <TableColumn prefWidth="103.0" text="Capacity" />
+                      <TableColumn fx:id="nameColumn" prefWidth="162.0" text="Name" />
+                      <TableColumn fx:id="addressColumn" prefWidth="362.0" text="Address" />
+                        <TableColumn fx:id="capacityColumn" prefWidth="111.0" text="Capacity" />
                     </columns>
                   </TableView>
                </children>

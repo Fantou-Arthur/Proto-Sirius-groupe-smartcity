@@ -1,5 +1,6 @@
 package edu.ezip.ing1.pds.controllers.affluence;
 
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.ezip.ing1.pds.MainView;
 import javafx.event.ActionEvent;
@@ -96,7 +97,4 @@ public class AffluenceController{
 
         
     }
-
-
-	
 }
