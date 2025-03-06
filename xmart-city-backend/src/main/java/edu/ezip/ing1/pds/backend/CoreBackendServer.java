@@ -6,23 +6,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.LinkedBlockingDeque;
 
-
-// cat insert-request.json | socat tcp:localhost:45065 -
-// cat select-request.json | socat tcp:localhost:45065 -
 // mvn clean compile assembly:single install
 
 public class CoreBackendServer implements Runnable
