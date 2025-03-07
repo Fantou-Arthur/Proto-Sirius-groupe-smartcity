@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ${ondjazndz} ]; then
+if [ ${M2_REPO} ]; then
 	M2Path=${M2_REPO} # the M2_REPO system variable need to be set 
 else
 	echo "M2_REPO path not set"
