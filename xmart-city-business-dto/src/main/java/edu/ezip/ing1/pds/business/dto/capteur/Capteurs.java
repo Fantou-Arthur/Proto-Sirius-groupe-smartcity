@@ -3,17 +3,18 @@ package edu.ezip.ing1.pds.business.dto.capteur;
 
 import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Capteurs {
-    private Set<Capteur> capteurs = new LinkedHashSet<Capteur>();
+    private ArrayList<Capteur> capteurs = new ArrayList<Capteur>();
 
-    public Set<Capteur> getCapteurs() {
+    public ArrayList<Capteur> getCapteurs() {
         return capteurs;
     }
 
-    public void setStudents(Set<Capteur> capteurs) {
+    public void setCapteurs(ArrayList<Capteur> capteurs) {
         this.capteurs = capteurs;
     }
 
@@ -24,8 +25,8 @@ public class Capteurs {
 
     @Override
     public String toString() {
-        return "Students{" +
-                "students=" + capteurs +
+        return "Capteurs{" +
+                "capteurs=" + capteurs +
                 '}';
     }
 }

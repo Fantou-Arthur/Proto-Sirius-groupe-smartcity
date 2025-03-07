@@ -42,8 +42,9 @@ public class CapteurService {
         final ObjectMapper objectMapper = new ObjectMapper();
         final Statement stmt = connection.createStatement();
         final ResultSet res = stmt.executeQuery(CapteurQueries.SELECT_ALL_CAPTEURS.getQuery());
+        logger.info(String.valueOf(res));
         Capteurs capteurs = new Capteurs();
-        System.out.println("avant la boucle");
+        logger.info("Select all capteurs");
         while (res.next()) {
             Capteur capteur = new Capteur();
             capteur.setId(res.getInt(1));
@@ -51,7 +52,7 @@ public class CapteurService {
             capteur.setState(res.getBoolean(3));
             capteur.setId_lieu(res.getInt(4));
             capteurs.add(capteur);
-            System.out.println("Le capteur :" + capteur);
+            logger.info("Le capteur :" + capteur);
         }
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(capteurs));
     }

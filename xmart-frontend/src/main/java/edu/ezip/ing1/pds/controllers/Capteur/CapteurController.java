@@ -4,24 +4,26 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
+import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.CapteurService;
-import edu.ezip.ing1.pds.services.PlaceService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
-public class CapteurController {
+public class CapteurController implements Initializable {
     private Capteurs capteurs;
     @FXML
     Button editSensorButton = new Button();
@@ -49,7 +51,23 @@ public class CapteurController {
     TitledPane TitlePaneDeleteCapteur = new TitledPane();
 
     @FXML
-    ListView<Capteurs> CapteurListView = new ListView();
+    private TableView<Capteur> tableauCapteur;
+    @FXML
+    private TableColumn<Capteur, Integer> IdColumn;
+    @FXML
+    private TableColumn<Capteur, String> NameColumn;
+    @FXML
+    private TableColumn<Capteur, Boolean> StateColumn;
+    @FXML
+    private TableColumn<Capteur, Integer> Id_lieuColumn;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        IdColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id"));
+        NameColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("name"));
+        StateColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Boolean>("state"));
+        Id_lieuColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_lieu"));
+
+    };
 
 
     @FXML
@@ -69,12 +87,18 @@ public class CapteurController {
 
 
     @FXML
-    private void GoToEditCapteurView() throws IOException {
-        CapteurService capteurService = new CapteurService(networkConfig);
+    private void GoToEditCapteurView()throws IOException {
             try {
-                capteurs = CapteurService.selectAllCapteur();
+                CapteurService capteurService = new CapteurService(networkConfig);
+                Capteurs capteurs = capteurService.selectAllCapteurs();
                 logger.info("Capteur list : {}", capteurs );
-                System.out.println("Hey" + capteurs);
+                ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
+                logger.info("Capteur list : {}", listeCapteur );
+                ObservableList<Capteur> capteurs_ol = FXCollections.observableArrayList(listeCapteur);
+                logger.info("le capteurs observable list :" + capteurs_ol.toString());
+                ListView<Capteur> listView = new ListView<Capteur>(capteurs_ol);
+                logger.debug(  "Places list in ObservableList: " + capteurs_ol);
+                tableauCapteur.setItems(capteurs_ol);
             } catch (IOException e) {
                 logger.error(e.getMessage());
             }
@@ -128,10 +152,8 @@ public class CapteurController {
         int int_id_lieu = Integer.parseInt(id_lieu);
         boolean statebool = Boolean.parseBoolean(state);
         Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
-        TitlePaneEditCapteur .setVisible(false);
+        TitlePaneEditCapteur.setVisible(false);
         NetworkConfig networkConfig = new NetworkConfig();
-        CapteurService capteurService = new CapteurService(networkConfig);
-        capteurService.insertCapteur(capteur);
 
 
     }

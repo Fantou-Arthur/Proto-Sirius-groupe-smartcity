@@ -21,10 +21,10 @@ public class CapteurService {
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     enum RequestOrder {
-        INSERT_CAPTEUR, SELECT_ALL_CAPTEUR, EDIT_CAPTEUR,
+        INSERT_CAPTEUR, SELECT_ALL_CAPTEURS, EDIT_CAPTEUR,
     };
 
-    private static NetworkConfig networkConfig;
+    private NetworkConfig networkConfig;
 
     public  CapteurService(NetworkConfig networkConfig) {
         this.networkConfig = networkConfig;
@@ -55,14 +55,14 @@ public class CapteurService {
         }
     }
 
-    public static Capteurs selectAllCapteur() throws JsonProcessingException {
+    public Capteurs selectAllCapteurs() throws IOException {
         int birthdate = 0;
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
 
         request.setRequestId(requestId);
-        request.setRequestOrder(CapteurService.RequestOrder.SELECT_ALL_CAPTEUR.toString());
+        request.setRequestOrder(RequestOrder.SELECT_ALL_CAPTEURS.toString());
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         try {
@@ -71,7 +71,7 @@ public class CapteurService {
                     birthdate++, request, null, requestBytes);
             selectCapteurClientRequest.join();
             // Get the capteurs and log
-            Capteurs capteurs = (Capteurs) selectCapteurClientRequest.getInfo();
+            Capteurs capteurs = selectCapteurClientRequest.getResult();
             logger.info("List of capteurs: " + capteurs);
             return capteurs;
         } catch (IOException | InterruptedException e) {
