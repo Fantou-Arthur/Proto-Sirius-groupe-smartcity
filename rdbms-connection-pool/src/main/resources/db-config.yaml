@@ -1,5 +1,5 @@
 databaseName: "pds"
-host: "localhost"
+host: "172.31.252.201"
 port: 3306
 username : "accessDBbackend"
 password: "qsAhxuqiz6Jnnh6bp1ht"
