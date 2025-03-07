@@ -3,12 +3,17 @@ package edu.ezip.ing1.pds.controllers.Capteur;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
+import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.CapteurService;
+import edu.ezip.ing1.pds.services.PlaceService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import org.slf4j.Logger;
@@ -16,9 +21,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-
-
 public class CapteurController {
+    private Capteurs capteurs;
     @FXML
     Button editSensorButton = new Button();
     @FXML
@@ -44,6 +48,9 @@ public class CapteurController {
     @FXML
     TitledPane TitlePaneDeleteCapteur = new TitledPane();
 
+    @FXML
+    ListView<Capteurs> CapteurListView = new ListView();
+
 
     @FXML
     private void GoToCapteurView() throws IOException {
@@ -59,8 +66,18 @@ public class CapteurController {
         TitlePaneAddCapteur .setVisible(false);
     }
 
+
+
     @FXML
     private void GoToEditCapteurView() throws IOException {
+        CapteurService capteurService = new CapteurService(networkConfig);
+            try {
+                capteurs = CapteurService.selectAllCapteur();
+                logger.info("Capteur list : {}", capteurs );
+                System.out.println("Hey" + capteurs);
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+            }
         TitlePaneEditCapteur .setVisible(true);
     }
 
@@ -128,6 +145,7 @@ public class CapteurController {
     @FXML
     private TextField Adder_Id = new TextField();
 
+
     public void confirmAddSensor() throws JsonProcessingException {
         String Edit_name = Adder_Name.getText();
         String state = Adder_State.getText();
@@ -148,4 +166,6 @@ public class CapteurController {
     public void viewAffluence() throws IOException {
         MainView.setRoot("Affluence");
     }
+
+
 }

@@ -24,7 +24,7 @@ public class CapteurService {
         INSERT_CAPTEUR, SELECT_ALL_CAPTEUR, EDIT_CAPTEUR,
     };
 
-    private NetworkConfig networkConfig;
+    private static NetworkConfig networkConfig;
 
     public  CapteurService(NetworkConfig networkConfig) {
         this.networkConfig = networkConfig;
@@ -55,7 +55,7 @@ public class CapteurService {
         }
     }
 
-    public void selectAllCapteur() throws JsonProcessingException {
+    public static Capteurs selectAllCapteur() throws JsonProcessingException {
         int birthdate = 0;
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
@@ -73,9 +73,11 @@ public class CapteurService {
             // Get the capteurs and log
             Capteurs capteurs = (Capteurs) selectCapteurClientRequest.getInfo();
             logger.info("List of capteurs: " + capteurs);
+            return capteurs;
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());
         }
+        return null;
     }
 
 }
