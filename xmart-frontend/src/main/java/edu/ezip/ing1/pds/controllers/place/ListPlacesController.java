@@ -8,15 +8,18 @@ import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.PlaceService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,16 +34,19 @@ public class ListPlacesController implements Initializable {
     private Places places;
 
     @FXML
-    private TableColumn<Place, String> addressColumn;
+    private TableColumn<PlaceCell, String> addressColumn;
 
     @FXML
-    private TableColumn<Place, Integer> capacityColumn;
+    private TableColumn<PlaceCell, Integer> capacityColumn;
 
     @FXML
-    private TableColumn<Place, String> nameColumn;
+    private TableColumn<PlaceCell, String> nameColumn;
 
     @FXML
-    private TableView<Place> placeListTable;
+    private TableColumn actionColumn;
+
+    @FXML
+    private TableView<PlaceCell> placeListTable;
 
     public ListPlacesController() {
         PlaceService placeService = new PlaceService(networkConfig);
@@ -67,21 +73,32 @@ public class ListPlacesController implements Initializable {
         logger.debug(  "Places list: " + places);
 
     }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Place, String>("name"));
-        addressColumn.setCellValueFactory(new PropertyValueFactory<Place, String>("address"));
-        capacityColumn.setCellValueFactory(new PropertyValueFactory<Place, Integer>("maxCapacity"));
-
-        ObservableList<Place> placesList = FXCollections.observableArrayList(places.getPlaces());
-        logger.debug(  "Places list in ObservableList: " + placesList);
-        placeListTable.setItems(placesList);
-    }
-
     @FXML
     public void viewAffluence() throws IOException {
         MainView.setRoot("Affluence");
     }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("name"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("address"));
+        capacityColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, Integer>("maxCapacity"));
+
+        actionColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, HBox>("actions"));
+
+        ArrayList<Place> placeList = places.getPlaces();
+        ArrayList<PlaceCell> data = new ArrayList<>();
+        for (int i=0; i<placeList.size(); i++) {
+            data.add(new PlaceCell(placeList.get(i)));
+        }
+
+        ObservableList<PlaceCell> placesList = FXCollections.observableArrayList(data);
+        logger.debug(  "Places list in ObservableList: " + placesList);
+        placeListTable.setItems(placesList);
+    }
+
+
+
+
 }
