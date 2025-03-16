@@ -8,10 +8,14 @@ public enum Queries {
     SELECT_ALL_AFFLUENCES("SELECT Affluence.id, Affluence.id_1, Affluence.NbrPers, Affluence.NbrDepart, Affluence.NbrArrive, Affluence.NbrDepart FROM Affluence"),
     
     INSERT_PLACE("INSERT INTO Places (name, address, maxCapacity) VALUES (?, ?, ?)"),
-    SELECT_ALL_PLACES("SELECT name, address, maxCapacity FROM Places"),
-    
+    SELECT_ALL_PLACES("SELECT id, name, address, maxCapacity FROM Places"),
+    UPDATE_PLACE("UPDATE Places SET name = ?, address = ?, maxCapacity = ? WHERE id = ?"),
+    DELETE_PLACE("DELETE FROM Places WHERE id = ?"),
+
     INSERT_CAPTEUR("INSERT INTO sensor (id, name, isActive, id_lieu) VALUES (?, ?, ?, ?)"),
     SELECT_ALL_CAPTEURS("SELECT id, name, status, id_lieu FROM sensor");
+
+
 
     private  String query;
 

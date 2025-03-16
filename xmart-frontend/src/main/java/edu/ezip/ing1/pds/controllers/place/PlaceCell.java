@@ -12,6 +12,7 @@ public class PlaceCell extends Place {
     public Button  editButton;
     public Button  deleteButton;
     public PlaceCell(Place place) {
+        this.setId(place.getId());
         this.setName(place.getName());
         this.setAddress(place.getAddress());
         this.setMaxCapacity(place.getMaxCapacity());
@@ -42,6 +43,6 @@ public class PlaceCell extends Place {
 
     @Override
     public String toString() {
-        return "PlaceCell [ name=" + this.getName() + ", address=" + this.getAddress() + ", maxCapacity=" + this.getMaxCapacity() + ", actions=" + this.actions +" ]";
+        return "PlaceCell [ id= "+ this.getId() +", name=" + this.getName() + ", address=" + this.getAddress() + ", maxCapacity=" + this.getMaxCapacity() + ", actions=" + this.actions +" ]";
     }
 }
