@@ -1,7 +1,6 @@
 package edu.ezip.ing1.pds.controllers.place;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
@@ -13,8 +12,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 public class AddNewPlaceController {
 
@@ -30,22 +27,6 @@ public class AddNewPlaceController {
     private TextField addressTextField;
     @FXML
     private TextField capacitySpinner;
-
-    @FXML
-    private void createNewPlace() throws IOException {
-        MainView.setRoot("addNewPlace");
-    }
-
-    @FXML
-    private void  listPlaces() throws IOException {
-        MainView.setRoot("listPlaces");
-    }
-
-    @FXML
-    private void GoToCapteurView() throws IOException {
-        System.out.println("GoToCapteurView");
-        MainView.setRoot("CapteurView");
-    }
 
     public void addNewPlace(){
         String name = nameTextField.getText();
@@ -81,8 +62,9 @@ public class AddNewPlaceController {
 
     }
 
-    @FXML
-    public void viewAffluence() throws IOException {
-        MainView.setRoot("Affluence");
+    public void resetFields(){
+        nameTextField.setText("");
+        addressTextField.setText("");
+        capacitySpinner.setText("");
     }
 }

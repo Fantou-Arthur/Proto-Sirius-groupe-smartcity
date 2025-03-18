@@ -1,11 +1,13 @@
 package edu.ezip.ing1.pds.controllers.place;
 
+import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import java.io.File;
+import java.io.IOException;
 
 public class PlaceCell extends Place {
     private HBox actions;
@@ -28,6 +30,14 @@ public class PlaceCell extends Place {
         removeIcon.setFitWidth(20);
 
         editButton = new Button("", editIcon);
+        editButton.setOnAction(e -> {
+            try {
+                MainView.setRoot("editPlace",place);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex.getMessage());
+            }
+        });
+
         deleteButton = new Button("", removeIcon);
 
         this.actions = new HBox();
@@ -41,8 +51,10 @@ public class PlaceCell extends Place {
         this.actions = actions;
     }
 
+
     @Override
     public String toString() {
         return "PlaceCell [ id= "+ this.getId() +", name=" + this.getName() + ", address=" + this.getAddress() + ", maxCapacity=" + this.getMaxCapacity() + ", actions=" + this.actions +" ]";
     }
+
 }

@@ -1,5 +1,6 @@
 package edu.ezip.ing1.pds;
 
+import edu.ezip.ing1.pds.controllers.place.EditPlaceController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,19 +14,34 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("mainView"), 640, 480);
+        Parent root = loadFXML("mainView").load();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Smart-City Board");
         stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        Parent root = loadFXML(fxml).load();
+        scene.setRoot(root);
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static void setRoot(String fxml, Object data) throws IOException {
+        FXMLLoader fxmlLoader = loadFXML(fxml);
+        Parent root = fxmlLoader.load();
+
+        Object controller = fxmlLoader.getController();
+
+        if (controller instanceof EditPlaceController) {
+            ((EditPlaceController) controller).setData(data);
+        }
+
+        scene.setRoot(root);
+    }
+
+    private static FXMLLoader loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainView.class.getResource( "/views/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+        return fxmlLoader;
     }
 
     public static void main(String[] args) {
