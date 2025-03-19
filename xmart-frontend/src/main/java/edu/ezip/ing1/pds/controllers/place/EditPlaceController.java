@@ -1,5 +1,6 @@
 package edu.ezip.ing1.pds.controllers.place;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
@@ -10,6 +11,8 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 public class EditPlaceController {
 
@@ -68,8 +71,11 @@ public class EditPlaceController {
                     dialogBox.setContentText("Une erreur est survenue. Veuillez réessayer");
                     dialogBox.showAndWait();
                 }
+                MainView.setRoot("listPlaces");
             } catch (JsonProcessingException e) {
                 logger.debug(e.getMessage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }

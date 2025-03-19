@@ -20,6 +20,7 @@ public class PlaceService {
     public PlaceService() {}
 
     public Response InsertPlace(final Request request, final Connection connection) throws SQLException, IOException {
+        //TODO: Handle error and send to the front
         final ObjectMapper objectMapper = new ObjectMapper();
         final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);
         final PreparedStatement statement = connection.prepareStatement(PlaceQueries.INSERT_PLACE.getQuery());
@@ -28,14 +29,15 @@ public class PlaceService {
         statement.setInt(3, place.getMaxCapacity());
         statement.executeUpdate();
 
-        final ResultSet resultSet = statement.executeQuery("select * from Places");
+        final ResultSet resultSet = statement.executeQuery("select * from Places ");
         resultSet.next();
-        return  new Response(request.getRequestId(), objectMapper.writeValueAsString(resultSetToPlace(resultSet)));
+        return  new Response(request.getRequestId(), objectMapper.writeValueAsString(place));
 
     }
 
 
     public Response SelectAllPlaces(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        //TODO: Handle error and send to the front
         final ObjectMapper objectMapper = new ObjectMapper();
         final Statement stmt = connection.createStatement();
         final ResultSet resultSet = stmt.executeQuery(PlaceQueries.SELECT_ALL_PLACES.getQuery());
@@ -47,6 +49,7 @@ public class PlaceService {
     }
 
     public Response UpdatePlace(final Request request, final Connection connection) throws SQLException, IOException {
+        //TODO: Handle error and send to the front
         final ObjectMapper objectMapper = new ObjectMapper();
         final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);
         final PreparedStatement statement = connection.prepareStatement(PlaceQueries.UPDATE_PLACE.getQuery());
@@ -62,6 +65,7 @@ public class PlaceService {
     }
 
     public Response DeletePlace(final Request request, final Connection connection) throws SQLException, IOException {
+        //TODO: Handle error and send to the front
         final ObjectMapper objectMapper = new ObjectMapper();
         final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);
         final PreparedStatement statement = connection.prepareStatement(PlaceQueries.DELETE_PLACE.getQuery());
