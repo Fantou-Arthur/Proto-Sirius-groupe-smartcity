@@ -56,6 +56,9 @@ public class XMartCityService {
             case UPDATE_PLACE:
                 response = placeService.UpdatePlace(request, connection);
                 break;
+            case DELETE_PLACE:
+                response = placeService.DeletePlace(request, connection);
+                break;
             default:
                 break;
         }

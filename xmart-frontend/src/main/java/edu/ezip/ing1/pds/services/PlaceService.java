@@ -7,8 +7,10 @@ import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
+import edu.ezip.ing1.pds.requests.place.DeletePlaceClientRequest;
 import edu.ezip.ing1.pds.requests.place.InsertPlaceClientRequest;
 import edu.ezip.ing1.pds.requests.place.SelectAllPlacesClientRequest;
+import edu.ezip.ing1.pds.requests.place.UpdatePlaceClientRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +23,7 @@ public class PlaceService {
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     enum RequestOrder {
-        INSERT_PLACE, SELECT_ALL_PLACES,
+        INSERT_PLACE, SELECT_ALL_PLACES, UPDATE_PLACE,DELETE_PLACE
     };
 
     private NetworkConfig networkConfig;
@@ -56,6 +58,58 @@ public class PlaceService {
         }
         return  null;
     }
+
+    public Place updatePlace(Place place) throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(place));
+        request.setRequestOrder(RequestOrder.UPDATE_PLACE.toString());
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        try {
+            final UpdatePlaceClientRequest updatePlaceClientRequest = new UpdatePlaceClientRequest(
+                    networkConfig,
+                    birthdate++, request, place, requestBytes);
+
+            updatePlaceClientRequest.join();
+            // Get the place and log
+            Place updatePlace = (Place) updatePlaceClientRequest.getInfo();
+            logger.debug("New place updated : {}", updatePlace);
+            return updatePlace;
+        } catch (IOException | InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+        return  null;
+    }
+
+    public Place deletePlace(Place place) throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(place));
+        request.setRequestOrder(RequestOrder.DELETE_PLACE.toString());
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        try {
+            final DeletePlaceClientRequest deletePlaceClientRequest = new DeletePlaceClientRequest(
+                    networkConfig,
+                    birthdate++, request, place, requestBytes);
+
+            deletePlaceClientRequest.join();
+            // Get the place and log
+            Place deletePlace = (Place) deletePlaceClientRequest.getInfo();
+            logger.debug("Place deleted : {}", deletePlace);
+            return deletePlace;
+        } catch (IOException | InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+        return  null;
+    }
+
+
 
     public Places selectAllPlaces() throws IOException {
         int birthdate = 0;

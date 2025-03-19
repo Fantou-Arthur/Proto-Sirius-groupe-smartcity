@@ -1,5 +1,4 @@
 package edu.ezip.ing1.pds.controllers.place;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
@@ -7,20 +6,22 @@ import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.PlaceService;
 import edu.ezip.ing1.pds.utils.DialogBox;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AddNewPlaceController {
+public class EditPlaceController {
 
-    private final static String LoggingLabel = "A d d -  N e w - P l a c e -  C o n t r o l l e r";
+    private final static String LoggingLabel = "E d i t- P l a c e -  C o n t r o l l e r";
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
     private final static String networkConfigFile = "network.yaml";
     final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+    private Dialog<String> dialog = new Dialog<String>();
+    private Place place;
 
     private DialogBox dialogBox = new DialogBox();
+
 
     @FXML
     private TextField nameTextField;
@@ -29,11 +30,19 @@ public class AddNewPlaceController {
     @FXML
     private TextField capacitySpinner;
 
-    public void addNewPlace(){
+    public void setData(Object data){
+        if(data instanceof Place){
+            this.place = (Place) data;
+            this.nameTextField.setText(this.place.getName());
+            this.addressTextField.setText(this.place.getAddress());
+            this.capacitySpinner.setText(String.valueOf(this.place.getMaxCapacity()));
+        }
+    }
+
+    public void updatePlace(){
         String name = nameTextField.getText();
         String address = addressTextField.getText();
         int capacity = 0;
-
         try{
             capacity = Integer.parseInt(capacitySpinner.getText());
         } catch (NumberFormatException e) {
@@ -41,20 +50,22 @@ public class AddNewPlaceController {
         }
 
         if(!handleError(name,address,capacity)){
-            Place place = new Place(name,address,capacity);
+            place.setName(name);
+            place.setAddress(address);
+            place.setMaxCapacity(capacity);
             PlaceService placeService = new PlaceService(networkConfig);
 
             try {
-                Place placeAdded = placeService.insertPlace(place);
-                logger.debug("Place added : {}", placeAdded);
+                Place placeAdded = placeService.updatePlace(place);
+                logger.debug("Place updated : {}", placeAdded);
                 if (placeAdded != null) {
-                    dialogBox.setTitle("Ajout nouvelle Place");
-                    dialogBox.setContentText("Place "+ placeAdded.getName() +" ajouter avec succès");
+                    dialogBox.setTitle("Modification Place");
+                    dialogBox.setContentText("Place "+ placeAdded.getName() +" modifier avec succès");
                     dialogBox.showAndWait();
                     this.resetFields();
                 }else{
-                    dialogBox.setTitle("Ajout nouvelle Place");
-                    dialogBox.setContentText("Something went wrong, please try again");
+                    dialogBox.setTitle("Modification Place");
+                    dialogBox.setContentText("Une erreur est survenue. Veuillez réessayer");
                     dialogBox.showAndWait();
                 }
             } catch (JsonProcessingException e) {
@@ -62,6 +73,7 @@ public class AddNewPlaceController {
             }
         }
     }
+
 
     public void resetFields(){
         nameTextField.setText("");

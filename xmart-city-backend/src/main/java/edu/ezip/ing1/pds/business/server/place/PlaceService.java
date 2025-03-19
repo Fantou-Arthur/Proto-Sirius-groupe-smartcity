@@ -48,7 +48,7 @@ public class PlaceService {
 
     public Response UpdatePlace(final Request request, final Connection connection) throws SQLException, IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
-        final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);;
+        final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);
         final PreparedStatement statement = connection.prepareStatement(PlaceQueries.UPDATE_PLACE.getQuery());
         statement.setString(1, place.getName());
         statement.setString(2, place.getAddress());
@@ -61,7 +61,19 @@ public class PlaceService {
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(resultSetToPlace(resultSet)));
     }
 
-    //public Response DeletePlace(final Request request, final Connection connection) throws SQLException, IOException {}
+    public Response DeletePlace(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);
+        final PreparedStatement statement = connection.prepareStatement(PlaceQueries.DELETE_PLACE.getQuery());
+        statement.setInt(1, place.getId());
+        statement.executeUpdate();
+
+        final ResultSet resultSet = statement.executeQuery("select count(*) from Places where id = "+place.getId());
+        resultSet.next();
+        int result = resultSet.getInt(1);
+        logger.info("Total of place with the id {} is {}", place.getId(), result);
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(place));
+    }
 
 
     private Place resultSetToPlace(final ResultSet resultSet) throws SQLException {
