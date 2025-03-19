@@ -49,8 +49,7 @@ public class PlaceService {
                     birthdate++, request, place, requestBytes);
 
             insertPlaceClientRequest.join();
-            // Get the place and log
-            Place newPlace = (Place) insertPlaceClientRequest.getInfo();
+            Place newPlace = (Place) insertPlaceClientRequest.getResult();
             logger.debug("New place inserted : {}", newPlace);
             return newPlace;
         } catch (IOException | InterruptedException e) {
@@ -99,7 +98,6 @@ public class PlaceService {
                     birthdate++, request, place, requestBytes);
 
             deletePlaceClientRequest.join();
-            // Get the place and log
             Place deletePlace = (Place) deletePlaceClientRequest.getInfo();
             logger.debug("Place deleted : {}", deletePlace);
             return deletePlace;
@@ -126,7 +124,6 @@ public class PlaceService {
                     networkConfig,
                     birthdate++, request, null, requestBytes);
             selectAllPlaceClientRequest.join();
-            // Get the places and log
             Places places = selectAllPlaceClientRequest.getResult();
             return places;
         } catch (IOException | InterruptedException e) {

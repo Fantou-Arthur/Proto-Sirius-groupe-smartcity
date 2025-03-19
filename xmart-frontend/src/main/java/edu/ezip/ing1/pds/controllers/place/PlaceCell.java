@@ -57,7 +57,7 @@ public class PlaceCell extends Place {
 
                 Place deletePlace = placeService.deletePlace(place);
                 dialogBox.setTitle("Supprimer Place");
-                dialogBox.setHeaderText("Place " + deletePlace.getName()+ " supprimer avec succès");
+                dialogBox.setContentText("Place " + deletePlace.getName()+ " supprimer avec succès");
                 dialogBox.showAndWait();
                 MainView.setRoot("listPlaces");
             } catch (IOException ex) {

@@ -15,6 +15,7 @@ public class SelectAllPlacesClientRequest extends ClientRequest<Object, Places> 
 
     @Override
     public Places readResult(String body) throws IOException {
+        //TODO: When back handle error sending then do it here also
         final ObjectMapper mapper = new ObjectMapper();
         final Places places = mapper.readValue(body, Places.class);
         return places;

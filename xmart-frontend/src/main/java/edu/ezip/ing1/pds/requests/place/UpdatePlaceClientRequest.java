@@ -9,7 +9,7 @@ import edu.ezip.ing1.pds.commons.Request;
 import java.io.IOException;
 import java.util.Map;
 
-public class UpdatePlaceClientRequest extends ClientRequest<Place, String > {
+public class UpdatePlaceClientRequest extends ClientRequest<Place, Place > {
 
     public UpdatePlaceClientRequest(
             NetworkConfig networkConfig, int myBirthDate, Request request, Place info, byte[] bytes)
@@ -18,12 +18,11 @@ public class UpdatePlaceClientRequest extends ClientRequest<Place, String > {
     }
 
     @Override
-    public String readResult(String body) throws IOException {
-        //TODO : implement this function action
+    public Place readResult(String body) throws IOException {
+        //TODO: When back handle error sending then do it here also
         final ObjectMapper mapper = new ObjectMapper();
-        final Map<String, Integer> place = mapper.readValue(body, Map.class);
-        final String result  = place.get("id").toString();
-        return result;
+        final Place place = mapper.readValue(body, Place.class);
+        return place;
     }
 
 }
