@@ -73,10 +73,40 @@ public class CapteurController implements Initializable {
 
     };
 
+    @FXML
+    public void ShowSensorList(){
+        try {
+            CapteurService capteurService = new CapteurService(networkConfig);
+            Capteurs capteurs = capteurService.selectAllCapteurs();
+            logger.info("Capteur list : {}", capteurs );
+            ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
+            ObservableList<Capteur> capteurs_ol = FXCollections.observableArrayList(listeCapteur);
+            tableauCapteurs.setItems(capteurs_ol);
+            System.out.println(listeCapteur);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            System.out.println("aaah");
+        }
+    }
+
+    @FXML
+    public void ResetTextFields(){
+        Adder_Name.setText("");
+        Adder_State.setText("");
+        Adder_Id_lieu.setText("");
+        Adder_Id.setText("");
+        Edit_Id.setText("");
+        Edit_Name.setText("");
+        Edit_State.setText("");
+        Edit_Id_lieu.setText("");
+    }
+
 
     @FXML
     private void GoToCapteurView() throws IOException {
         MainView.setRoot("CapteurView");
+        System.out.println("Show sensor list");
+        ShowSensorList();
     }
 
     @FXML
@@ -85,6 +115,8 @@ public class CapteurController implements Initializable {
     }
     @FXML
     private void LeaveAddCapteurView() throws IOException {
+        ShowSensorList();
+        ResetTextFields();
         TitlePaneAddCapteur .setVisible(false);
     }
 
@@ -92,23 +124,13 @@ public class CapteurController implements Initializable {
 
     @FXML
     private void GoToEditCapteurView()throws IOException {
-            try {
-                CapteurService capteurService = new CapteurService(networkConfig);
-                Capteurs capteurs = capteurService.selectAllCapteurs();
-                logger.info("Capteur list : {}", capteurs );
-                ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
-                logger.info("Capteur list : {}", listeCapteur );
-                ObservableList<Capteur> capteurs_ol = FXCollections.observableArrayList(listeCapteur);
-                logger.info("le capteurs observable list :" + capteurs_ol);
-                tableauCapteurs.setItems(capteurs_ol);
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-            }
         TitlePaneEditCapteur .setVisible(true);
     }
 
     @FXML
     private void LeaveEditCapteurView() throws IOException {
+        ShowSensorList();
+        ResetTextFields();
         TitlePaneEditCapteur .setVisible(false);
     }
 
@@ -124,6 +146,7 @@ public class CapteurController implements Initializable {
 
     @FXML
     private void LeaveDeleteCapteurView() throws IOException {
+        ShowSensorList();
         TitlePaneDeleteCapteur .setVisible(false);
     }
     @FXML
