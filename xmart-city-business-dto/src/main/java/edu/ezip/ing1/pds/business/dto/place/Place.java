@@ -1,6 +1,7 @@
 package edu.ezip.ing1.pds.business.dto.place;
 
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Place {
     private String name;
