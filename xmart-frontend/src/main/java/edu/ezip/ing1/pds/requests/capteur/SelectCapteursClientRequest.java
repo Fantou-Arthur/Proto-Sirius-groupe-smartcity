@@ -1,5 +1,7 @@
 package edu.ezip.ing1.pds.requests.capteur;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
+import edu.ezip.ing1.pds.business.dto.place.Places;
 import edu.ezip.ing1.pds.client.commons.ClientRequest;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
@@ -14,7 +16,8 @@ public class SelectCapteursClientRequest extends ClientRequest<Object, Capteurs>
 
     @Override
     public Capteurs readResult(String body) throws IOException {
-        //TODO: implement this function
-        return null;
+        final ObjectMapper mapper = new ObjectMapper();
+        final Capteurs capteurs = mapper.readValue(body, Capteurs.class);
+        return capteurs;
     }
 }
