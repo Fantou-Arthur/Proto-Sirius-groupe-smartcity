@@ -10,12 +10,15 @@ import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.CapteurService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,8 +54,6 @@ public class CapteurController implements Initializable {
     TitledPane TitlePaneDeleteCapteur = new TitledPane();
 
     @FXML
-    private TableView<Capteur> tableauCapteur;
-    @FXML
     private TableColumn<Capteur, Integer> IdColumn;
     @FXML
     private TableColumn<Capteur, String> NameColumn;
@@ -60,6 +61,9 @@ public class CapteurController implements Initializable {
     private TableColumn<Capteur, Boolean> StateColumn;
     @FXML
     private TableColumn<Capteur, Integer> Id_lieuColumn;
+    @FXML
+    private TableView<Capteur> tableauCapteurs;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         IdColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id"));
@@ -95,10 +99,8 @@ public class CapteurController implements Initializable {
                 ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
                 logger.info("Capteur list : {}", listeCapteur );
                 ObservableList<Capteur> capteurs_ol = FXCollections.observableArrayList(listeCapteur);
-                logger.info("le capteurs observable list :" + capteurs_ol.toString());
-                ListView<Capteur> listView = new ListView<Capteur>(capteurs_ol);
-                logger.debug(  "Places list in ObservableList: " + capteurs_ol);
-                tableauCapteur.setItems(capteurs_ol);
+                logger.info("le capteurs observable list :" + capteurs_ol);
+                tableauCapteurs.setItems(capteurs_ol);
             } catch (IOException e) {
                 logger.error(e.getMessage());
             }

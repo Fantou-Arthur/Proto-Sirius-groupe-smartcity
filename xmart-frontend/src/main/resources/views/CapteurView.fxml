@@ -40,7 +40,7 @@
          <children>
             <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
                <children>
-                  <TableView layoutX="50.0" layoutY="162.0" prefHeight="200.0" prefWidth="518.0">
+                  <TableView fx:id="tableauCapteurs" layoutX="50.0" layoutY="162.0" prefHeight="200.0" prefWidth="518.0">
                     <columns>
                       <TableColumn fx:id="IdColumn" prefWidth="75.0" text="Id" />
                       <TableColumn fx:id="NameColumn" prefWidth="75.0" text="Nom" />
