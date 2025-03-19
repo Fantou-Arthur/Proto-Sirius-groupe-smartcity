@@ -15,7 +15,7 @@ public class MainView extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = loadFXML("mainView").load();
-        scene = new Scene(root);
+        scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Smart-City Board");
         stage.show();
