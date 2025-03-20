@@ -17,25 +17,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.Capteur.CapteurController">
    <children>
-      <MenuBar VBox.vgrow="NEVER">
-         <menus>
-            <Menu mnemonicParsing="false" text="Places">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
-                  <MenuItem mnemonicParsing="false" text="Edit" />
-                  <MenuItem mnemonicParsing="false" text="List" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Capteurs">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#GoToCapteurView" text="Show Capteurs" />
-               </items></Menu>
-            <Menu mnemonicParsing="false" text="Affluences">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#viewAffluence" text="View" />
-               </items></Menu>
-         </menus>
-      </MenuBar>
+      <fx:include source="navBar.fxml" />
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
@@ -93,6 +75,7 @@
                               <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
                               <Button fx:id="AboartAddSensorButton" layoutX="196.0" layoutY="118.0" mnemonicParsing="false" onAction="#LeaveAddCapteurView" text="Annuler" />
                               <Button fx:id="confirmAddSensorButton" layoutX="349.0" layoutY="118.0" mnemonicParsing="false" onAction="#confirmAddSensor" text="Valider" />
+                              <Button fx:id="Error_Empty_TextField" layoutX="169.0" layoutY="34.0" mnemonicParsing="false" onAction="#LeaveErrorEmptyTextField" prefHeight="113.0" prefWidth="261.0" text="Toutes les cases doivent être remplies !" textFill="#e42424" visible="false" />
                            </children>
                         </AnchorPane>
                     </content>

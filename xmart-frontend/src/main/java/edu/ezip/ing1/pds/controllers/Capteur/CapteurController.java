@@ -29,6 +29,8 @@ import javafx.fxml.Initializable;
 public class CapteurController implements Initializable {
     private Capteurs capteurs;
     @FXML
+    Button Error_Empty_TextField = new Button();
+    @FXML
     Button editSensorButton = new Button();
     @FXML
     Button AboartEditSensorButton = new Button();
@@ -193,22 +195,36 @@ public class CapteurController implements Initializable {
     private TextField Adder_Id = new TextField();
 
 
-    public void confirmAddSensor() throws JsonProcessingException {
-        String Edit_name = Adder_Name.getText();
+    public void confirmAddSensor() throws IOException {
+        String add_name = Adder_Name.getText();
         String state = Adder_State.getText();
         String id_lieu = Adder_Id_lieu.getText();
         String id = Adder_Id.getText();
-        logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
-        boolean statebool = Boolean.parseBoolean(state);
-        int int_id = Integer.parseInt(id);;
-        int int_id_lieu = Integer.parseInt(id_lieu);
-        Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
-        TitlePaneAddCapteur .setVisible(false);
-        final String networkConfigFile = "network.yaml";
-        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
-        CapteurService capteurService = new CapteurService(networkConfig);
-        capteurService.insertCapteur(capteur);
+        if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "")) {
+            Error_Empty_TextField.setVisible(true);
+
+        }
+        else{
+            logger.info(add_name+" "+state+" "+ id_lieu + " " + id);
+            boolean statebool = Boolean.parseBoolean(state);
+            int int_id = Integer.parseInt(id);;
+            int int_id_lieu = Integer.parseInt(id_lieu);
+            Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu);
+            TitlePaneAddCapteur .setVisible(false);
+            Error_Empty_TextField.setVisible(false);
+            final String networkConfigFile = "network.yaml";
+            final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+            CapteurService capteurService = new CapteurService(networkConfig);
+            capteurService.insertCapteur(capteur);
+            LeaveAddCapteurView();
+        }
     }
+
+    @FXML
+    public void LeaveErrorEmptyTextField(){
+        Error_Empty_TextField.setVisible(false);
+    }
+
     @FXML
     public void viewAffluence() throws IOException {
         MainView.setRoot("Affluence");
