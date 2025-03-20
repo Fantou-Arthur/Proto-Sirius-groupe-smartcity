@@ -84,10 +84,8 @@ public class CapteurController implements Initializable {
             ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
             ObservableList<Capteur> capteurs_ol = FXCollections.observableArrayList(listeCapteur);
             tableauCapteurs.setItems(capteurs_ol);
-            System.out.println(listeCapteur);
         } catch (IOException e) {
             logger.error(e.getMessage());
-            System.out.println("aaah");
         }
     }
 
@@ -127,6 +125,19 @@ public class CapteurController implements Initializable {
     @FXML
     private void GoToEditCapteurView()throws IOException {
         TitlePaneEditCapteur .setVisible(true);
+        Capteur capteur = tableauCapteurs.getSelectionModel().getSelectedItem();
+        int id = capteur.getId();
+        String name =capteur.getName();
+        Boolean state = capteur.getState();
+        int id_lieu = capteur.getId_lieu();
+        String str_id = String.valueOf(id);
+        String str_state = String.valueOf(state);
+        String str_lieu = String.valueOf(id_lieu);
+        Edit_Id.setText(str_id);
+        Edit_Name.setText(name);
+        Edit_State.setText(str_state);
+        Edit_Id_lieu.setText(str_lieu);
+
     }
 
     @FXML
@@ -165,19 +176,30 @@ public class CapteurController implements Initializable {
     private TextField Edit_Id = new TextField();
 
     public void confirmEditSensor() throws JsonProcessingException {
+        Capteur capteur1 = tableauCapteurs.getSelectionModel().getSelectedItem();
+        int int_id = capteur1.getId();
+        String id = String.valueOf(int_id);
         String Edit_name = Edit_Name.getText();
         String state = Edit_State.getText();
         String id_lieu = Edit_Id_lieu.getText();
-        String id = Edit_Id.getText();
-        logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
-        int int_id = Integer.parseInt(id);;
-        int int_id_lieu = Integer.parseInt(id_lieu);
-        boolean statebool = Boolean.parseBoolean(state);
-        Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
-        TitlePaneEditCapteur.setVisible(false);
-        NetworkConfig networkConfig = new NetworkConfig();
+        System.out.println();
+        System.out.println(id + Edit_name + state + id_lieu);
+        if ((Edit_name == "") || (state == "") || (id_lieu == "") || (id == "")) {
+            Error_Empty_TextField.setVisible(true);
+            System.out.println("erreur saisie de edit");
+        }
+        else{
+            logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
+            int int_id_lieu = Integer.parseInt(id_lieu);
+            boolean statebool = Boolean.parseBoolean(state);
+            Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
 
-
+            final String networkConfigFile = "network.yaml";
+            final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+            CapteurService capteurService = new CapteurService(networkConfig);
+            capteurService.editCapteur(capteur);
+            TitlePaneEditCapteur.setVisible(false);
+        }
     }
 
     @FXML
@@ -197,12 +219,11 @@ public class CapteurController implements Initializable {
         String id = Adder_Id.getText();
         if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "")) {
             Error_Empty_TextField.setVisible(true);
-
         }
         else{
             logger.info(add_name+" "+state+" "+ id_lieu + " " + id);
             boolean statebool = Boolean.parseBoolean(state);
-            int int_id = Integer.parseInt(id);;
+            int int_id = Integer.parseInt(id);
             int int_id_lieu = Integer.parseInt(id_lieu);
             Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu);
             TitlePaneAddCapteur .setVisible(false);

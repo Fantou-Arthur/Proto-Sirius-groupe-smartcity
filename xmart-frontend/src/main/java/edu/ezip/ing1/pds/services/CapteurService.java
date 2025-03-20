@@ -8,6 +8,7 @@ import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.requests.capteur.DeleteCapteurClientRequest;
+import edu.ezip.ing1.pds.requests.capteur.EditCapteurClientRequest;
 import edu.ezip.ing1.pds.requests.capteur.InsertCapteurClientRequest;
 import edu.ezip.ing1.pds.requests.capteur.SelectCapteursClientRequest;
 
@@ -92,9 +93,6 @@ public class CapteurService {
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         try {
-            System.out.println();
-            System.out.println("on est dans le try du capteurservice");
-            System.out.println();
             final DeleteCapteurClientRequest deleteCapteurClientRequest = new DeleteCapteurClientRequest(
                     networkConfig,
                     birthdate++, request, capteur, requestBytes);
@@ -103,6 +101,30 @@ public class CapteurService {
             Capteur deleteCapteur = (Capteur) deleteCapteurClientRequest.getInfo();
             logger.debug("Capteur supprimé : {}", deleteCapteur);
             return deleteCapteur;
+        } catch (IOException | InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+        return  null;
+    }
+    public Capteur editCapteur(Capteur capteur) throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(capteur));
+        request.setRequestOrder(CapteurService.RequestOrder.EDIT_CAPTEUR.toString());
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        try {
+            final EditCapteurClientRequest editCapteurClientRequest = new EditCapteurClientRequest(
+                    networkConfig,
+                    birthdate++, request, capteur, requestBytes);
+
+            editCapteurClientRequest.join();
+            // Get the capteur and log
+            Capteur editCapteur = (Capteur) editCapteurClientRequest.getInfo();
+            logger.debug("Capteur mis à jour : {}", editCapteur);
+            return editCapteur;
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());
         }
