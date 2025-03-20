@@ -36,6 +36,19 @@ public class CapteurService {
         return  new Response(request.getRequestId(), mapper.writeValueAsString(capteur));
 
     }
+    public Response DeleteCapteur(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Capteur capteur = objectMapper.readValue(request.getRequestBody(), Capteur.class);
+        final PreparedStatement statement = connection.prepareStatement(CapteurQueries.DELETE_CAPTEUR.getQuery());
+        statement.setInt(1, capteur.getId());
+        statement.executeUpdate();
+
+        final ResultSet resultSet = statement.executeQuery("select count(*) from Capteurs where id = "+capteur.getId());
+        resultSet.next();
+        int result = resultSet.getInt(1);
+        logger.info("Total of capteur with the id {} is {}", capteur.getId(), result);
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(capteur));
+    }
 
 
     public Response SelectAllCapteurs(final Request request, final Connection connection) throws SQLException, JsonProcessingException {

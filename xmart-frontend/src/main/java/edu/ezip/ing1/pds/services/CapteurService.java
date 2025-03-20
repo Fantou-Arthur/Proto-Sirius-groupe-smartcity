@@ -7,8 +7,10 @@ import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
+import edu.ezip.ing1.pds.requests.capteur.DeleteCapteurClientRequest;
 import edu.ezip.ing1.pds.requests.capteur.InsertCapteurClientRequest;
 import edu.ezip.ing1.pds.requests.capteur.SelectCapteursClientRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +23,7 @@ public class CapteurService {
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     enum RequestOrder {
-        INSERT_CAPTEUR, SELECT_ALL_CAPTEURS, EDIT_CAPTEUR,
+        INSERT_CAPTEUR, SELECT_ALL_CAPTEURS, DELETE_CAPTEUR, EDIT_CAPTEUR,
     };
 
     private NetworkConfig networkConfig;
@@ -78,6 +80,32 @@ public class CapteurService {
             logger.error(e.getMessage());
         }
         return null;
-    }
+        }
 
-}
+    public Capteur deleteCapteur(Capteur capteur) throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(capteur));
+        request.setRequestOrder(CapteurService.RequestOrder.DELETE_CAPTEUR.toString());
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        try {
+            System.out.println();
+            System.out.println("on est dans le try du capteurservice");
+            System.out.println();
+            final DeleteCapteurClientRequest deleteCapteurClientRequest = new DeleteCapteurClientRequest(
+                    networkConfig,
+                    birthdate++, request, capteur, requestBytes);
+
+            deleteCapteurClientRequest.join();
+            Capteur deleteCapteur = (Capteur) deleteCapteurClientRequest.getInfo();
+            logger.debug("Capteur supprimé : {}", deleteCapteur);
+            return deleteCapteur;
+        } catch (IOException | InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+        return  null;
+    }
+    }

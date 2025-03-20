@@ -142,11 +142,6 @@ public class CapteurController implements Initializable {
     }
 
     @FXML
-    private void confirmDeleteSensor() throws IOException {
-        TitlePaneDeleteCapteur .setVisible(false);
-    }
-
-    @FXML
     private void LeaveDeleteCapteurView() throws IOException {
         ShowSensorList();
         TitlePaneDeleteCapteur .setVisible(false);
@@ -228,6 +223,15 @@ public class CapteurController implements Initializable {
     @FXML
     public void viewAffluence() throws IOException {
         MainView.setRoot("Affluence");
+    }
+
+    @FXML
+    private void confirmDeleteSensor() throws IOException {
+        Capteur capteur = tableauCapteurs.getSelectionModel().getSelectedItem();
+        CapteurService capteurService = new CapteurService(networkConfig);
+        capteurService.deleteCapteur(capteur);
+        ShowSensorList();
+        TitlePaneDeleteCapteur .setVisible(false);
     }
 
 
