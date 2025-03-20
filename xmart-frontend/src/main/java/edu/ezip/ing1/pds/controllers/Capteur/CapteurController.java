@@ -3,22 +3,31 @@ package edu.ezip.ing1.pds.controllers.Capteur;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
+import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
+import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.CapteurService;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
-
-
-public class CapteurController {
+public class CapteurController implements Initializable {
+    private Capteurs capteurs;
     @FXML
     Button editSensorButton = new Button();
     @FXML
@@ -44,10 +53,60 @@ public class CapteurController {
     @FXML
     TitledPane TitlePaneDeleteCapteur = new TitledPane();
 
+    @FXML
+    private TableColumn<Capteur, Integer> IdColumn;
+    @FXML
+    private TableColumn<Capteur, String> NameColumn;
+    @FXML
+    private TableColumn<Capteur, Boolean> StateColumn;
+    @FXML
+    private TableColumn<Capteur, Integer> Id_lieuColumn;
+    @FXML
+    private TableView<Capteur> tableauCapteurs;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        IdColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id"));
+        NameColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("name"));
+        StateColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Boolean>("state"));
+        Id_lieuColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_lieu"));
+
+    };
+
+    @FXML
+    public void ShowSensorList(){
+        try {
+            CapteurService capteurService = new CapteurService(networkConfig);
+            Capteurs capteurs = capteurService.selectAllCapteurs();
+            logger.info("Capteur list : {}", capteurs );
+            ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
+            ObservableList<Capteur> capteurs_ol = FXCollections.observableArrayList(listeCapteur);
+            tableauCapteurs.setItems(capteurs_ol);
+            System.out.println(listeCapteur);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            System.out.println("aaah");
+        }
+    }
+
+    @FXML
+    public void ResetTextFields(){
+        Adder_Name.setText("");
+        Adder_State.setText("");
+        Adder_Id_lieu.setText("");
+        Adder_Id.setText("");
+        Edit_Id.setText("");
+        Edit_Name.setText("");
+        Edit_State.setText("");
+        Edit_Id_lieu.setText("");
+    }
+
 
     @FXML
     private void GoToCapteurView() throws IOException {
         MainView.setRoot("CapteurView");
+        System.out.println("Show sensor list");
+        ShowSensorList();
     }
 
     @FXML
@@ -56,16 +115,22 @@ public class CapteurController {
     }
     @FXML
     private void LeaveAddCapteurView() throws IOException {
+        ShowSensorList();
+        ResetTextFields();
         TitlePaneAddCapteur .setVisible(false);
     }
 
+
+
     @FXML
-    private void GoToEditCapteurView() throws IOException {
+    private void GoToEditCapteurView()throws IOException {
         TitlePaneEditCapteur .setVisible(true);
     }
 
     @FXML
     private void LeaveEditCapteurView() throws IOException {
+        ShowSensorList();
+        ResetTextFields();
         TitlePaneEditCapteur .setVisible(false);
     }
 
@@ -81,6 +146,7 @@ public class CapteurController {
 
     @FXML
     private void LeaveDeleteCapteurView() throws IOException {
+        ShowSensorList();
         TitlePaneDeleteCapteur .setVisible(false);
     }
     @FXML
@@ -111,10 +177,8 @@ public class CapteurController {
         int int_id_lieu = Integer.parseInt(id_lieu);
         boolean statebool = Boolean.parseBoolean(state);
         Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
-        TitlePaneEditCapteur .setVisible(false);
+        TitlePaneEditCapteur.setVisible(false);
         NetworkConfig networkConfig = new NetworkConfig();
-        CapteurService capteurService = new CapteurService(networkConfig);
-        capteurService.insertCapteur(capteur);
 
 
     }
@@ -127,6 +191,7 @@ public class CapteurController {
     private TextField Adder_Id_lieu = new TextField();
     @FXML
     private TextField Adder_Id = new TextField();
+
 
     public void confirmAddSensor() throws JsonProcessingException {
         String Edit_name = Adder_Name.getText();
@@ -148,4 +213,6 @@ public class CapteurController {
     public void viewAffluence() throws IOException {
         MainView.setRoot("Affluence");
     }
+
+
 }
