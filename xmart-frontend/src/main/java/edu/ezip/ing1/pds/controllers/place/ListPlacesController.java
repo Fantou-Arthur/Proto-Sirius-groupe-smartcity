@@ -10,8 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -58,26 +56,6 @@ public class ListPlacesController implements Initializable {
         }
     }
 
-    @FXML
-    public void createNewPlace() throws IOException {
-        MainView.setRoot("addNewPlace");
-    }
-
-    @FXML
-    public void GoToCapteurView() throws IOException {
-        MainView.setRoot("CapteurView");
-    }
-
-    @FXML
-    public void listPlaces() throws IOException {
-        logger.debug(  "Places list: " + places);
-
-    }
-    @FXML
-    public void viewAffluence() throws IOException {
-        MainView.setRoot("Affluence");
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,7 +72,6 @@ public class ListPlacesController implements Initializable {
         }
 
         ObservableList<PlaceCell> placesList = FXCollections.observableArrayList(data);
-        logger.debug(  "Places list in ObservableList: " + placesList);
         placeListTable.setItems(placesList);
     }
 

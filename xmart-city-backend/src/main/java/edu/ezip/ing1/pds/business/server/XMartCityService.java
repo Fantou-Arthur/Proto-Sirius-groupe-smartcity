@@ -53,6 +53,12 @@ public class XMartCityService {
             case INSERT_PLACE:
                 response = placeService.InsertPlace(request, connection);
                 break;
+            case UPDATE_PLACE:
+                response = placeService.UpdatePlace(request, connection);
+                break;
+            case DELETE_PLACE:
+                response = placeService.DeletePlace(request, connection);
+                break;
             default:
                 break;
         }

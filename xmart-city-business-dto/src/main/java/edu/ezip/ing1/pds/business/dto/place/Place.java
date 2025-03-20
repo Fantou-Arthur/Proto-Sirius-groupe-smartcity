@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Place {
+    private int id;
     private String name;
     private String address;
     private int maxCapacity;
@@ -18,6 +19,12 @@ public class Place {
     }
 
     // Getters and Setters
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -38,7 +45,7 @@ public class Place {
     }
 
     public String toString() {
-        return "Place [ name=" + name + ", address=" + address + ", maxCapacity=" + maxCapacity+"]";
+        return "Place [ id="+ id +", name=" + name + ", address=" + address + ", maxCapacity=" + maxCapacity+"]";
     }
 
 
