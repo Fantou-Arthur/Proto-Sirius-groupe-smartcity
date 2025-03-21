@@ -53,7 +53,6 @@ public class PlaceCell extends Place {
 
         deleteButton = new Button("", removeIcon);
         deleteButton.setOnAction(e -> {
-
             try {
 
                 Place deletePlace = placeService.deletePlace(place);
@@ -67,8 +66,8 @@ public class PlaceCell extends Place {
         });
 
         this.actions = new HBox();
-        actions.setAlignment(Pos.BASELINE_CENTER);
-        actions.setSpacing(10);
+        //actions.setAlignment(Pos.BASELINE_CENTER);
+        //actions.setSpacing(10);
         actions.getChildren().addAll(editButton, deleteButton);
     }
 
