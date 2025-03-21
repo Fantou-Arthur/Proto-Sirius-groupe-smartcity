@@ -75,6 +75,7 @@ public class CapteurController implements Initializable {
         NameColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("name"));
         StateColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Boolean>("state"));
         Id_lieuColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_lieu"));
+        ShowSensorList();
 
     };
 
