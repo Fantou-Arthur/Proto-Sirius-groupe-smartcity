@@ -40,20 +40,47 @@ public class XMartCityService {
 
         final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
         switch(queryEnum) {
+            case EDIT_CAPTEUR:
+                response = capteurService.EditCapteur(request, connection);
+                break;
+            case DELETE_CAPTEUR:
+                response = capteurService.DeleteCapteur(request, connection);
+                break;
             case INSERT_CAPTEUR:
                 response = capteurService.InsertCapteur(request, connection);
+                break;
             case SELECT_ALL_CAPTEURS:
                 response = capteurService.SelectAllCapteurs(request, connection);
                 break;
             case INSERT_AFFLUENCE:
                 response = affluenceService.InsertAffluence(request, connection);
+                break;
+            case EDIT_AFFLUENCE:
+                response = affluenceService.EditAffluence(request, connection);
+                break;
+            case DELETE_AFFLUENCE:
+                response = affluenceService.DeleteAffluence(request, connection);
+                break;
+            case SELECT_ALL_AFFLUENCES:
+                response = affluenceService.SelectAllAffluence(request, connection);
+                break;
+            case GET_TREE_VIEW:
+                response = affluenceService.SelectAllAffluence(request, connection);
+                break;
             case SELECT_ALL_PLACES:
                 response = placeService.SelectAllPlaces(request, connection);
                 break;
             case INSERT_PLACE:
                 response = placeService.InsertPlace(request, connection);
                 break;
+            case UPDATE_PLACE:
+                response = placeService.UpdatePlace(request, connection);
+                break;
+            case DELETE_PLACE:
+                response = placeService.DeletePlace(request, connection);
+                break;
             default:
+                logger.warn("query type not present in XMartCityService cases !!!!!!!");
                 break;
         }
         return response;

@@ -10,8 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,6 +46,9 @@ public class ListPlacesController implements Initializable {
     @FXML
     private TableView<PlaceCell> placeListTable;
 
+    @FXML
+    private HBox hboxList;
+
     public ListPlacesController() {
         PlaceService placeService = new PlaceService(networkConfig);
         try {
@@ -58,34 +59,17 @@ public class ListPlacesController implements Initializable {
         }
     }
 
-    @FXML
-    public void createNewPlace() throws IOException {
-        MainView.setRoot("addNewPlace");
-    }
-
-    @FXML
-    public void GoToCapteurView() throws IOException {
-        MainView.setRoot("CapteurView");
-    }
-
-    @FXML
-    public void listPlaces() throws IOException {
-        logger.debug(  "Places list: " + places);
-
-    }
-    @FXML
-    public void viewAffluence() throws IOException {
-        MainView.setRoot("Affluence");
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        placeListTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        hboxList.setHgrow(placeListTable, javafx.scene.layout.Priority.ALWAYS);
         nameColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("name"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("address"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, Integer>("maxCapacity"));
-
         actionColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, HBox>("actions"));
+
+
 
         ArrayList<Place> placeList = places.getPlaces();
         ArrayList<PlaceCell> data = new ArrayList<>();
@@ -94,7 +78,6 @@ public class ListPlacesController implements Initializable {
         }
 
         ObservableList<PlaceCell> placesList = FXCollections.observableArrayList(data);
-        logger.debug(  "Places list in ObservableList: " + placesList);
         placeListTable.setItems(placesList);
     }
 

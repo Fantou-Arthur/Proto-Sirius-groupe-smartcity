@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,43 +8,21 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.place.ListPlacesController">
    <children>
-      <MenuBar VBox.vgrow="NEVER">
-         <menus>
-            <Menu mnemonicParsing="false" text="Places">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
-
-
-
-                  
-                  <MenuItem mnemonicParsing="false" text="Edit" />
-                  <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Capteurs">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#GoToCapteurView" text="Show Capteurs" />
-               </items></Menu>
-            <Menu mnemonicParsing="false" text="Affluences">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#viewAffluence" text="View" />
-               </items></Menu>
-         </menus>
-      </MenuBar>
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <fx:include source="navBar.fxml" />
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER" prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <HBox fx:id="hboxList" alignment="CENTER" prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="placeListTable" prefHeight="373.0" prefWidth="651.0">
+                  <TableView fx:id="placeListTable">
                     <columns>
-                      <TableColumn fx:id="nameColumn" prefWidth="138.0" text="Name" />
+                      <TableColumn fx:id="nameColumn" minWidth="-1.0" prefWidth="138.0" text="Name" />
                       <TableColumn fx:id="addressColumn" prefWidth="298.0" text="Address" />
                         <TableColumn fx:id="capacityColumn" prefWidth="124.0" text="Capacity" />
                         <TableColumn fx:id="actionColumn" prefWidth="79.0" text="Actions" />
                     </columns>
                   </TableView>
-               </children>
-            </HBox>
+               </children></HBox>
          </children>
       </AnchorPane>
    </children>
