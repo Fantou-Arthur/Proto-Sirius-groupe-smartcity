@@ -7,6 +7,7 @@ import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.PlaceService;
 import edu.ezip.ing1.pds.utils.DialogBox;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -66,6 +67,8 @@ public class PlaceCell extends Place {
         });
 
         this.actions = new HBox();
+        actions.setAlignment(Pos.BASELINE_CENTER);
+        actions.setSpacing(10);
         actions.getChildren().addAll(editButton, deleteButton);
     }
 
