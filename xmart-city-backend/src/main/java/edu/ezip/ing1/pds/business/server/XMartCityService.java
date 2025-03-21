@@ -40,6 +40,10 @@ public class XMartCityService {
 
         final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
         switch(queryEnum) {
+            case EDIT_CAPTEUR:
+                response = capteurService.EditCapteur(request, connection);
+            case DELETE_CAPTEUR:
+                response = capteurService.DeleteCapteur(request, connection);
             case INSERT_CAPTEUR:
                 response = capteurService.InsertCapteur(request, connection);
             case SELECT_ALL_CAPTEURS:

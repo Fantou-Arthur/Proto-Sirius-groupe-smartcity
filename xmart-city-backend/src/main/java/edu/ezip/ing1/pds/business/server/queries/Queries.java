@@ -13,7 +13,10 @@ public enum Queries {
     DELETE_PLACE("DELETE FROM Places WHERE id = ?"),
 
     INSERT_CAPTEUR("INSERT INTO sensor (id, name, isActive, id_lieu) VALUES (?, ?, ?, ?)"),
+    DELETE_CAPTEUR("DELETE FROM sensor WHERE id = ?"),
+    EDIT_CAPTEUR("UPDATE sensor SET name = ?, status = ?,id_lieu = ? WHERE id = ?"),
     SELECT_ALL_CAPTEURS("SELECT id, name, status, id_lieu FROM sensor");
+
 
 
 

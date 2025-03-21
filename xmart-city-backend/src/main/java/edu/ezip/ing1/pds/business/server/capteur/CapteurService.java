@@ -36,6 +36,19 @@ public class CapteurService {
         return  new Response(request.getRequestId(), mapper.writeValueAsString(capteur));
 
     }
+    public Response DeleteCapteur(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Capteur capteur = objectMapper.readValue(request.getRequestBody(), Capteur.class);
+        final PreparedStatement statement = connection.prepareStatement(CapteurQueries.DELETE_CAPTEUR.getQuery());
+        statement.setInt(1, capteur.getId());
+        statement.executeUpdate();
+
+        final ResultSet resultSet = statement.executeQuery("select count(*) from Capteurs where id = "+capteur.getId());
+        resultSet.next();
+        int result = resultSet.getInt(1);
+        logger.info("Total of capteur with the id {} is {}", capteur.getId(), result);
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(capteur));
+    }
 
 
     public Response SelectAllCapteurs(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
@@ -55,6 +68,28 @@ public class CapteurService {
             logger.info("Le capteur :" + capteur);
         }
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(capteurs));
+    }
+    public Response EditCapteur(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Capteur capteur = objectMapper.readValue(request.getRequestBody(), Capteur.class);
+        final PreparedStatement statement = connection.prepareStatement(CapteurQueries.EDIT_CAPTEUR.getQuery());
+        statement.setString(1, capteur.getName());
+        statement.setBoolean(2, capteur.getState());
+        statement.setInt(3, capteur.getId_lieu());
+        statement.setInt(4, capteur.getId());
+        statement.executeUpdate();
+
+        final ResultSet resultSet = statement.executeQuery("select * from Capteurs where id = "+capteur.getId());
+        resultSet.next();
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(capteur));
+    }
+    private Capteur resultSetToCapteur(final ResultSet resultSet) throws SQLException {
+        Capteur capteur = new Capteur();
+        capteur.setId(resultSet.getInt(1));
+        capteur.setName(resultSet.getString(2));
+        capteur.setState(resultSet.getBoolean(3));
+        capteur.setId_lieu(resultSet.getInt(4));
+        return capteur;
     }
 
 }
