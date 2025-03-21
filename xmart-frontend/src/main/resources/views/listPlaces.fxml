@@ -11,18 +11,15 @@
       <fx:include source="navBar.fxml" />
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER" prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <TableView fx:id="placeListTable" prefHeight="373.0" prefWidth="662.0">
-                    <columns>
-                      <TableColumn fx:id="nameColumn" prefWidth="138.0" text="Name" />
-                      <TableColumn fx:id="addressColumn" prefWidth="298.0" text="Address" />
-                        <TableColumn fx:id="capacityColumn" prefWidth="124.0" text="Capacity" />
-                        <TableColumn fx:id="actionColumn" prefWidth="79.0" text="Actions" />
-                    </columns>
-                  </TableView>
-               </children>
-            </HBox>
+            <TableView fx:id="placeListTable" prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" minWidth="-1.0" prefWidth="138.0" text="Name" />
+                <TableColumn fx:id="addressColumn" prefWidth="298.0" text="Address" />
+                  <TableColumn fx:id="capacityColumn" prefWidth="124.0" text="Capacity" />
+                  <TableColumn fx:id="actionColumn" prefWidth="79.0" text="Actions" />
+              </columns>
+            </TableView>
+            <HBox alignment="CENTER" prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>

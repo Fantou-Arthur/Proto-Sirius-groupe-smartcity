@@ -59,11 +59,15 @@ public class ListPlacesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        placeListTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+
         nameColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("name"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("address"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, Integer>("maxCapacity"));
-
         actionColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, HBox>("actions"));
+
+
 
         ArrayList<Place> placeList = places.getPlaces();
         ArrayList<PlaceCell> data = new ArrayList<>();
