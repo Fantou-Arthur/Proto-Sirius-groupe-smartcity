@@ -38,9 +38,6 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -53,25 +50,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.affluence.AffluenceController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="Places">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
-                  <MenuItem mnemonicParsing="false" text="Edit" />
-                  <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
-               </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Capteurs">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#GoToCapteurView" text="Show Capteurs" />
-               </items></Menu>
-        <Menu mnemonicParsing="false" text="Affluences">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#viewAffluence" text="View" />
-               </items></Menu>
-      </menus>
-    </MenuBar>
+    <fx:include source="navBar.fxml" />
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <SplitPane dividerPositions="0.29797979797979796" prefHeight="374.6666666666667" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -174,7 +153,7 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <SplitPane dividerPositions="0.845098039215686" layoutX="69.0" layoutY="46.0" orientation="VERTICAL" prefHeight="342.6666666666667" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <SplitPane dividerPositions="0.47745098039215683" layoutX="69.0" layoutY="46.0" orientation="VERTICAL" prefHeight="342.6666666666667" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
@@ -212,7 +191,7 @@
                                                                <items>
                                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                      <children>
-                                                                        <Label layoutX="27.0" layoutY="32.0" prefHeight="54.0" prefWidth="127.33333333333333" text="Nbr depart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                        <Label layoutX="27.0" layoutY="32.0" prefHeight="54.0" prefWidth="127.33333333333333" text="Nbr arriver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                      </children>
                                                                   </AnchorPane>
                                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -226,7 +205,7 @@
                                                                <items>
                                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                      <children>
-                                                                        <Label layoutX="36.0" layoutY="32.0" prefHeight="54.666666666666664" prefWidth="127.33333333333333" text="Nbr arriver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                        <Label layoutX="36.0" layoutY="32.0" prefHeight="54.666666666666664" prefWidth="127.33333333333333" text="Nbr depart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                      </children>
                                                                   </AnchorPane>
                                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -256,9 +235,30 @@
                                                 </AnchorPane>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <Button fx:id="editAffluenceButton" layoutX="24.0" layoutY="13.0" mnemonicParsing="false" onAction="#editAffluence" text="Edit" />
-                                                      <Button fx:id="deleteAffluenceButton" layoutX="349.0" layoutY="13.0" mnemonicParsing="false" onAction="#deleteAffluence" text="Delete" />
-                                                      <Button fx:id="addAffluenceButton" layoutX="186.0" layoutY="12.0" mnemonicParsing="false" onAction="#addAffluence" text="Add" />
+                                                      <SplitPane dividerPositions="0.29844961240310086" orientation="VERTICAL" prefHeight="174.66666666666666" prefWidth="441.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <items>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="439.0">
+                                                               <children>
+                                                                  <Button fx:id="editAffluenceButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#editAffluence" text="Edit" />
+                                                                  <Button fx:id="deleteAffluenceButton" layoutX="374.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteAffluence" text="Delete" />
+                                                                  <Button fx:id="addAffluenceButton" layoutX="200.0" layoutY="14.0" mnemonicParsing="false" onAction="#addAffluence" text="Add" />
+                                                               </children>
+                                                            </AnchorPane>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                               <children>
+                                                                  <TableView fx:id="displayTable" layoutX="76.0" layoutY="-41.0" prefHeight="117.33333333333333" prefWidth="438.6666666666667" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <columns>
+                                                                      <TableColumn fx:id="IdColumn" prefWidth="75.0" text="id" />
+                                                                      <TableColumn fx:id="NbrPersColumn" prefWidth="101.33338165283203" text="nbr Personnes" />
+                                                                        <TableColumn fx:id="NbrDepColumn" prefWidth="85.33329772949219" text="nbr depart" />
+                                                                        <TableColumn fx:id="NbrArrColumn" prefWidth="86.66665649414062" text="nbr arriver" />
+                                                                        <TableColumn fx:id="IdPlaceColumn" prefWidth="89.333251953125" text="id place" />
+                                                                    </columns>
+                                                                  </TableView>
+                                                               </children>
+                                                            </AnchorPane>
+                                                        </items>
+                                                      </SplitPane>
                                                    </children>
                                                 </AnchorPane>
                                             </items>

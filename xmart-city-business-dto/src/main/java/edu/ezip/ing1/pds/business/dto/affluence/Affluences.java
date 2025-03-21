@@ -16,7 +16,7 @@ public class Affluences{
         this.affluences = affluences;
     }
 
-    public final Affluences add (final Affluence affluence) {
+    public final Affluences add(final Affluence affluence) {
         affluences.add(affluence);
         return this;
     }
