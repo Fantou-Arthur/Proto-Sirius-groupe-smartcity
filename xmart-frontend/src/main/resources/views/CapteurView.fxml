@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -30,6 +27,7 @@
                         <TableColumn fx:id="Id_lieuColumn" prefWidth="75.0" text="Id_lieu" />
                     </columns>
                   </TableView>
+                  <Button fx:id="Error_Empty_TextField" layoutX="110.0" layoutY="39.0" mnemonicParsing="false" onAction="#LeaveErrorEmptyTextField" prefHeight="56.0" prefWidth="380.0" text="Toutes les cases doivent être remplies ET les types saisies corrects." textFill="#e42424" visible="false" />
                   <TextArea layoutX="-206.0" layoutY="-21.0" prefHeight="27.0" prefWidth="155.0" text="Gestion des capteurs">
                      <font>
                         <Font size="14.0" />
@@ -75,7 +73,7 @@
                               <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
                               <Button fx:id="AboartAddSensorButton" layoutX="196.0" layoutY="118.0" mnemonicParsing="false" onAction="#LeaveAddCapteurView" text="Annuler" />
                               <Button fx:id="confirmAddSensorButton" layoutX="349.0" layoutY="118.0" mnemonicParsing="false" onAction="#confirmAddSensor" text="Valider" />
-                              <Button fx:id="Error_Empty_TextField" layoutX="169.0" layoutY="34.0" mnemonicParsing="false" onAction="#LeaveErrorEmptyTextField" prefHeight="113.0" prefWidth="261.0" text="Toutes les cases doivent être remplies !" textFill="#e42424" visible="false" />
+                              <Button fx:id="WarnIdNotUnique" layoutX="212.0" layoutY="14.0" mnemonicParsing="false" onAction="#Warn_Id_Not_Unique" prefHeight="42.0" prefWidth="174.0" text="Id_capteur doit être unique !" textFill="RED" visible="false" />
                            </children>
                         </AnchorPane>
                     </content>

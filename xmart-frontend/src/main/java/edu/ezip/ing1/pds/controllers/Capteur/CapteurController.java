@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 public class CapteurController implements Initializable {
+    private ArrayList<Integer> listeId = new ArrayList<>();
     private Capteurs capteurs;
     @FXML
     Button Error_Empty_TextField = new Button();
@@ -48,6 +49,8 @@ public class CapteurController implements Initializable {
     Button confirmDeleteSensorButton = new Button();
     @FXML
     Button AboartDeletCapteur = new Button();
+    @FXML
+    Button WarnIdNotUnique = new Button();
     @FXML
     TitledPane TitlePaneEditCapteur = new TitledPane();
     @FXML
@@ -72,6 +75,7 @@ public class CapteurController implements Initializable {
         NameColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("name"));
         StateColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Boolean>("state"));
         Id_lieuColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_lieu"));
+        ShowSensorList();
 
     };
 
@@ -82,6 +86,9 @@ public class CapteurController implements Initializable {
             Capteurs capteurs = capteurService.selectAllCapteurs();
             logger.info("Capteur list : {}", capteurs );
             ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
+            for (Capteur capteur : listeCapteur){
+                listeId.add(capteur.getId());
+            }
             ObservableList<Capteur> capteurs_ol = FXCollections.observableArrayList(listeCapteur);
             tableauCapteurs.setItems(capteurs_ol);
         } catch (IOException e) {
@@ -105,7 +112,6 @@ public class CapteurController implements Initializable {
     @FXML
     private void GoToCapteurView() throws IOException {
         MainView.setRoot("CapteurView");
-        System.out.println("Show sensor list");
         ShowSensorList();
     }
 
@@ -117,6 +123,7 @@ public class CapteurController implements Initializable {
     private void LeaveAddCapteurView() throws IOException {
         ShowSensorList();
         ResetTextFields();
+        TitlePaneAddCapteur .setVisible(false);
         TitlePaneAddCapteur .setVisible(false);
     }
 
@@ -143,6 +150,7 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveEditCapteurView() throws IOException {
         ShowSensorList();
+        TitlePaneAddCapteur .setVisible(false);
         ResetTextFields();
         TitlePaneEditCapteur .setVisible(false);
     }
@@ -155,6 +163,7 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveDeleteCapteurView() throws IOException {
         ShowSensorList();
+        TitlePaneAddCapteur .setVisible(false);
         TitlePaneDeleteCapteur .setVisible(false);
     }
     @FXML
@@ -175,6 +184,30 @@ public class CapteurController implements Initializable {
     @FXML
     private TextField Edit_Id = new TextField();
 
+    public boolean IdEstUnique(int id){
+        for (int les_id : listeId){
+            if (les_id == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean EstConvertibleInt(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean EstConvertibleBool(String str) {
+        if (str.equals("true") || str.equals("false")) {
+        return true;}
+        return false;
+    }
+
     public void confirmEditSensor() throws JsonProcessingException {
         Capteur capteur1 = tableauCapteurs.getSelectionModel().getSelectedItem();
         int int_id = capteur1.getId();
@@ -182,11 +215,8 @@ public class CapteurController implements Initializable {
         String Edit_name = Edit_Name.getText();
         String state = Edit_State.getText();
         String id_lieu = Edit_Id_lieu.getText();
-        System.out.println();
-        System.out.println(id + Edit_name + state + id_lieu);
-        if ((Edit_name == "") || (state == "") || (id_lieu == "") || (id == "")) {
+        if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state)) {
             Error_Empty_TextField.setVisible(true);
-            System.out.println("erreur saisie de edit");
         }
         else{
             logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
@@ -198,6 +228,8 @@ public class CapteurController implements Initializable {
             final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
             CapteurService capteurService = new CapteurService(networkConfig);
             capteurService.editCapteur(capteur);
+            ShowSensorList();
+            Error_Empty_TextField.setVisible(false);
             TitlePaneEditCapteur.setVisible(false);
         }
     }
@@ -217,7 +249,7 @@ public class CapteurController implements Initializable {
         String state = Adder_State.getText();
         String id_lieu = Adder_Id_lieu.getText();
         String id = Adder_Id.getText();
-        if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "")) {
+        if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state) || !EstConvertibleInt(id)) {
             Error_Empty_TextField.setVisible(true);
         }
         else{
@@ -225,20 +257,31 @@ public class CapteurController implements Initializable {
             boolean statebool = Boolean.parseBoolean(state);
             int int_id = Integer.parseInt(id);
             int int_id_lieu = Integer.parseInt(id_lieu);
-            Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu);
-            TitlePaneAddCapteur .setVisible(false);
-            Error_Empty_TextField.setVisible(false);
-            final String networkConfigFile = "network.yaml";
-            final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
-            CapteurService capteurService = new CapteurService(networkConfig);
-            capteurService.insertCapteur(capteur);
-            LeaveAddCapteurView();
+            boolean IdUnique = !IdEstUnique(int_id);
+            if (!IdUnique){
+                WarnIdNotUnique.setVisible(true);
+            }
+            else{
+                Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu);
+                TitlePaneAddCapteur .setVisible(false);
+                Error_Empty_TextField.setVisible(false);
+                final String networkConfigFile = "network.yaml";
+                final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+                CapteurService capteurService = new CapteurService(networkConfig);
+                capteurService.insertCapteur(capteur);
+                LeaveAddCapteurView();
+            }
         }
     }
 
     @FXML
     public void LeaveErrorEmptyTextField(){
         Error_Empty_TextField.setVisible(false);
+    }
+
+    @FXML
+    public void Warn_Id_Not_Unique(){
+        WarnIdNotUnique.setVisible(false);
     }
 
     @FXML
