@@ -75,6 +75,7 @@ public class CapteurController implements Initializable {
         NameColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("name"));
         StateColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Boolean>("state"));
         Id_lieuColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_lieu"));
+        ShowSensorList();
 
     };
 
@@ -85,6 +86,7 @@ public class CapteurController implements Initializable {
             Capteurs capteurs = capteurService.selectAllCapteurs();
             logger.info("Capteur list : {}", capteurs );
             ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
+            listeId.clear();
             for (Capteur capteur : listeCapteur){
                 listeId.add(capteur.getId());
             }
@@ -122,7 +124,7 @@ public class CapteurController implements Initializable {
     private void LeaveAddCapteurView() throws IOException {
         ShowSensorList();
         ResetTextFields();
-        TitlePaneAddCapteur .setVisible(false);
+        WarnIdNotUnique.setVisible(false);
         TitlePaneAddCapteur .setVisible(false);
     }
 
@@ -229,7 +231,7 @@ public class CapteurController implements Initializable {
             capteurService.editCapteur(capteur);
             ShowSensorList();
             Error_Empty_TextField.setVisible(false);
-            TitlePaneEditCapteur.setVisible(false);
+            TitlePaneEditCapteur. setVisible(false);
         }
     }
 
@@ -263,6 +265,7 @@ public class CapteurController implements Initializable {
             else{
                 Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu);
                 TitlePaneAddCapteur .setVisible(false);
+                WarnIdNotUnique.setVisible(false);
                 Error_Empty_TextField.setVisible(false);
                 final String networkConfigFile = "network.yaml";
                 final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
