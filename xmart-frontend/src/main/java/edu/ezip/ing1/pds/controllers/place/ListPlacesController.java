@@ -62,8 +62,8 @@ public class ListPlacesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         placeListTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        hboxList.setHgrow(placeListTable, javafx.scene.layout.Priority.ALWAYS);
         nameColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("name"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("address"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, Integer>("maxCapacity"));
