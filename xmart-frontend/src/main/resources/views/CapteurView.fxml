@@ -73,6 +73,7 @@
                               <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
                               <Button fx:id="AboartAddSensorButton" layoutX="196.0" layoutY="118.0" mnemonicParsing="false" onAction="#LeaveAddCapteurView" text="Annuler" />
                               <Button fx:id="confirmAddSensorButton" layoutX="349.0" layoutY="118.0" mnemonicParsing="false" onAction="#confirmAddSensor" text="Valider" />
+                              <Button fx:id="WarnIdNotUnique" layoutX="212.0" layoutY="14.0" mnemonicParsing="false" onAction="#Warn_Id_Not_Unique" prefHeight="42.0" prefWidth="174.0" text="Id_capteur doit être unique !" textFill="RED" visible="false" />
                            </children>
                         </AnchorPane>
                     </content>
