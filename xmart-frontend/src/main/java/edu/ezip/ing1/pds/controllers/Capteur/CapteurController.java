@@ -151,7 +151,7 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveEditCapteurView() throws IOException {
         ShowSensorList();
-        TitlePaneAddCapteur .setVisible(false);
+        Error_Empty_TextField.setVisible(false);
         ResetTextFields();
         TitlePaneEditCapteur .setVisible(false);
     }
@@ -164,7 +164,6 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveDeleteCapteurView() throws IOException {
         ShowSensorList();
-        TitlePaneAddCapteur .setVisible(false);
         TitlePaneDeleteCapteur .setVisible(false);
     }
     @FXML
