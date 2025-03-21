@@ -9,9 +9,9 @@ import edu.ezip.ing1.pds.commons.Request;
 import java.io.IOException;
 import java.util.Map;
 
-public class InsertAffluenceClientRequest extends ClientRequest<Affluence, Affluence > {
+public class EditAffluenceClientRequest extends ClientRequest<Affluence, Affluence> {
 
-    public InsertAffluenceClientRequest(
+    public EditAffluenceClientRequest(
             NetworkConfig networkConfig, int myBirthDate, Request request, Affluence info, byte[] bytes)
             throws IOException {
         super(networkConfig, myBirthDate, request, info, bytes);
