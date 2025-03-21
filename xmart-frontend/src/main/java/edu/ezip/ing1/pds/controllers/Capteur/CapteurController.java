@@ -86,6 +86,7 @@ public class CapteurController implements Initializable {
             Capteurs capteurs = capteurService.selectAllCapteurs();
             logger.info("Capteur list : {}", capteurs );
             ArrayList<Capteur> listeCapteur = new ArrayList<>(capteurs.getCapteurs());
+            listeId.clear();
             for (Capteur capteur : listeCapteur){
                 listeId.add(capteur.getId());
             }
@@ -123,7 +124,7 @@ public class CapteurController implements Initializable {
     private void LeaveAddCapteurView() throws IOException {
         ShowSensorList();
         ResetTextFields();
-        TitlePaneAddCapteur .setVisible(false);
+        WarnIdNotUnique.setVisible(false);
         TitlePaneAddCapteur .setVisible(false);
     }
 
@@ -150,7 +151,7 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveEditCapteurView() throws IOException {
         ShowSensorList();
-        TitlePaneAddCapteur .setVisible(false);
+        Error_Empty_TextField.setVisible(false);
         ResetTextFields();
         TitlePaneEditCapteur .setVisible(false);
     }
@@ -163,7 +164,6 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveDeleteCapteurView() throws IOException {
         ShowSensorList();
-        TitlePaneAddCapteur .setVisible(false);
         TitlePaneDeleteCapteur .setVisible(false);
     }
     @FXML
@@ -230,7 +230,8 @@ public class CapteurController implements Initializable {
             capteurService.editCapteur(capteur);
             ShowSensorList();
             Error_Empty_TextField.setVisible(false);
-            TitlePaneEditCapteur.setVisible(false);
+            logger.info("Capteur "+capteur.getId()+" "+capteur.getName());
+            TitlePaneEditCapteur. setVisible(false);
         }
     }
 
@@ -264,6 +265,7 @@ public class CapteurController implements Initializable {
             else{
                 Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu);
                 TitlePaneAddCapteur .setVisible(false);
+                WarnIdNotUnique.setVisible(false);
                 Error_Empty_TextField.setVisible(false);
                 final String networkConfigFile = "network.yaml";
                 final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
