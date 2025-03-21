@@ -118,6 +118,7 @@ public class CapteurController implements Initializable {
         ShowSensorList();
         ResetTextFields();
         TitlePaneAddCapteur .setVisible(false);
+        TitlePaneAddCapteur .setVisible(false);
     }
 
 
@@ -143,6 +144,7 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveEditCapteurView() throws IOException {
         ShowSensorList();
+        TitlePaneAddCapteur .setVisible(false);
         ResetTextFields();
         TitlePaneEditCapteur .setVisible(false);
     }
@@ -155,6 +157,7 @@ public class CapteurController implements Initializable {
     @FXML
     private void LeaveDeleteCapteurView() throws IOException {
         ShowSensorList();
+        TitlePaneAddCapteur .setVisible(false);
         TitlePaneDeleteCapteur .setVisible(false);
     }
     @FXML
@@ -175,6 +178,22 @@ public class CapteurController implements Initializable {
     @FXML
     private TextField Edit_Id = new TextField();
 
+
+    public static boolean EstConvertibleInt(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean EstConvertibleBool(String str) {
+        if (str.equals("true") || str.equals("false")) {
+        return true;}
+        return false;
+    }
+
     public void confirmEditSensor() throws JsonProcessingException {
         Capteur capteur1 = tableauCapteurs.getSelectionModel().getSelectedItem();
         int int_id = capteur1.getId();
@@ -184,7 +203,7 @@ public class CapteurController implements Initializable {
         String id_lieu = Edit_Id_lieu.getText();
         System.out.println();
         System.out.println(id + Edit_name + state + id_lieu);
-        if ((Edit_name == "") || (state == "") || (id_lieu == "") || (id == "")) {
+        if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state)) {
             Error_Empty_TextField.setVisible(true);
             System.out.println("erreur saisie de edit");
         }
@@ -198,6 +217,8 @@ public class CapteurController implements Initializable {
             final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
             CapteurService capteurService = new CapteurService(networkConfig);
             capteurService.editCapteur(capteur);
+            ShowSensorList();
+            Error_Empty_TextField.setVisible(false);
             TitlePaneEditCapteur.setVisible(false);
         }
     }
@@ -217,7 +238,7 @@ public class CapteurController implements Initializable {
         String state = Adder_State.getText();
         String id_lieu = Adder_Id_lieu.getText();
         String id = Adder_Id.getText();
-        if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "")) {
+        if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state) || !EstConvertibleInt(id)) {
             Error_Empty_TextField.setVisible(true);
         }
         else{
