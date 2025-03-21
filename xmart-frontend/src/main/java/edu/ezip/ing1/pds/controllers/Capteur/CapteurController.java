@@ -230,6 +230,7 @@ public class CapteurController implements Initializable {
             capteurService.editCapteur(capteur);
             ShowSensorList();
             Error_Empty_TextField.setVisible(false);
+            logger.info("Capteur "+capteur.getId()+" "+capteur.getName());
             TitlePaneEditCapteur. setVisible(false);
         }
     }
