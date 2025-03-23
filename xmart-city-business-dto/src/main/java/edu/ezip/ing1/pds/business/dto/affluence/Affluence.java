@@ -2,22 +2,22 @@ package edu.ezip.ing1.pds.business.dto.affluence;
 
 public class Affluence{
     private int id;
-	private int id_place;
+	private int idPlace;
 	private int nbrPers;
 	private int nbrDepart;
 	private int nbrArriver;
 
 	public Affluence() {}
 
-    public Affluence(final int id_place, final int nbrPers, final int nbrDepart, final int nbrArriver) {
-        this.id_place = id_place;
+    public Affluence(final int idPlace, final int nbrPers, final int nbrDepart, final int nbrArriver) {
+        this.idPlace = idPlace;
         this.nbrPers = nbrPers;
         this.nbrDepart = nbrDepart;
         this.nbrArriver = nbrArriver;
     }
-    public Affluence(final int id, final int id_place, final int nbrPers, final int nbrDepart, final int nbrArriver) {
+    public Affluence(final int id, final int idPlace, final int nbrPers, final int nbrDepart, final int nbrArriver) {
         this.id = id;
-        this.id_place = id_place;
+        this.idPlace = idPlace;
         this.nbrPers = nbrPers;
         this.nbrDepart = nbrDepart;
         this.nbrArriver = nbrArriver;
@@ -31,10 +31,10 @@ public class Affluence{
     }
 
     public int getIdPlace() {
-        return id_place;
+        return idPlace;
     }
-    public void setIdPlace(int id_place) {
-        this.id_place = id_place;
+    public void setIdPlace(int idPlace) {
+        this.idPlace = idPlace;
     }
     public int getNbrPers() {
         return nbrPers;
@@ -56,7 +56,7 @@ public class Affluence{
     }
 
     public String toString() {
-        return "Affluence [id_place=" + id_place + ", nbrPers=" + nbrPers + ", nbrDepart=" + nbrDepart + ", nbrArriver=" + nbrArriver+"]";
+        return "Affluence [id="+id+", idPlace=" + idPlace + ", nbrPers=" + nbrPers + ", nbrDepart=" + nbrDepart + ", nbrArriver=" + nbrArriver+"]";
     }
 
 
