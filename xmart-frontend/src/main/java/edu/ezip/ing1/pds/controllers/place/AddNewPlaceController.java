@@ -70,7 +70,6 @@ public class AddNewPlaceController {
     }
 
     boolean handleError(String name, String address, int capacity){
-        System.out.println(capacity);
         boolean error = false;
         if(name.isEmpty()){
             dialogBox.setTitle("Erreur");

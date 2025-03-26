@@ -4,6 +4,7 @@ import edu.ezip.ing1.pds.business.server.capteur.CapteurService;
 import edu.ezip.ing1.pds.business.server.place.PlaceService;
 import edu.ezip.ing1.pds.business.server.affluence.AffluenceService;
 import edu.ezip.ing1.pds.business.server.queries.Queries;
+import edu.ezip.ing1.pds.business.server.user.UserService;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class XMartCityService {
@@ -78,6 +80,16 @@ public class XMartCityService {
                 break;
             case DELETE_PLACE:
                 response = placeService.DeletePlace(request, connection);
+                break;
+            case INSERT_USER:
+                response = new UserService().InsertUser(request, connection);
+                break;
+            case LOGIN_USER:
+                try {
+                    response = new UserService().LoginUser(request, connection);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             default:
                 logger.warn("query type not present in XMartCityService cases !!!!!!!");
