@@ -26,6 +26,7 @@ public class UserService {
     public Response InsertUser(final Request request, final Connection connection) throws SQLException, IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
         final User user = objectMapper.readValue(request.getRequestBody(), User.class);
+        if(checkIfEmailAlreadyUsed(user.getEmail(), connection)) return new Response(request.getRequestId(), objectMapper.writeValueAsString(null));
         final PreparedStatement statement = connection.prepareStatement(UserQueries.INSERT_USER.getQuery());
         statement.setString(1, user.getUsername());
         statement.setString(2, encryptPassword(user.getPassword()));
@@ -36,7 +37,7 @@ public class UserService {
 
     }
     
-    public User SelectUserByEmail(String email, final Connection connection) throws SQLException, IOException, NoSuchAlgorithmException {
+    public User SelectUserByEmail(String email, final Connection connection) throws SQLException {
         final PreparedStatement statement = connection.prepareStatement(UserQueries.SELECT_USER_BY_EMAIL.getQuery());
         statement.setString(1,email);
         final ResultSet resultSet = statement.executeQuery();
@@ -63,7 +64,7 @@ public class UserService {
 
 
 
-    private User resultSetToUser(final ResultSet resultSet) throws SQLException, NoSuchAlgorithmException {
+    private User resultSetToUser(final ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt(1));
         user.setUsername(resultSet.getString(2));
@@ -79,4 +80,11 @@ public class UserService {
     public Boolean isEqualPassword(String password, String hashedPassword){
         return BCrypt.checkpw(password, hashedPassword);
     }
+
+    private boolean checkIfEmailAlreadyUsed(String email, Connection connection) throws SQLException{
+        User user = SelectUserByEmail(email, connection);
+        if(user == null) return false;
+        return true;
+    }
+
 }

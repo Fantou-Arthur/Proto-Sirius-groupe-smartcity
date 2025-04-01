@@ -1,6 +1,7 @@
 package edu.ezip.ing1.pds.business.server;
 
 import edu.ezip.ing1.pds.business.server.capteur.CapteurService;
+import edu.ezip.ing1.pds.business.server.entity.EntityService;
 import edu.ezip.ing1.pds.business.server.place.PlaceService;
 import edu.ezip.ing1.pds.business.server.affluence.AffluenceService;
 import edu.ezip.ing1.pds.business.server.queries.Queries;
@@ -33,7 +34,7 @@ public class XMartCityService {
     }
 
     public final Response dispatch(final Request request, final Connection connection)
-            throws InvocationTargetException, IllegalAccessException, SQLException, IOException {
+            throws InvocationTargetException, IllegalAccessException, SQLException, IOException, NoSuchAlgorithmException {
         Response response = null;
 
         CapteurService capteurService = new CapteurService();
@@ -81,15 +82,14 @@ public class XMartCityService {
             case DELETE_PLACE:
                 response = placeService.DeletePlace(request, connection);
                 break;
+            case SELECT_ALL_ENTITY:
+                response = new EntityService().selectAllEntity(request, connection);
+                break;
             case INSERT_USER:
                 response = new UserService().InsertUser(request, connection);
                 break;
             case LOGIN_USER:
-                try {
                     response = new UserService().LoginUser(request, connection);
-                } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
-                }
                 break;
             default:
                 logger.warn("query type not present in XMartCityService cases !!!!!!!");

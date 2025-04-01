@@ -6,6 +6,7 @@ import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.UserService;
 import edu.ezip.ing1.pds.utils.DialogBox;
+import edu.ezip.ing1.pds.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -39,7 +40,7 @@ public class LoginController {
     public void connectUser(ActionEvent actionEvent) throws IOException {
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
-        if(!handleError(email,password)){
+        if(!Utils.checkLoginData(email,password)){
             UserService userService = new UserService(networkConfig);
             User user = new User(email,password);
             User connectedUser = userService.loginUser(user);
@@ -50,25 +51,7 @@ public class LoginController {
             } else {
                 MainView.setRoot("mainView");
             }
-
         }
-    }
-
-
-    boolean handleError(String username, String email){
-        boolean error = false;
-        if(username.isEmpty()){
-            dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez un nom d'utilisateur");
-            dialogBox.showAndWait();
-            error = true;
-        }else if(email.isEmpty()){
-            dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une address mail");
-            dialogBox.showAndWait();
-            error = true;
-        }
-        return error;
     }
 
 }

@@ -19,7 +19,8 @@ public enum Queries {
     SELECT_ALL_CAPTEURS("SELECT id, name, isActive, id_lieu FROM sensor"),
 
     INSERT_USER("INSERT INTO Users (username, password, email) VALUES (?, ?, ?)"),
-    LOGIN_USER("LOGIN_USER");
+    LOGIN_USER("LOGIN_USER"),
+    SELECT_ALL_ENTITY("SELECT_ALL_ENTITY");
 
 
 
