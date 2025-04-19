@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
@@ -30,6 +32,7 @@ public class SignUpController implements Initializable {
     final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
     private DialogBox dialogBox = new DialogBox();
     private Entities entities;
+    private Entity selectedEntity = null;
 
     @FXML
     private TextField usernameTextField;
@@ -58,8 +61,8 @@ public class SignUpController implements Initializable {
         String password = passwordTextField.getText();
         String email = emailTextField.getText();
 
-        if(!Utils.checkSignUpData(username,email,password)){
-            User user = new User(username,password,email);
+        if(!Utils.checkSignUpData(username,email,password,selectedEntity)){
+            User user = new User(username,password,email,selectedEntity.getId());
             UserService userService = new UserService(networkConfig);
             try {
                 User newUser = userService.insertUser(user);
@@ -77,12 +80,24 @@ public class SignUpController implements Initializable {
         }
     }
 
+    public void onSelectedChanged(){
+        String selectItem = (String) entityComboBox.getValue();
+        logger.info("SELECTED ENTITY {}", selectItem);
+        for(Entity entity: entities.getEntities()){
+            if(entity.getName() == selectItem){
+                selectedEntity = entity;
+            }
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        ArrayList<String> entitiesOptions = new ArrayList<>();
        for(Entity entity : entities.getEntities()){
-            entityComboBox.getItems().add(entity.getName());
+            entitiesOptions.add(entity.getName());
         }
+       Collections.sort(entitiesOptions);
+       entityComboBox.getItems().addAll(entitiesOptions);
     }
 
 }

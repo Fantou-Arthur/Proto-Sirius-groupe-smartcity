@@ -8,7 +8,7 @@ import java.io.IOException;
 public class NavBarController {
     @FXML
     private void createNewPlace() throws IOException {
-        MainView.setRoot("addNewPlace");
+        MainView.setRoot("createPlace");
     }
 
     @FXML

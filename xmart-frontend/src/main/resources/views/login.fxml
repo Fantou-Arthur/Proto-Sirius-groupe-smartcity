@@ -36,7 +36,7 @@
             </Label>
             <TextField fx:id="emailTextField" layoutX="145.0" layoutY="170.0" prefHeight="26.0" prefWidth="250.0" />
             <Label layoutX="41.0" layoutY="177.0" text="Email" />
-            <Label layoutX="41.0" layoutY="244.0" text="Password" />
+            <Label layoutX="41.0" layoutY="244.0" text="Mot de passe" />
             <PasswordField fx:id="passwordTextField" layoutX="146.0" layoutY="237.0" prefHeight="26.0" prefWidth="250.0" />
             <Button fx:id="loginButton" layoutX="307.0" layoutY="301.0" mnemonicParsing="false" onAction="#connectUser" style="-fx-background-color: #22b598;" text="Connexion" textFill="WHITE">
                <font>

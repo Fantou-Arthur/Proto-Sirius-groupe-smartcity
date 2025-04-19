@@ -1,5 +1,7 @@
 package edu.ezip.ing1.pds.utils;
 
+import edu.ezip.ing1.pds.business.dto.entity.Entity;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,14 +31,21 @@ public class Utils {
         return error;
     }
 
-    public static boolean checkSignUpData(String username, String email, String password){
+    public static boolean checkSignUpData(String username, String email, String password, Entity entity){
         boolean error = false;
         if(username.isEmpty()){
             dialogBox.setTitle("Erreur");
             dialogBox.setContentText("Veuillez entrez un nom d'utilisateur");
             dialogBox.showAndWait();
             error = true;
-        }else if(checkLoginData(email,password)) error = true;
+        }else if(checkLoginData(email,password)){
+            error = true;
+        }else if(entity == null){
+            dialogBox.setTitle("Erreur");
+            dialogBox.setContentText("Veuillez selectionnez une entité");
+            dialogBox.showAndWait();
+            error = true;
+        }
         return error;
     }
 }

@@ -1,18 +1,12 @@
 package edu.ezip.ing1.pds.business.server.user;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.ezip.ing1.pds.business.dto.place.Place;
-import edu.ezip.ing1.pds.business.dto.place.Places;
 import edu.ezip.ing1.pds.business.dto.user.User;
-import edu.ezip.ing1.pds.business.server.place.PlaceQueries;
-import edu.ezip.ing1.pds.business.server.queries.Queries;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -31,6 +25,7 @@ public class UserService {
         statement.setString(1, user.getUsername());
         statement.setString(2, encryptPassword(user.getPassword()));
         statement.setString(3, user.getEmail());
+        statement.setInt(4, user.getEntityId());
         statement.executeUpdate();
 
         return  new Response(request.getRequestId(), objectMapper.writeValueAsString(user));
