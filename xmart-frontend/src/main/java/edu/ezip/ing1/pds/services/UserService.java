@@ -71,10 +71,14 @@ public class UserService {
             final LoginClientRequest loginClientRequest = new LoginClientRequest(
                     networkConfig,
                     birthdate++, request, user, requestBytes);
-
             loginClientRequest.join();
             User connectedUser = (User) loginClientRequest.getResult();
+            if(connectedUser == null) {
+                logger.error("Login failed");
+                return null;
+            }
             logger.debug("User connected : {}", connectedUser);
+            UserSession.getInstance().setEntityId(connectedUser.getEntityId());
             return connectedUser;
         }catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());

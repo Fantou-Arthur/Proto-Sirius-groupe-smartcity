@@ -65,6 +65,7 @@ public class UserService {
         user.setUsername(resultSet.getString(2));
         user.setPassword(resultSet.getString(3));
         user.setEmail(resultSet.getString(4));
+        user.setEntityId(resultSet.getInt(5));
         return user;
     }
 

@@ -1,9 +1,9 @@
 package edu.ezip.ing1.pds.business.server.place;
 
 public enum PlaceQueries {
-    INSERT_PLACE("INSERT INTO Places (name, address, maxCapacity) VALUES (?, ?, ?)"),
-    UPDATE_PLACE("UPDATE Places SET name = ?, address = ?, maxCapacity = ? WHERE id = ?"),
-    SELECT_ALL_PLACES("SELECT id, name, address, maxCapacity FROM Places"),
+    INSERT_PLACE("INSERT INTO Places (name, type, description, latitude, longitude, maxCapacity, peakHours, id_entity, id_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"),
+    UPDATE_PLACE("UPDATE Places SET name = ?, type = ?, description = ?, latitude = ?, longitude =?, maxCapacity = ?, peakHours = ?, id_entity = ?, id_address = ?,  WHERE id = ?"),
+    SELECT_ALL_PLACES("SELECT * FROM Places"),
     DELETE_PLACE("DELETE FROM Places WHERE id = ?");
 
     private  String query;

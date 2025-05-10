@@ -1,5 +1,6 @@
 package edu.ezip.ing1.pds.business.server;
 
+import edu.ezip.ing1.pds.business.server.address.AddressService;
 import edu.ezip.ing1.pds.business.server.capteur.CapteurService;
 import edu.ezip.ing1.pds.business.server.entity.EntityService;
 import edu.ezip.ing1.pds.business.server.place.PlaceService;
@@ -40,6 +41,9 @@ public class XMartCityService {
         CapteurService capteurService = new CapteurService();
         PlaceService placeService = new PlaceService();
         AffluenceService affluenceService = new AffluenceService();
+        UserService userService = new UserService();
+        EntityService entityService = new EntityService();
+        AddressService addressService = new AddressService();
 
         final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
         switch(queryEnum) {
@@ -83,13 +87,25 @@ public class XMartCityService {
                 response = placeService.DeletePlace(request, connection);
                 break;
             case SELECT_ALL_ENTITY:
-                response = new EntityService().selectAllEntity(request, connection);
+                response = entityService.selectAllEntity(request, connection);
                 break;
             case INSERT_USER:
-                response = new UserService().InsertUser(request, connection);
+                response = userService.InsertUser(request, connection);
                 break;
             case LOGIN_USER:
-                    response = new UserService().LoginUser(request, connection);
+                    response = userService.LoginUser(request, connection);
+                break;
+            case SELECT_ALL_ADDRESS:
+                response = addressService.SelectAllAddress(request, connection);
+                break;
+            case INSERT_ADDRESS:
+                response = addressService.InsertAddress(request, connection);
+                break;
+            case UPDATE_ADDRESS:
+                response = addressService.UpdateAddress(request, connection);
+                break;
+            case DELETE_ADDRESS:
+                response = addressService.DeleteAddress(request, connection);
                 break;
             default:
                 logger.warn("query type not present in XMartCityService cases !!!!!!!");
