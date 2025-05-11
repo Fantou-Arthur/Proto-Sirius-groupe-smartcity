@@ -37,7 +37,7 @@ public class EditPlaceController {
         if(data instanceof Place){
             this.place = (Place) data;
             this.nameTextField.setText(this.place.getName());
-            this.addressTextField.setText(this.place.getAddress());
+            ///this.addressTextField.setText(this.place.getAddress());
             this.capacitySpinner.setText(String.valueOf(this.place.getMaxCapacity()));
         }
     }
@@ -54,7 +54,7 @@ public class EditPlaceController {
 
         if(!handleError(name,address,capacity)){
             place.setName(name);
-            place.setAddress(address);
+            //place.setAddress(address);
             place.setMaxCapacity(capacity);
             PlaceService placeService = new PlaceService(networkConfig);
 

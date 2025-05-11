@@ -8,8 +8,8 @@
    <menus>
       <Menu mnemonicParsing="false" text="Places">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
-            <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
+            <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Ajouter" />
+            <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="Afficher" />
          </items>
       </Menu>
       <Menu mnemonicParsing="false" text="Capteurs">
