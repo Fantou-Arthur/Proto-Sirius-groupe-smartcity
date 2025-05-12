@@ -35,7 +35,6 @@ public class AddressService {
         statement.setString(3, address.getStreetName());
         statement.setString(4, address.getPostalCode());
         statement.setString(5, address.getCity());
-        statement.setString(6, address.getCountry());
         statement.executeUpdate();
         return  new Response(request.getRequestId(), objectMapper.writeValueAsString(address));
 

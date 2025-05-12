@@ -15,7 +15,7 @@
 <VBox prefHeight="700.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.place.AddNewPlaceController">
    <children>
       <fx:include source="navBar.fxml" />
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <BorderPane prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
@@ -68,7 +68,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefWidth="100.0" text="Descriptipn : " />
+                                    <Label prefWidth="100.0" text="Description : " />
                                     <TextArea fx:id="descriptionTextArea" prefHeight="90.0" prefWidth="350.0" />
                                  </children>
                               </HBox>
@@ -94,7 +94,7 @@
                                  <children>
                                     <Label prefWidth="100.0" text="Adresse : " />
                                     <ComboBox fx:id="addressComboBox" prefHeight="26.0" prefWidth="267.0" />
-                                    <Button fx:id="addAddressButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Ajouter" />
+                                    <Button fx:id="addAddressButton" mnemonicParsing="false" onAction="#goToAddNewAddress" prefHeight="26.0" prefWidth="85.0" text="Ajouter" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

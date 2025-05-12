@@ -1,7 +1,7 @@
 package edu.ezip.ing1.pds.business.server.address;
 
 public enum AddressQueries {
-    INSERT_ADDRESS("INSERT INTO Address (name, streetNumber, streetName, postalCode, city, country) VALUES (?, ?, ?, ?, ?)"),
+    INSERT_ADDRESS("INSERT INTO Address (name, streetNumber, streetName, postalCode, city) VALUES (?, ?, ?, ?, ?)"),
     SELECT_ALL_ADDRESS("SELECT * FROM Address"),
     SELECT_ADDRESS_BY_NAME("SELECT * FROM Address WHERE name = ?"),
     UPDATE_ADDRESS("UPDATE Address SET name = ?, streetNumber = ?, streetName = ?, postalCode = ?, city = ?, country = ? WHERE id = ?"),
