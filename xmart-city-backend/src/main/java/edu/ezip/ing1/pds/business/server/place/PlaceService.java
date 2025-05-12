@@ -67,8 +67,8 @@ public class PlaceService {
         statement.setDouble(5, place.getLongitude());
         statement.setInt(6,place.getMaxCapacity());
         statement.setTime(7, place.getPeakHour());
-        statement.setInt(8, place.getId_entity());
-        statement.setInt(9,place.getId_address());
+        statement.setInt(8, place.getId_address());
+        statement.setInt(9, place.getId());
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from Places where id = "+place.getId());
