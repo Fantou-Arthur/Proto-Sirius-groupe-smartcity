@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
+import edu.ezip.ing1.pds.business.dto.place.IdNamePlace;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
@@ -62,7 +63,7 @@ public class CapteurController implements Initializable {
     TitledPane TitlePaneDeleteCapteur = new TitledPane();
 
     @FXML
-    private ComboBox<Place> ComboBoxIdLieu = new ComboBox<>();
+    private ComboBox<IdNamePlace> ComboBoxIdLieu = new ComboBox<>();
 
 
     @FXML
@@ -95,7 +96,8 @@ public class CapteurController implements Initializable {
             ComboBoxIdLieu.getItems().clear();
             logger.info("Liste Lieux et Id_Lieux : {}",places);
             for (Place place : places.getPlaces()){
-                ComboBoxIdLieu.getItems().add(place);
+                IdNamePlace idNamePlace = new IdNamePlace(place.getId(),place.getName());
+                ComboBoxIdLieu.getItems().add(idNamePlace);
             }
         }
         catch (IOException e) {
