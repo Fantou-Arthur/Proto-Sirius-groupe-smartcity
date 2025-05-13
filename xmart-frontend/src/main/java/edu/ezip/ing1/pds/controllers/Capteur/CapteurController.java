@@ -5,13 +5,16 @@ import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
 import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
 import edu.ezip.ing1.pds.business.dto.place.Place;
+import edu.ezip.ing1.pds.business.dto.place.Places;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.CapteurService;
+import edu.ezip.ing1.pds.services.PlaceService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -59,6 +62,10 @@ public class CapteurController implements Initializable {
     TitledPane TitlePaneDeleteCapteur = new TitledPane();
 
     @FXML
+    private ComboBox<Place> ComboBoxIdLieu = new ComboBox<>();
+
+
+    @FXML
     private TableColumn<Capteur, Integer> IdColumn;
     @FXML
     private TableColumn<Capteur, String> NameColumn;
@@ -76,8 +83,25 @@ public class CapteurController implements Initializable {
         StateColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Boolean>("state"));
         Id_lieuColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_lieu"));
         ShowSensorList();
+        UpdatePlaceIdName();
 
     };
+
+    @FXML
+    public void UpdatePlaceIdName(){
+        try{
+            PlaceService placeService = new PlaceService(networkConfig);
+            Places places = placeService.selectIdNamePlaces();
+            ComboBoxIdLieu.getItems().clear();
+            logger.info("Liste Lieux et Id_Lieux : {}",places);
+            for (Place place : places.getPlaces()){
+                ComboBoxIdLieu.getItems().add(place);
+            }
+        }
+        catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
 
     @FXML
     public void ShowSensorList(){
@@ -118,7 +142,9 @@ public class CapteurController implements Initializable {
 
     @FXML
     private void GoToAddCapteurView() throws IOException {
+        UpdatePlaceIdName();
         TitlePaneAddCapteur .setVisible(true);
+
     }
     @FXML
     private void LeaveAddCapteurView() throws IOException {

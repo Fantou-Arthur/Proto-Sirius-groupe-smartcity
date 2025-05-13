@@ -10,6 +10,7 @@ public enum Queries {
     
     INSERT_PLACE("INSERT INTO Places (name, address, maxCapacity) VALUES (?, ?, ?)"),
     SELECT_ALL_PLACES("SELECT id, name, address, maxCapacity FROM Places"),
+    SELECT_ID_NAME_PLACES("SELECT id, name FROM Places"),
     UPDATE_PLACE("UPDATE Places SET name = ?, address = ?, maxCapacity = ? WHERE id = ?"),
     DELETE_PLACE("DELETE FROM Places WHERE id = ?"),
 
@@ -17,6 +18,7 @@ public enum Queries {
     DELETE_CAPTEUR("DELETE FROM sensor WHERE id = ?"),
     EDIT_CAPTEUR("UPDATE sensor SET name = ?, isActive = ?,id_lieu = ? WHERE id = ?"),
     SELECT_ALL_CAPTEURS("SELECT id, name, isActive, id_lieu FROM sensor");
+
 
 
 

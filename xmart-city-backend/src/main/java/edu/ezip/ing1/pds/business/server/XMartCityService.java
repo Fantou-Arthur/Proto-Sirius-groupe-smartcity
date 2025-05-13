@@ -40,6 +40,9 @@ public class XMartCityService {
 
         final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
         switch(queryEnum) {
+            case SELECT_ID_NAME_PLACES:
+                response = placeService.SelectIdNamePlaces(request, connection);
+                break;
             case EDIT_CAPTEUR:
                 response = capteurService.EditCapteur(request, connection);
                 break;
