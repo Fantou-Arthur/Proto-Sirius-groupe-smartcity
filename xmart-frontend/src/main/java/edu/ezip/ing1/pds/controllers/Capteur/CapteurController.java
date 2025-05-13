@@ -276,7 +276,9 @@ public class CapteurController implements Initializable {
     public void confirmAddSensor() throws IOException {
         String add_name = Adder_Name.getText();
         String state = Adder_State.getText();
-        String id_lieu = Adder_Id_lieu.getText();
+        IdNamePlace selectedPlace = ComboBoxIdLieu.getValue();
+        int intid_lieu = selectedPlace.getId();
+        String id_lieu = Integer.toString(intid_lieu);
         String id = Adder_Id.getText();
         if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state) || !EstConvertibleInt(id)) {
             Error_Empty_TextField.setVisible(true);
