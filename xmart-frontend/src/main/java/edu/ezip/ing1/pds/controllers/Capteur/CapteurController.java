@@ -64,6 +64,15 @@ public class CapteurController implements Initializable {
 
     @FXML
     private ComboBox<IdNamePlace> ComboBoxIdLieu = new ComboBox<>();
+    @FXML
+    private ComboBox<Integer> ComboBoxIdAffluence = new ComboBox<>();
+    @FXML
+    private ComboBox<String> ComboBoxStatus = new ComboBox<>();
+
+    @FXML
+    private DatePicker Adder_Installed = new DatePicker();
+    @FXML
+    private DatePicker Adder_Maintenance = new DatePicker();
 
 
     @FXML
@@ -127,7 +136,6 @@ public class CapteurController implements Initializable {
     public void ResetTextFields(){
         Adder_Name.setText("");
         Adder_State.setText("");
-        Adder_Id_lieu.setText("");
         Adder_Id.setText("");
         Edit_Id.setText("");
         Edit_Name.setText("");
@@ -212,6 +220,24 @@ public class CapteurController implements Initializable {
     @FXML
     private TextField Edit_Id = new TextField();
 
+    @FXML
+    private TextField Edit_Manufacturer = new TextField();
+    @FXML
+    private TextField Edit_Model = new TextField();
+    @FXML
+    private TextField Edit_Description = new TextField();
+
+
+    @FXML
+    private ComboBox<Integer> Edit_Affluence = new ComboBox<>();
+    @FXML
+    private ComboBox<String> Edit_Status = new ComboBox<>();
+
+    @FXML
+    private DatePicker Edit_Installed = new DatePicker();
+    @FXML
+    private DatePicker Edit_Last_Maintenance = new DatePicker();
+
     public boolean IdEstUnique(int id){
         for (int les_id : listeId){
             if (les_id == id){
@@ -243,6 +269,14 @@ public class CapteurController implements Initializable {
         String Edit_name = Edit_Name.getText();
         String state = Edit_State.getText();
         String id_lieu = Edit_Id_lieu.getText();
+        String Edit_manufacturer = Edit_Manufacturer.getText();
+        String Edit_model = Edit_Model.getText();
+        String Edit_description = Edit_Description.getText();
+        int Edit_id_affluence = Edit_Affluence.getValue();
+        String Edit_status = Edit_Status.getValue();
+        java.time.LocalDate Edit_installed = Edit_Installed.getValue();
+        java.time.LocalDate Edit_last_maintenance = Edit_Last_Maintenance.getValue();
+
         if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state)) {
             Error_Empty_TextField.setVisible(true);
         }
@@ -250,7 +284,7 @@ public class CapteurController implements Initializable {
             logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
             int int_id_lieu = Integer.parseInt(id_lieu);
             boolean statebool = Boolean.parseBoolean(state);
-            Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu);
+            Capteur capteur = new Capteur(int_id,Edit_name,statebool,int_id_lieu, Edit_description, Edit_manufacturer, Edit_model, Edit_status, Edit_id_affluence, Edit_installed, Edit_last_maintenance);
 
             final String networkConfigFile = "network.yaml";
             final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
@@ -268,9 +302,18 @@ public class CapteurController implements Initializable {
     @FXML
     private TextField Adder_State = new TextField();
     @FXML
-    private TextField Adder_Id_lieu = new TextField();
-    @FXML
     private TextField Adder_Id = new TextField();
+    @FXML
+    private TextField Adder_Manufacturer = new TextField();
+    @FXML
+    private TextField Adder_Model = new TextField();
+    @FXML
+    private TextField Adder_Description = new TextField();
+
+
+
+
+
 
 
     public void confirmAddSensor() throws IOException {
@@ -280,6 +323,13 @@ public class CapteurController implements Initializable {
         int intid_lieu = selectedPlace.getId();
         String id_lieu = Integer.toString(intid_lieu);
         String id = Adder_Id.getText();
+        String manufacturer = Adder_Manufacturer.getText();
+        String model = Adder_Model.getText();
+        String description = Adder_Description.getText();
+        int id_affluence =ComboBoxIdAffluence.getValue();
+        String status = ComboBoxStatus.getValue();
+        java.time.LocalDate installed = Adder_Installed.getValue();
+        java.time.LocalDate maintenance = Adder_Maintenance.getValue();
         if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state) || !EstConvertibleInt(id)) {
             Error_Empty_TextField.setVisible(true);
         }
@@ -293,7 +343,7 @@ public class CapteurController implements Initializable {
                 WarnIdNotUnique.setVisible(true);
             }
             else{
-                Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu);
+                Capteur capteur = new Capteur(int_id,add_name,statebool,int_id_lieu,description,manufacturer,model,status,id_affluence,installed,maintenance);
                 TitlePaneAddCapteur .setVisible(false);
                 WarnIdNotUnique.setVisible(false);
                 Error_Empty_TextField.setVisible(false);

@@ -29,6 +29,13 @@ public class CapteurService {
         statement.setString(2, capteur.getName());
         statement.setBoolean(3, capteur.getState());
         statement.setInt(4, capteur.getId_lieu());
+        statement.setString(5, capteur.getDescription());
+        statement.setString(6, capteur.getManufacturer());
+        statement.setString(7, capteur.getModel());
+        statement.setString(8, capteur.getStatus());
+        statement.setInt(9, capteur.getId_lieu());
+        statement.setDate(10,  java.sql.Date.valueOf(capteur.getInstalled()));
+        statement.setDate(11, java.sql.Date.valueOf(capteur.getLastMaintenance()));
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from sensor");
