@@ -7,8 +7,11 @@ import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
 import edu.ezip.ing1.pds.business.dto.place.IdNamePlace;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
+import edu.ezip.ing1.pds.business.dto.affluence.Affluence;
+import edu.ezip.ing1.pds.business.dto.affluence.Affluences;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
+import edu.ezip.ing1.pds.services.AffluenceService;
 import edu.ezip.ing1.pds.services.CapteurService;
 import edu.ezip.ing1.pds.services.PlaceService;
 import javafx.collections.FXCollections;
@@ -32,6 +35,7 @@ import java.util.ResourceBundle;
 public class CapteurController implements Initializable {
     private ArrayList<Integer> listeId = new ArrayList<>();
     private Capteurs capteurs;
+    private AffluenceService affluenceService;
     @FXML
     Button Error_Empty_TextField = new Button();
     @FXML
@@ -113,6 +117,9 @@ public class CapteurController implements Initializable {
         LastMaintenanceColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("installed"));
         ManufacturerColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("manufacturer"));
         Id_affluenceColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_affluence"));
+        ComboBoxStatus.getItems().addAll("Fonctionne", "En panne", "Cassé");
+        ComboBoxIdAffluence.getItems().add(1);
+        //FillComboBoxAffluenceIds();
 
         ShowSensorList();
         UpdatePlaceIdName();
@@ -135,6 +142,27 @@ public class CapteurController implements Initializable {
             logger.error(e.getMessage());
         }
     }
+
+    public void FillComboBoxAffluenceIds() {
+        ArrayList<Integer> ids = new ArrayList<>();
+        Affluences affluences = new Affluences();
+        try {
+            affluences = this.affluenceService.selectAllAffluences();
+            logger.info("Affluences list (controller): {}", affluences );
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+        if (affluences != null && affluences.getAffluences() != null) {
+            for (Affluence affluence : affluences.getAffluences()) {
+                ids.add(affluence.getId());
+            }
+            ComboBoxIdAffluence.getItems().clear();
+            ComboBoxIdAffluence.getItems().addAll(ids);
+        } else {
+            logger.warn("Aucune affluence disponible pour extraire les IDs.");
+        }
+    }
+
 
     @FXML
     public void ShowSensorList(){
