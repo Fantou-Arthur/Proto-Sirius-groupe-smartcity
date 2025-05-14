@@ -2,6 +2,7 @@ package edu.ezip.ing1.pds.utils;
 
 import edu.ezip.ing1.pds.business.dto.address.Addresses;
 import edu.ezip.ing1.pds.business.dto.entity.Entity;
+import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.AddressService;
@@ -18,6 +19,7 @@ public class Utils {
     private final static String networkConfigFile = "network.yaml";
     final static NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
     private static AddressService addressService = new AddressService(networkConfig);
+
 
     private static DialogBox dialogBox = new DialogBox();
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -103,5 +105,17 @@ public class Utils {
             throw new RuntimeException(e);
         }
         return name;
+    }
+
+    public static int getNumberOfAlertRelatedTo(Place place) {
+        if(place.getId() == 4)
+            return 10;
+        return 13;
+    }
+
+    public static int getNumberOfSensorRelatedTo(Place place) {
+        if(place.getId() == 4)
+            return 8;
+        return 5;
     }
 }

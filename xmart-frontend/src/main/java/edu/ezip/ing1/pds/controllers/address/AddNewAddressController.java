@@ -67,7 +67,7 @@ public class AddNewAddressController {
             return;
         }
 
-        if (!handleError(name, streetName, postalCode, city)) {
+        if (handleError(name, streetName, postalCode, city)) {
             logger.error("Please fill all the fields");
             return;
         }
@@ -103,6 +103,7 @@ public class AddNewAddressController {
 
 
     boolean handleError(String name, String description, String type, String address ){
+        logger.info("handleError", name, description, type, address);
         boolean error = false;
         if(name.isEmpty()){
             dialogBox.setTitle("Erreur");
