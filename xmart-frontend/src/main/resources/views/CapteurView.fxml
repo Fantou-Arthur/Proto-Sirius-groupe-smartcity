@@ -43,25 +43,39 @@
                   </Text>
                   <Button fx:id="editSensorButton" layoutX="263.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
                   <Button fx:id="deleteSensorButton" layoutX="444.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToDeleteCapteurView" text="Supprimer capteur" />
-                  <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="207.0" prefWidth="600.0" text="Modifier capteur" visible="false">
+                  <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="400.0" prefWidth="809.0" text="Modifier capteur">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="592.0" visible="false">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="646.0" visible="false">
                            <children>
                               <TextField fx:id="Edit_Id" layoutY="78.0" />
                               <TextField fx:id="Edit_Name" layoutX="150.0" layoutY="78.0" />
                               <TextField fx:id="Edit_State" layoutX="300.0" layoutY="78.0" />
-                              <TextField fx:id="Edit_Id_lieu" layoutX="450.0" layoutY="78.0" />
+                              <TextField fx:id="Edit_Id_lieu" layoutX="600.0" layoutY="78.0" />
                               <Text layoutX="47.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_capteur" />
                               <Text layoutX="211.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
                               <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État (true/false)" />
-                              <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
-                              <Button fx:id="confirmEditSensorButton" layoutX="348.0" layoutY="121.0" mnemonicParsing="false" onAction="#confirmEditSensor" text="Valider" />
-                              <Button fx:id="AboartEditSensorButton" layoutX="196.0" layoutY="121.0" mnemonicParsing="false" onAction="#LeaveEditCapteurView" text="Annuler" />
+                              <Text layoutX="657.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
+                              <Button fx:id="confirmEditSensorButton" layoutX="456.0" layoutY="321.0" mnemonicParsing="false" onAction="#confirmEditSensor" text="Valider" />
+                              <Button fx:id="AboartEditSensorButton" layoutX="283.0" layoutY="321.0" mnemonicParsing="false" onAction="#LeaveEditCapteurView" text="Annuler" />
+                              <ComboBox fx:id="Edit_Status" layoutX="599.0" layoutY="174.0" prefWidth="150.0" />
+                              <ComboBox fx:id="Edit_Affluence" layoutX="449.0" layoutY="174.0" prefWidth="150.0" />
+                              <TextField fx:id="Edit_Manufacturer" layoutX="450.0" layoutY="78.0" />
+                              <TextField fx:id="Edit_Description" layoutY="174.0" />
+                              <TextField fx:id="Edit_Model" layoutX="150.0" layoutY="174.0" />
+                              <Text layoutX="64.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+                              <Text layoutX="213.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modèle" />
+                              <Text layoutX="492.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_affluence" />
+                              <Text layoutX="658.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statut" />
+                              <Text layoutX="190.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Installation" />
+                              <Text layoutX="468.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maintenance" wrappingWidth="83.7366943359375" />
+                              <DatePicker fx:id="Edit_Installed" layoutX="137.0" layoutY="261.0" />
+                              <DatePicker fx:id="Edit_last_maintenance" layoutX="422.0" layoutY="261.0" />
+                              <Text layoutX="494.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Concepteur" />
                            </children>
                         </AnchorPane>
                      </content>
                   </TitledPane>
-                  <TitledPane fx:id="TitlePaneAddCapteur" animated="false" layoutY="67.0" prefHeight="416.0" prefWidth="817.0" text="Ajouter Capteur">
+                  <TitledPane fx:id="TitlePaneAddCapteur" animated="false" layoutY="67.0" prefHeight="416.0" prefWidth="817.0" text="Ajouter Capteur" visible="false">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="816.0" visible="false">
                            <children>

@@ -16,15 +16,15 @@ public class Capteur {
     private String status;
     private int id_affluence;
 
-    private java.time.LocalDate installed;
-    private java.time.LocalDate last_maintenance;
+    private String installed;
+    private String last_maintenance;
 
 
 
 
     public Capteur() {}
 
-    public Capteur(final int id, final String name, final boolean state, final int id_lieu, final String description, final String manufacturer, final String model, final String status, final int id_affluence, final java.time.LocalDate installed, final java.time.LocalDate last_maintenance) {
+    public Capteur(final int id, final String name, final boolean state, final int id_lieu, final String description, final String manufacturer, final String model, final String status, final int id_affluence, final String installed, final String last_maintenance) {
         this.id = id;
         this.name = name;
         this.state = state;
@@ -74,11 +74,11 @@ public class Capteur {
     public String getModel() {return model;}
     public void setModel(String model) {this.model = model;}
 
-    public java.time.LocalDate getInstalled() {return installed;}
-    public void setInstalled(java.time.LocalDate installed) {this.installed = installed;}
+    public String getInstalled() {return installed;}
+    public void setInstalled(String installed) {this.installed = installed;}
 
-    public java.time.LocalDate getLastMaintenance() {return last_maintenance;}
-    public void setLastMaintenance(java.time.LocalDate lastMaintenance) {this.last_maintenance = lastMaintenance;}
+    public String getLastMaintenance() {return last_maintenance;}
+    public void setLastMaintenance(String lastMaintenance) {this.last_maintenance = lastMaintenance;}
 
     public String getManufacturer() {return manufacturer;}
     public void setManufacturer(String manufacturer) {this.manufacturer = manufacturer;}

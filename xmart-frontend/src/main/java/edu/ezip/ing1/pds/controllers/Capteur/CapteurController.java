@@ -274,8 +274,8 @@ public class CapteurController implements Initializable {
         String Edit_description = Edit_Description.getText();
         int Edit_id_affluence = Edit_Affluence.getValue();
         String Edit_status = Edit_Status.getValue();
-        java.time.LocalDate Edit_installed = Edit_Installed.getValue();
-        java.time.LocalDate Edit_last_maintenance = Edit_Last_Maintenance.getValue();
+        String Edit_installed = String.valueOf(Edit_Installed.getValue());
+        String Edit_last_maintenance = String.valueOf(Edit_Last_Maintenance.getValue());
 
         if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state)) {
             Error_Empty_TextField.setVisible(true);
@@ -328,8 +328,8 @@ public class CapteurController implements Initializable {
         String description = Adder_Description.getText();
         int id_affluence =ComboBoxIdAffluence.getValue();
         String status = ComboBoxStatus.getValue();
-        java.time.LocalDate installed = Adder_Installed.getValue();
-        java.time.LocalDate maintenance = Adder_Maintenance.getValue();
+        String installed = String.valueOf(Adder_Installed.getValue());
+        String maintenance = String.valueOf(Adder_Maintenance.getValue());
         if ((add_name == "") || (state == "") || (id_lieu == "") || (id == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state) || !EstConvertibleInt(id)) {
             Error_Empty_TextField.setVisible(true);
         }
