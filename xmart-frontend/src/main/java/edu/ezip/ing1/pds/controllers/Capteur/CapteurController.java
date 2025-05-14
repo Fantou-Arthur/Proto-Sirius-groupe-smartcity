@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 
 public class CapteurController implements Initializable {
     private ArrayList<Integer> listeId = new ArrayList<>();
@@ -84,6 +83,21 @@ public class CapteurController implements Initializable {
     @FXML
     private TableColumn<Capteur, Integer> Id_lieuColumn;
     @FXML
+    private TableColumn<Capteur, String> DescriptionColumn;
+    @FXML
+    private TableColumn<Capteur, String> StatusColumn;
+    @FXML
+    private TableColumn<Capteur, String> InstalledColumn;
+    @FXML
+    private TableColumn<Capteur, String> LastMaintenanceColumn;
+    @FXML
+    private TableColumn<Capteur, String> ManufacturerColumn;
+    @FXML
+    private TableColumn<Capteur, Integer> Id_affluenceColumn;
+    @FXML
+    private TableColumn<Capteur, String> ModelColumn;
+
+    @FXML
     private TableView<Capteur> tableauCapteurs;
 
     @Override
@@ -92,6 +106,14 @@ public class CapteurController implements Initializable {
         NameColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("name"));
         StateColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Boolean>("state"));
         Id_lieuColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_lieu"));
+        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("description"));
+        StatusColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("status"));
+        ModelColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("model"));
+        InstalledColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("installed"));
+        LastMaintenanceColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("installed"));
+        ManufacturerColumn.setCellValueFactory(new PropertyValueFactory<Capteur, String>("manufacturer"));
+        Id_affluenceColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_affluence"));
+
         ShowSensorList();
         UpdatePlaceIdName();
 
