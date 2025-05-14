@@ -90,7 +90,14 @@ public class CapteurService {
         statement.setString(1, capteur.getName());
         statement.setBoolean(2, capteur.getState());
         statement.setInt(3, capteur.getId_lieu());
-        statement.setInt(4, capteur.getId());
+        statement.setString(4, capteur.getDescription());
+        statement.setString(5, capteur.getManufacturer());
+        statement.setString(6, capteur.getModel());
+        statement.setString(7, capteur.getStatus());
+        statement.setInt(8, capteur.getId_affluence());
+        statement.setDate(9,  java.sql.Date.valueOf(capteur.getInstalled()));
+        statement.setDate(10, java.sql.Date.valueOf(capteur.getLastMaintenance()));
+        statement.setInt(11, capteur.getId());
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from Capteurs where id = "+capteur.getId());

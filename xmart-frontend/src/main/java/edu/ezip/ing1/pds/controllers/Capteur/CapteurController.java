@@ -119,6 +119,8 @@ public class CapteurController implements Initializable {
         Id_affluenceColumn.setCellValueFactory(new PropertyValueFactory<Capteur, Integer>("id_affluence"));
         ComboBoxStatus.getItems().addAll("Fonctionne", "En panne", "Cassé");
         ComboBoxIdAffluence.getItems().add(1);
+        Edit_Affluence.getItems().add(1);
+        Edit_Status.getItems().addAll("Fonctionne", "En panne", "Cassé");
         //FillComboBoxAffluenceIds();
 
         ShowSensorList();
@@ -227,10 +229,17 @@ public class CapteurController implements Initializable {
         String str_id = String.valueOf(id);
         String str_state = String.valueOf(state);
         String str_lieu = String.valueOf(id_lieu);
+        String str_manufacturer = String.valueOf(capteur.getManufacturer());
+        String str_description = String.valueOf(capteur.getDescription());
+        String str_model = String.valueOf(capteur.getModel());
+
         Edit_Id.setText(str_id);
         Edit_Name.setText(name);
         Edit_State.setText(str_state);
         Edit_Id_lieu.setText(str_lieu);
+        Edit_Manufacturer.setText(str_manufacturer);
+        Edit_Description.setText(str_description);
+        Edit_Model.setText(str_model);
 
     }
 
@@ -317,15 +326,44 @@ public class CapteurController implements Initializable {
         int int_id = capteur1.getId();
         String id = String.valueOf(int_id);
         String Edit_name = Edit_Name.getText();
+        if (Edit_name == null) {
+            Edit_name = String.valueOf(capteur1.getModel());
+
+        }
         String state = Edit_State.getText();
+        if (state == null) {
+            // La chaîne est null
+        }
         String id_lieu = Edit_Id_lieu.getText();
+        if (id_lieu == null) {
+            // La chaîne est null
+        }
         String Edit_manufacturer = Edit_Manufacturer.getText();
+        if (Edit_manufacturer == null) {
+            Edit_manufacturer = String.valueOf(capteur1.getModel());
+        }
         String Edit_model = Edit_Model.getText();
+        if (Edit_model == null) {
+            Edit_model = String.valueOf(capteur1.getModel());
+        }
         String Edit_description = Edit_Description.getText();
+        if (Edit_description == null) {
+            Edit_description = String.valueOf(capteur1.getModel());
+        }
         int Edit_id_affluence = Edit_Affluence.getValue();
+
         String Edit_status = Edit_Status.getValue();
+        if (Edit_status == null) {
+            // La chaîne est null
+        }
         String Edit_installed = String.valueOf(Edit_Installed.getValue());
+        if (Edit_installed == null) {
+            // La chaîne est null
+        }
         String Edit_last_maintenance = String.valueOf(Edit_Last_Maintenance.getValue());
+        if (Edit_last_maintenance == null) {
+            logger.info("Bah si c'est nul");
+        }
 
         if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state)) {
             Error_Empty_TextField.setVisible(true);
