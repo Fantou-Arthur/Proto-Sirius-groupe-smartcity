@@ -26,4 +26,9 @@ public class NavBarController {
     private void  viewAffluence() throws IOException {
         MainView.setRoot("Affluence");
     }
+
+    @FXML
+    private void  goToHome() throws IOException {
+        MainView.setRoot("mainView");
+    }
 }
