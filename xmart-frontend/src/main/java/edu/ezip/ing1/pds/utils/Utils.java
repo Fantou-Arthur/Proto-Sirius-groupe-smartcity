@@ -1,15 +1,21 @@
 package edu.ezip.ing1.pds.utils;
 
 import edu.ezip.ing1.pds.business.dto.address.Addresses;
+import edu.ezip.ing1.pds.business.dto.affluence.Affluences;
+import edu.ezip.ing1.pds.business.dto.capteur.Capteur;
+import edu.ezip.ing1.pds.business.dto.capteur.Capteurs;
 import edu.ezip.ing1.pds.business.dto.entity.Entity;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.AddressService;
+import edu.ezip.ing1.pds.services.AffluenceService;
+import edu.ezip.ing1.pds.services.CapteurService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -107,15 +113,36 @@ public class Utils {
         return name;
     }
 
-    public static int getNumberOfAlertRelatedTo(Place place) {
-        if(place.getId() == 4)
-            return 10;
-        return 13;
+    public static int getNumberOfAffluenceRelatedTo(Place place) throws  IOException{
+        int count = 0;
+        AffluenceService affluenceService = new AffluenceService(networkConfig);
+        Affluences affluences = affluenceService.selectAllAffluences();
+        if (affluences != null) {
+            for (int i = 0; i < affluences.getAffluences().size(); i++) {
+                if(affluences.getAffluences().get(i).getIdPlace() == place.getId()){
+                    count++;
+                }
+            }
+        } else {
+            logger.debug("No affluence found");
+        }
+        return count;
     }
 
-    public static int getNumberOfSensorRelatedTo(Place place) {
-        if(place.getId() == 4)
-            return 8;
-        return 5;
+    public static int getNumberOfSensorRelatedTo(Place place) throws IOException {
+        CapteurService capteurService = new CapteurService(networkConfig);
+        Capteurs capteurs = capteurService.selectAllCapteurs();
+        int count = 0;
+        if (capteurs != null) {
+
+            for (int i = 0; i < capteurs.getCapteurs().size(); i++) {
+                if(capteurs.getCapteurs().get(i).getId_lieu() == place.getId()){
+                    count++;
+                }
+            }
+        } else {
+            logger.debug("No capteur found");
+        }
+        return count;
     }
 }

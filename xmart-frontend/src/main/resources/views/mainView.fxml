@@ -99,7 +99,7 @@
                            <children>
                               <ImageView fitHeight="105.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/alertes.png" />
+                                        <Image url="@../images/foule.png" />
                                     </image>
                                 </ImageView>
                            </children>
