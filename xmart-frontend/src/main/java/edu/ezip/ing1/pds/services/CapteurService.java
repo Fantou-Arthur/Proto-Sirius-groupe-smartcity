@@ -59,7 +59,6 @@ public class CapteurService {
     }
 
     public Capteurs selectAllCapteurs() throws IOException {
-        int birthdate = 0;
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();

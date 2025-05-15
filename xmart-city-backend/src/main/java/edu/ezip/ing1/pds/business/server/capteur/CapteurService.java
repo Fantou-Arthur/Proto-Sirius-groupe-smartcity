@@ -29,6 +29,13 @@ public class CapteurService {
         statement.setString(2, capteur.getName());
         statement.setBoolean(3, capteur.getState());
         statement.setInt(4, capteur.getId_lieu());
+        statement.setString(5, capteur.getDescription());
+        statement.setString(6, capteur.getManufacturer());
+        statement.setString(7, capteur.getModel());
+        statement.setString(8, capteur.getStatus());
+        statement.setInt(9, capteur.getId_affluence());
+        statement.setDate(10,  java.sql.Date.valueOf(capteur.getInstalled()));
+        statement.setDate(11, java.sql.Date.valueOf(capteur.getLastMaintenance()));
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from sensor");
@@ -64,6 +71,13 @@ public class CapteurService {
             capteur.setName(res.getString(2));
             capteur.setState(res.getBoolean(3));
             capteur.setId_lieu(res.getInt(4));
+            capteur.setDescription(res.getString(5));
+            capteur.setManufacturer(res.getString(6));
+            capteur.setModel(res.getString(7));
+            capteur.setStatus(res.getString(8));
+            capteur.setId_affluence(res.getInt(9));
+            capteur.setInstalled(res.getString(10));
+            capteur.setLastMaintenance(res.getString(11));
             capteurs.add(capteur);
             logger.info("Le capteur :" + capteur);
         }
@@ -76,7 +90,14 @@ public class CapteurService {
         statement.setString(1, capteur.getName());
         statement.setBoolean(2, capteur.getState());
         statement.setInt(3, capteur.getId_lieu());
-        statement.setInt(4, capteur.getId());
+        statement.setString(4, capteur.getDescription());
+        statement.setString(5, capteur.getManufacturer());
+        statement.setString(6, capteur.getModel());
+        statement.setString(7, capteur.getStatus());
+        statement.setInt(8, capteur.getId_affluence());
+        statement.setDate(9,  java.sql.Date.valueOf(capteur.getInstalled()));
+        statement.setDate(10, java.sql.Date.valueOf(capteur.getLastMaintenance()));
+        statement.setInt(11, capteur.getId());
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from Capteurs where id = "+capteur.getId());
