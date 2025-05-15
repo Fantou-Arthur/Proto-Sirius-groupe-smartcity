@@ -6,10 +6,15 @@
 
 <MenuBar xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.NavBarController">
    <menus>
+      <Menu mnemonicParsing="false" text="Home">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#goToHome" text="Home" />
+         </items>
+      </Menu>
       <Menu mnemonicParsing="false" text="Places">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Create" />
-            <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="List" />
+            <MenuItem mnemonicParsing="false" onAction="#createNewPlace" text="Ajouter" />
+            <MenuItem mnemonicParsing="false" onAction="#listPlaces" text="Afficher" />
          </items>
       </Menu>
       <Menu mnemonicParsing="false" text="Capteurs">

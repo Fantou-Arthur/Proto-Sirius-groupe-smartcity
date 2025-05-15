@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="669.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.place.EditPlaceController">
+<VBox prefHeight="700.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.place.AddNewPlaceController">
    <children>
       <fx:include source="navBar.fxml" />
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="640.0" prefWidth="640.0">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <BorderPane prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" text="Modifier une place" BorderPane.alignment="CENTER">
+                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" text="Ajouter une place" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -28,10 +28,18 @@
                <bottom>
                   <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="60.0" prefWidth="132.0" />
                         <VBox alignment="CENTER" prefHeight="60.0" prefWidth="132.0">
                            <children>
-                              <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updatePlace" prefHeight="31.0" prefWidth="87.0" style="-fx-background-color: #2e5ff2;" text="Modifier" textFill="WHITE">
+                              <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetFields" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #90a8f0;" text="Réinitialiser" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="60.0" prefWidth="132.0">
+                           <children>
+                              <Button fx:id="createButton" mnemonicParsing="false" onAction="#addNewPlace" prefHeight="31.0" prefWidth="87.0" style="-fx-background-color: #2e5ff2;" text="Ajouter" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -86,7 +94,7 @@
                                  <children>
                                     <Label prefWidth="100.0" text="Adresse : " />
                                     <ComboBox fx:id="addressComboBox" prefHeight="26.0" prefWidth="267.0" />
-                                    <Button fx:id="addAddressButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Ajouter" />
+                                    <Button fx:id="addAddressButton" mnemonicParsing="false" onAction="#goToAddNewAddress" prefHeight="26.0" prefWidth="85.0" text="Ajouter" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

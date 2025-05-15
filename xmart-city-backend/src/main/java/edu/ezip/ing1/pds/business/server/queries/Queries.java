@@ -7,19 +7,27 @@ public enum Queries {
     DELETE_AFFLUENCE("DELETE FROM Affluence WHERE id = ? AND id_1 = ?"),
     SELECT_ALL_AFFLUENCES("SELECT Affluence.id, Affluence.NbrPers, Affluence.NbrDepart, Affluence.NbrArrive, Affluence.id_1 FROM Affluence"),
     GET_TREE_VIEW("SELECT a.country, a.city, a.streetName, a.id, p.name, p.id, s.name, s.id, p.id_place FROM AdresseTempAffluence AS a, PlaceTempAffluence AS p, SensorTempAffluence AS s WHERE a.id_place=p.id_place AND p.id_place=s.id_place ORDER BY p.name"),
-    
-    INSERT_PLACE("INSERT INTO Places (name, address, maxCapacity) VALUES (?, ?, ?)"),
-    SELECT_ALL_PLACES("SELECT id, name, address, maxCapacity FROM Places"),
+
+    INSERT_PLACE("INSERT INTO Places (name, type, description, latitude, longitude, maxCapacity, peakHours, id_entity, id_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"),
+    UPDATE_PLACE("UPDATE Places SET name = ?, type = ?, description = ?, latitude = ?, longitude =?, maxCapacity = ?, peakHours = ?, id_address = ?  WHERE id = ?"),
+    SELECT_ALL_PLACES("SELECT * FROM Places"),
     SELECT_ID_NAME_PLACES("SELECT id, name FROM Places"),
-    UPDATE_PLACE("UPDATE Places SET name = ?, address = ?, maxCapacity = ? WHERE id = ?"),
     DELETE_PLACE("DELETE FROM Places WHERE id = ?"),
 
     INSERT_CAPTEUR("INSERT INTO sensor (id, name, isActive, id_lieu) VALUES (?, ?, ?, ?)"),
     DELETE_CAPTEUR("DELETE FROM sensor WHERE id = ?"),
     EDIT_CAPTEUR("UPDATE sensor SET name = ?, isActive = ?,id_lieu = ? WHERE id = ?"),
-    SELECT_ALL_CAPTEURS("SELECT id, name, isActive, id_lieu FROM sensor");
+    SELECT_ALL_CAPTEURS("SELECT id, name, isActive, id_lieu FROM sensor"),
 
+    INSERT_USER("INSERT INTO Users (username, password, email) VALUES (?, ?, ?)"),
+    LOGIN_USER("LOGIN_USER"),
+    SELECT_ALL_ENTITY("SELECT_ALL_ENTITY"),
 
+    INSERT_ADDRESS("INSERT INTO Address (name, streetNumber, streetName, postalCode, city, country) VALUES (?, ?, ?, ?, ?)"),
+    SELECT_ALL_ADDRESS("SELECT * FROM Address"),
+    SELECT_ADDRESS_BY_NAME("SELECT * FROM Address WHERE name = ?"),
+    UPDATE_ADDRESS("UPDATE Address SET name = ?, streetNumber = ?, streetName = ?, postalCode = ?, city = ?, country = ? WHERE id = ?"),
+    DELETE_ADDRESS("DELETE FROM Address WHERE id = ?");
 
 
 

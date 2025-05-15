@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
+import edu.ezip.ing1.pds.business.dto.place.Type;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 import org.slf4j.Logger;
@@ -25,8 +26,14 @@ public class PlaceService {
         final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);
         final PreparedStatement statement = connection.prepareStatement(PlaceQueries.INSERT_PLACE.getQuery());
         statement.setString(1, place.getName());
-        statement.setString(2, place.getAddress());
-        statement.setInt(3, place.getMaxCapacity());
+        statement.setString(2, place.getType().toString());
+        statement.setString(3, place.getDescription());
+        statement.setDouble(4, place.getLatitude());
+        statement.setDouble(5, place.getLongitude());
+        statement.setInt(6,place.getMaxCapacity());
+        statement.setTime(7, place.getPeakHour());
+        statement.setInt(8, place.getId_entity());
+        statement.setInt(9,place.getId_address());
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from Places ");
@@ -66,9 +73,14 @@ public class PlaceService {
         final Place place = objectMapper.readValue(request.getRequestBody(), Place.class);
         final PreparedStatement statement = connection.prepareStatement(PlaceQueries.UPDATE_PLACE.getQuery());
         statement.setString(1, place.getName());
-        statement.setString(2, place.getAddress());
-        statement.setInt(3, place.getMaxCapacity());
-        statement.setInt(4, place.getId());
+        statement.setString(2, place.getType().toString());
+        statement.setString(3, place.getDescription());
+        statement.setDouble(4, place.getLatitude());
+        statement.setDouble(5, place.getLongitude());
+        statement.setInt(6,place.getMaxCapacity());
+        statement.setTime(7, place.getPeakHour());
+        statement.setInt(8, place.getId_address());
+        statement.setInt(9, place.getId());
         statement.executeUpdate();
 
         final ResultSet resultSet = statement.executeQuery("select * from Places where id = "+place.getId());
@@ -96,8 +108,14 @@ public class PlaceService {
         Place place = new Place();
         place.setId(resultSet.getInt(1));
         place.setName(resultSet.getString(2));
-        place.setAddress(resultSet.getString(3));
-        place.setMaxCapacity(resultSet.getInt(4));
+        place.setType(Type.valueOf(resultSet.getString(3)));
+        place.setDescription(resultSet.getString(4));
+        place.setLatitude(resultSet.getDouble(5));
+        place.setLongitude(resultSet.getDouble(6));
+        place.setMaxCapacity(resultSet.getInt(7));
+        place.setPeakHour(resultSet.getTime(8));
+        place.setId_entity(resultSet.getInt(9));
+        place.setId_address(resultSet.getInt(10));
         return place;
     }
 
@@ -105,7 +123,7 @@ public class PlaceService {
         Place place = new Place();
         place.setId(resultSet.getInt(1));
         place.setName(resultSet.getString(2));
-        place.setAddress(null);
+        place.setAddress(0);
         place.setMaxCapacity(0);
         return place;
     }

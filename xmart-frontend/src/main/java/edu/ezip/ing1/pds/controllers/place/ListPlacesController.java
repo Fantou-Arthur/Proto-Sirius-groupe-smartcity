@@ -3,6 +3,7 @@ package edu.ezip.ing1.pds.controllers.place;
 import edu.ezip.ing1.pds.MainView;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
+import edu.ezip.ing1.pds.business.dto.place.Type;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.PlaceService;
@@ -32,7 +33,7 @@ public class ListPlacesController implements Initializable {
     private Places places;
 
     @FXML
-    private TableColumn<PlaceCell, String> addressColumn;
+    private TableColumn<PlaceCell, String> descriptionColumn;
 
     @FXML
     private TableColumn<PlaceCell, Integer> capacityColumn;
@@ -42,6 +43,9 @@ public class ListPlacesController implements Initializable {
 
     @FXML
     private TableColumn actionColumn;
+
+    @FXML
+    private TableColumn typeColumn;
 
     @FXML
     private TableView<PlaceCell> placeListTable;
@@ -65,10 +69,10 @@ public class ListPlacesController implements Initializable {
         placeListTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         hboxList.setHgrow(placeListTable, javafx.scene.layout.Priority.ALWAYS);
         nameColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("name"));
-        addressColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("address"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, String>("description"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, Integer>("maxCapacity"));
         actionColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, HBox>("actions"));
-
+        typeColumn.setCellValueFactory(new PropertyValueFactory<PlaceCell, Type>("type"));
 
 
         ArrayList<Place> placeList = places.getPlaces();
