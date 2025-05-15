@@ -32,8 +32,8 @@
                         <TableColumn fx:id="ModelColumn" prefWidth="73.5999755859375" text="Modèle" />
                         <TableColumn fx:id="InstalledColumn" prefWidth="77.5999755859375" text="Installation" />
                         <TableColumn fx:id="LastMaintenanceColumn" prefWidth="49.60009765625" text="Maintenance" />
-                        <TableColumn fx:id="ManufacturerColumn" prefWidth="68.00006103515625" text="Concepteur" />
-                        <TableColumn fx:id="Id_affluenceColumn" prefWidth="72.7999267578125" text="Id_affluence" />
+                        <TableColumn fx:id="ManufacturerColumn" prefWidth="52.79998779296875" text="Concepteur" />
+                        <TableColumn fx:id="Id_affluenceColumn" prefWidth="88.800048828125" text="Id_affluence" />
                     </columns>
                   </TableView>
                   <TextArea layoutX="-206.0" layoutY="-21.0" prefHeight="27.0" prefWidth="155.0" text="Gestion des capteurs">
@@ -42,12 +42,12 @@
                      </font>
                   </TextArea>
                   <Button fx:id="addSensorButton" layoutX="219.0" layoutY="119.0" mnemonicParsing="false" onAction="#GoToAddCapteurView" prefHeight="25.0" prefWidth="118.0" text="Ajouter capteur" />
-                  <Text layoutX="315.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des capteurs">
+                  <Text layoutX="359.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des capteurs">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="editSensorButton" layoutX="368.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
+                  <Button fx:id="editSensorButton" layoutX="379.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
                   <Button fx:id="deleteSensorButton" layoutX="494.0" layoutY="119.0" mnemonicParsing="false" onAction="#GoToDeleteCapteurView" text="Supprimer capteur" />
                   <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="400.0" prefWidth="809.0" text="Modifier capteur" visible="false">
                      <content>
