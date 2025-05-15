@@ -51,6 +51,7 @@ public class UserService {
             signUpClientRequest.join();
             User newUser = (User) signUpClientRequest.getResult();
             logger.debug("New user inserted : {}", newUser);
+            UserSession.getInstance().setEntityId(newUser.getEntityId());
             return newUser;
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
+import edu.ezip.ing1.pds.business.dto.user.User;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.requests.place.*;
@@ -111,15 +112,20 @@ public class PlaceService {
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
+        int entityId = UserSession.getInstance().getEntityId();
+        User user = new User();
+        user.setEntityId(entityId);
 
         request.setRequestId(requestId);
+        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(user));
         request.setRequestOrder(RequestOrder.SELECT_ALL_PLACES.toString());
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         try {
+
             final SelectAllPlacesClientRequest selectAllPlaceClientRequest = new SelectAllPlacesClientRequest(
                     networkConfig,
-                    birthdate++, request, null, requestBytes);
+                    birthdate++, request, user, requestBytes);
             selectAllPlaceClientRequest.join();
             Places places = selectAllPlaceClientRequest.getResult();
             return places;

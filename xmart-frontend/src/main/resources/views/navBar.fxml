@@ -6,9 +6,9 @@
 
 <MenuBar xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.NavBarController">
    <menus>
-      <Menu mnemonicParsing="false" text="Home">
+      <Menu mnemonicParsing="false" text="Acceuil">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#goToHome" text="Home" />
+            <MenuItem mnemonicParsing="false" onAction="#goToHome" text="Acceuil" />
          </items>
       </Menu>
       <Menu mnemonicParsing="false" text="Places">

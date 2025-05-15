@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
 import edu.ezip.ing1.pds.business.dto.place.Type;
+import edu.ezip.ing1.pds.business.dto.user.User;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 import org.slf4j.Logger;
@@ -43,11 +44,14 @@ public class PlaceService {
     }
 
 
-    public Response SelectAllPlaces(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+    public Response SelectAllPlaces(final Request request, final Connection connection) throws SQLException, IOException {
         //TODO: Handle error and send to the front
         final ObjectMapper objectMapper = new ObjectMapper();
-        final Statement stmt = connection.createStatement();
-        final ResultSet resultSet = stmt.executeQuery(PlaceQueries.SELECT_ALL_PLACES.getQuery());
+        User user = objectMapper.readValue(request.getRequestBody(), User.class);
+        final PreparedStatement statement = connection.prepareStatement(PlaceQueries.SELECT_ALL_PLACES.getQuery());
+        statement.setInt(1, user.getEntityId());
+        final ResultSet resultSet = statement.executeQuery();
+
         Places places = new Places();
         while (resultSet.next()) {
             places.add(resultSetToPlace(resultSet));

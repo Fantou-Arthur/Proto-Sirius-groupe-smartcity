@@ -37,6 +37,11 @@ public class AddNewAddressController {
     private AddressService addressService = new AddressService(networkConfig);
 
     public void resetFields(ActionEvent actionEvent) {
+        nameTextField.setText("");
+        streetNumberTextField.setText("");
+        streetNameTextField.setText("");
+        codePostalTextField.setText("");
+        cityTextField.setText("");
     }
 
     public void addNewAddress(ActionEvent actionEvent) {
@@ -54,7 +59,7 @@ public class AddNewAddressController {
         } catch (NumberFormatException e) {
             logger.error(e.getMessage());
             dialogBox.setTitle("Ajouter une nouvelle Adresse0");
-            dialogBox.setContentText("Veuillez entrez un nombre entier pour le numéro de rue");
+            dialogBox.setContentText("Veuillez entrer un nombre entier pour le numéro de rue");
             dialogBox.showAndWait();
             throw null;
         }
@@ -62,12 +67,12 @@ public class AddNewAddressController {
         if (!pattern.matcher(postalCode).matches()) {
             logger.error("Postal code must be in the format 12345");
             dialogBox.setTitle("Ajouter une nouvelle Adresse");
-            dialogBox.setContentText("Veuillez entrez un code postal valide");
+            dialogBox.setContentText("Veuillez entrer un code postal valide");
             dialogBox.showAndWait();
             return;
         }
 
-        if (handleError(name, streetName, postalCode, city)) {
+        if (handleError(name, streetName, postalCode, city, streetNumber)) {
             logger.error("Please fill all the fields");
             return;
         }
@@ -102,31 +107,38 @@ public class AddNewAddressController {
     }
 
 
-    boolean handleError(String name, String description, String type, String address ){
-        logger.info("handleError", name, description, type, address);
+    boolean handleError(String name, String streetName, String codePostal, String ville, int streetNumber) {
         boolean error = false;
         if(name.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez le nom de la place");
-            dialogBox.showAndWait();
-            error = true;
-        }else if(address.isEmpty()){
-            dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez selectionnez une address");
-            dialogBox.showAndWait();
-            error = true;
-        }else if(type.isEmpty()){
-            dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez le type de la place");
-            dialogBox.showAndWait();
-            error = true;
-        }else if(description.isEmpty()){
-            dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une description");
+            dialogBox.setContentText("Veuillez entrer le nom de la l'adresse");
             dialogBox.showAndWait();
             error = true;
         }
-
+        else if (streetName.isEmpty()){
+            dialogBox.setTitle("Erreur");
+            dialogBox.setContentText("Veuillez entrer le nom de la rue");
+            dialogBox.showAndWait();
+            error = true;
+        }
+        else if (codePostal.isEmpty()) {
+            dialogBox.setTitle("Erreur");
+            dialogBox.setContentText("Veuillez entrer le code postal ");
+            dialogBox.showAndWait();
+            error = true;
+        }
+        else if (ville.isEmpty()) {
+            dialogBox.setTitle("Erreur");
+            dialogBox.setContentText("Veuillez entrer la ville");
+            dialogBox.showAndWait();
+            error = true;
+        }
+        else if (streetNumber <= 0) {
+            dialogBox.setTitle("Erreur");
+            dialogBox.setContentText("Veuillez entrer un numéro de rue supérieur à 0");
+            dialogBox.showAndWait();
+            error = true;
+        }
         return error;
     }
 

@@ -59,7 +59,7 @@ public class MainViewController implements Initializable {
         if (selectedPlace != null) {
             for (int i = 0; i < places.getPlaces().size(); i++) {
                 if (places.getPlaces().get(i).getName().equals(selectedPlace)) {
-                    int countAlert = Utils.getNumberOfAlertRelatedTo(places.getPlaces().get(i));
+                    int countAlert = Utils.getNumberOfAffluenceRelatedTo(places.getPlaces().get(i));
                     int countSensor = Utils.getNumberOfSensorRelatedTo(places.getPlaces().get(i));
                     NumberAlertText.setText(String.valueOf(countAlert));
                     NumberSensorText.setText(String.valueOf(countSensor));
