@@ -23,33 +23,32 @@
                <children>
                   <TableView fx:id="tableauCapteurs" layoutX="12.0" layoutY="162.0" prefHeight="326.0" prefWidth="791.0">
                     <columns>
-                      <TableColumn fx:id="IdColumn" prefWidth="75.0" text="Id" />
-                      <TableColumn fx:id="NameColumn" prefWidth="75.0" text="Nom" />
-                        <TableColumn fx:id="StateColumn" prefWidth="75.0" text="État" />
-                        <TableColumn fx:id="Id_lieuColumn" prefWidth="75.0" text="Id_lieu" />
-                        <TableColumn fx:id="DescriptionColumn" prefWidth="75.0" text="Description" />
-                        <TableColumn fx:id="StatusColumn" prefWidth="75.0" text="Statut" />
-                        <TableColumn fx:id="ModelColumn" prefWidth="75.0" text="Modèle" />
-                        <TableColumn fx:id="InstalledColumn" prefWidth="75.0" text="Installation" />
-                        <TableColumn fx:id="LastMaintenanceColumn" prefWidth="75.0" text="Maintenance" />
-                        <TableColumn fx:id="ManufacturerColumn" prefWidth="75.0" text="Concepteur" />
-                        <TableColumn fx:id="Id_affluenceColumn" prefWidth="75.0" text="Id_affluence" />
+                      <TableColumn fx:id="IdColumn" prefWidth="42.399993896484375" text="Id" />
+                      <TableColumn fx:id="NameColumn" prefWidth="82.4000244140625" text="Nom" />
+                        <TableColumn fx:id="StateColumn" prefWidth="63.999969482421875" text="État" />
+                        <TableColumn fx:id="Id_lieuColumn" prefWidth="43.20001220703125" text="Id_lieu" />
+                        <TableColumn fx:id="DescriptionColumn" prefWidth="146.40000915527344" text="Description" />
+                        <TableColumn fx:id="StatusColumn" prefWidth="112.00003051757812" text="Statut" />
+                        <TableColumn fx:id="ModelColumn" prefWidth="73.5999755859375" text="Modèle" />
+                        <TableColumn fx:id="InstalledColumn" prefWidth="77.5999755859375" text="Installation" />
+                        <TableColumn fx:id="LastMaintenanceColumn" prefWidth="49.60009765625" text="Maintenance" />
+                        <TableColumn fx:id="ManufacturerColumn" prefWidth="68.00006103515625" text="Concepteur" />
+                        <TableColumn fx:id="Id_affluenceColumn" prefWidth="72.7999267578125" text="Id_affluence" />
                     </columns>
                   </TableView>
-                  <Button fx:id="Error_Empty_TextField" layoutX="110.0" layoutY="39.0" mnemonicParsing="false" onAction="#LeaveErrorEmptyTextField" prefHeight="56.0" prefWidth="380.0" text="Toutes les cases doivent être remplies ET les types saisies corrects." textFill="#e42424" visible="false" />
                   <TextArea layoutX="-206.0" layoutY="-21.0" prefHeight="27.0" prefWidth="155.0" text="Gestion des capteurs">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextArea>
-                  <Button fx:id="addSensorButton" layoutX="41.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToAddCapteurView" prefHeight="25.0" prefWidth="118.0" text="Ajouter capteur" />
+                  <Button fx:id="addSensorButton" layoutX="219.0" layoutY="119.0" mnemonicParsing="false" onAction="#GoToAddCapteurView" prefHeight="25.0" prefWidth="118.0" text="Ajouter capteur" />
                   <Text layoutX="315.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des capteurs">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="editSensorButton" layoutX="263.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
-                  <Button fx:id="deleteSensorButton" layoutX="444.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToDeleteCapteurView" text="Supprimer capteur" />
+                  <Button fx:id="editSensorButton" layoutX="368.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
+                  <Button fx:id="deleteSensorButton" layoutX="494.0" layoutY="119.0" mnemonicParsing="false" onAction="#GoToDeleteCapteurView" text="Supprimer capteur" />
                   <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="400.0" prefWidth="809.0" text="Modifier capteur" visible="false">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="646.0" visible="false">
@@ -126,6 +125,7 @@
                         </AnchorPane>
                     </content>
                   </TitledPane>
+                  <Button fx:id="Error_Empty_TextField" layoutX="160.0" layoutY="82.0" mnemonicParsing="false" onAction="#LeaveErrorEmptyTextField" prefHeight="125.0" prefWidth="527.0" text="Toutes les cases doivent être remplies ET les types saisies corrects." textFill="#e42424" visible="false" />
                </children>
             </Pane>
          </children>

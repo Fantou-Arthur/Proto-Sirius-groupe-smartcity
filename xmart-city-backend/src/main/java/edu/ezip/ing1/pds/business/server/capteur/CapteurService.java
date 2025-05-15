@@ -100,7 +100,7 @@ public class CapteurService {
         statement.setInt(11, capteur.getId());
         statement.executeUpdate();
 
-        final ResultSet resultSet = statement.executeQuery("select * from Capteurs where id = "+capteur.getId());
+        final ResultSet resultSet = statement.executeQuery("select * from sensor where id = "+capteur.getId());
         resultSet.next();
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(capteur));
     }
