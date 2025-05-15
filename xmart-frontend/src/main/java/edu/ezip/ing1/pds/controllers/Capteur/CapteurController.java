@@ -121,6 +121,7 @@ public class CapteurController implements Initializable {
         ComboBoxIdAffluence.getItems().add(1);
         Edit_Affluence.getItems().add(1);
         Edit_Status.getItems().addAll("Fonctionne", "En panne", "Cassé");
+        AutoFillComboBox();
         //FillComboBoxAffluenceIds();
 
         ShowSensorList();
@@ -144,6 +145,33 @@ public class CapteurController implements Initializable {
         }
         catch (IOException e) {
             logger.error(e.getMessage());
+        }
+    }
+
+    public void AutoFillComboBox(){
+        System.out.println();
+        System.out.println("AutoFillComboBox");
+        System.out.println();
+        if (!ComboBoxIdAffluence.getItems().isEmpty()) {
+            ComboBoxIdAffluence.setValue(ComboBoxIdAffluence.getItems().get(0));
+        }
+        if (!ComboBoxIdLieu.getItems().isEmpty()) {
+            System.out.println();
+            System.out.println(ComboBoxIdLieu.getItems().get(0));
+            System.out.println();
+            ComboBoxIdLieu.setValue(ComboBoxIdLieu.getItems().get(0));
+        }
+        if (!ComboBoxStatus.getItems().isEmpty()) {
+            ComboBoxStatus.setValue(ComboBoxStatus.getItems().get(0));
+        }
+        if (!Edit_Affluence.getItems().isEmpty()) {
+            Edit_Affluence.setValue(Edit_Affluence.getItems().get(0));
+        }
+        if (!Edit_Id_lieu.getItems().isEmpty()) {
+            Edit_Id_lieu.setValue(Edit_Id_lieu.getItems().get(0));
+        }
+        if (!Edit_Status.getItems().isEmpty()) {
+            Edit_Status.setValue(Edit_Status.getItems().get(0));
         }
     }
 
@@ -191,6 +219,9 @@ public class CapteurController implements Initializable {
         Adder_Name.setText("");
         Adder_State.setText("");
         Adder_Id.setText("");
+        Adder_Manufacturer.setText("");
+        Adder_Description.setText("");
+        Adder_Model.setText("");
         Edit_Id.setText("");
         Edit_Name.setText("");
         Edit_State.setText("");
@@ -200,12 +231,14 @@ public class CapteurController implements Initializable {
     @FXML
     private void GoToCapteurView() throws IOException {
         MainView.setRoot("CapteurView");
+        AutoFillComboBox();
         ShowSensorList();
     }
 
     @FXML
     private void GoToAddCapteurView() throws IOException {
         UpdatePlaceIdName();
+        AutoFillComboBox();
         TitlePaneAddCapteur .setVisible(true);
 
     }
@@ -240,6 +273,17 @@ public class CapteurController implements Initializable {
         Edit_Manufacturer.setText(str_manufacturer);
         Edit_Description.setText(str_description);
         Edit_Model.setText(str_model);
+        Capteur capteur1 = tableauCapteurs.getSelectionModel().getSelectedItem();
+        Edit_Affluence.setValue(capteur1.getId_affluence());
+        Edit_Status.setValue(capteur1.getStatus());
+        IdNamePlace searched;
+        for (IdNamePlace idnameplace : Edit_Id_lieu.getItems()) {
+            if (idnameplace.getId() == capteur1.getId_lieu()) {
+                searched = idnameplace;
+                Edit_Id_lieu.setValue(searched);
+                break;
+            }
+        }
 
     }
 
@@ -248,7 +292,7 @@ public class CapteurController implements Initializable {
         ShowSensorList();
         Error_Empty_TextField.setVisible(false);
         ResetTextFields();
-        TitlePaneEditCapteur .setVisible(false);
+        TitlePaneEditCapteur.setVisible(false);
     }
 
     @FXML
@@ -325,15 +369,13 @@ public class CapteurController implements Initializable {
         Capteur capteur1 = tableauCapteurs.getSelectionModel().getSelectedItem();
         int int_id = capteur1.getId();
         String id = String.valueOf(int_id);
+
         String Edit_name = Edit_Name.getText();
         if (Edit_name == null) {
             Edit_name = String.valueOf(capteur1.getModel());
 
         }
         String state = Edit_State.getText();
-        if (state == null) {
-            // La chaîne est null
-        }
         IdNamePlace id_name_lieu = Edit_Id_lieu.getValue();
         int intid_lieu = id_name_lieu.getId();
         String id_lieu = Integer.toString(intid_lieu);
@@ -353,6 +395,7 @@ public class CapteurController implements Initializable {
             Edit_description = String.valueOf(capteur1.getModel());
         }
         int Edit_id_affluence = Edit_Affluence.getValue();
+        String Str_Edit_Id_affluence = String.valueOf(Edit_id_affluence);
 
         String Edit_status = Edit_Status.getValue();
         if (Edit_status == null) {
@@ -367,8 +410,9 @@ public class CapteurController implements Initializable {
             //
         }
 
-        if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state)) {
+        if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state) || (Edit_last_maintenance == null) || (Edit_installed == null) || (Edit_status == "") || (Edit_manufacturer == "") ||(Edit_model == "") || (Edit_description == "") || (Str_Edit_Id_affluence == ""))  {
             Error_Empty_TextField.setVisible(true);
+            logger.info("devrait s'afficher");
         }
         else{
             logger.info(Edit_name+" "+state+" "+ id_lieu + " " + id);
@@ -407,6 +451,7 @@ public class CapteurController implements Initializable {
 
 
     public void confirmAddSensor() throws IOException {
+        AutoFillComboBox();
         String add_name = Adder_Name.getText();
         String state = Adder_State.getText();
         IdNamePlace selectedPlace = ComboBoxIdLieu.getValue();
