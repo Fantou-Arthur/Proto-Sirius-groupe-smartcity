@@ -378,15 +378,11 @@ public class CapteurController implements Initializable {
         String Edit_name = Edit_Name.getText();
         if (Edit_name == null) {
             Edit_name = String.valueOf(capteur1.getModel());
-
         }
         String state = Edit_State.getText();
         IdNamePlace id_name_lieu = Edit_Id_lieu.getValue();
         int intid_lieu = id_name_lieu.getId();
         String id_lieu = Integer.toString(intid_lieu);
-        if (id_lieu == null) {
-            // La chaîne est null
-        }
         String Edit_manufacturer = Edit_Manufacturer.getText();
         if (Edit_manufacturer == null) {
             Edit_manufacturer = String.valueOf(capteur1.getModel());
@@ -403,17 +399,8 @@ public class CapteurController implements Initializable {
         String Str_Edit_Id_affluence = String.valueOf(Edit_id_affluence);
 
         String Edit_status = Edit_Status.getValue();
-        if (Edit_status == null) {
-            // La chaîne est null
-        }
         String Edit_installed = String.valueOf(Edit_Installed.getValue());
-        if (Edit_installed == null) {
-            // La chaîne est null
-        }
         String Edit_last_maintenance = String.valueOf(Edit_Last_Maintenance.getValue());
-        if (Edit_last_maintenance == null) {
-            //
-        }
 
         if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state) || (Edit_last_maintenance == null) || (Edit_installed == null) || (Edit_status == "") || (Edit_manufacturer == "") ||(Edit_model == "") || (Edit_description == "") || (Str_Edit_Id_affluence == ""))  {
             Error_Empty_TextField.setVisible(true);
