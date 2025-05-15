@@ -50,7 +50,7 @@
                   </Text>
                   <Button fx:id="editSensorButton" layoutX="263.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
                   <Button fx:id="deleteSensorButton" layoutX="444.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToDeleteCapteurView" text="Supprimer capteur" />
-                  <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="400.0" prefWidth="809.0" text="Modifier capteur">
+                  <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="400.0" prefWidth="809.0" text="Modifier capteur" visible="false">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="646.0" visible="false">
                            <children>
