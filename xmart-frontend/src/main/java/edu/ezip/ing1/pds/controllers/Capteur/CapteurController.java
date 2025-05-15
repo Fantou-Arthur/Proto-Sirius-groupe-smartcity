@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -239,6 +240,8 @@ public class CapteurController implements Initializable {
     private void GoToAddCapteurView() throws IOException {
         UpdatePlaceIdName();
         AutoFillComboBox();
+        Adder_Installed.setValue(LocalDate.now());
+        Adder_Maintenance.setValue(LocalDate.now());
         TitlePaneAddCapteur .setVisible(true);
 
     }
@@ -284,6 +287,8 @@ public class CapteurController implements Initializable {
                 break;
             }
         }
+        Edit_Installed.setValue(LocalDate.parse(capteur1.getInstalled()));
+        Edit_Last_Maintenance.setValue(LocalDate.parse(capteur1.getLastMaintenance()));
 
     }
 
