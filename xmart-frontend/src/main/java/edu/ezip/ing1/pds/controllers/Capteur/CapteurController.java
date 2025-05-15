@@ -443,7 +443,6 @@ public class CapteurController implements Initializable {
 
 
     public void confirmAddSensor() throws IOException {
-        AutoFillComboBox();
         String add_name = Adder_Name.getText();
         String state = Adder_State.getText();
         IdNamePlace selectedPlace = ComboBoxIdLieu.getValue();
