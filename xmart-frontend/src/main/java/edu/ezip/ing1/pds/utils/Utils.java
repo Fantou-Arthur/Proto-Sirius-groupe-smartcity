@@ -35,12 +35,12 @@ public class Utils {
         boolean error = false;
         if (email.isEmpty() || !checkEmail(email)) {
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une addresse mail valide");
+            dialogBox.setContentText("Veuillez entrer une addresse mail valide");
             dialogBox.showAndWait();
             error = true;
         } else if (password.isEmpty()) {
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez un mot de passe");
+            dialogBox.setContentText("Veuillez entrer un mot de passe");
             dialogBox.showAndWait();
         }
         return error;
@@ -50,7 +50,7 @@ public class Utils {
         boolean error = false;
         if(username.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez un nom d'utilisateur");
+            dialogBox.setContentText("Veuillez entrer un nom d'utilisateur");
             dialogBox.showAndWait();
             error = true;
         } else if (passwordPattern.matcher(password).matches() == false) {

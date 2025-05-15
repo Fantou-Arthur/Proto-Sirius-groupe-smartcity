@@ -71,7 +71,7 @@ public class AddNewPlaceController implements Initializable {
         } catch (NumberFormatException e) {
             logger.error(e.getMessage());
             dialogBox.setTitle("Ajouter une nouvelle Place");
-            dialogBox.setContentText("Veuillez entrez un entier pour la capacity ");
+            dialogBox.setContentText("Veuillez entrer un entier pour la capacity ");
             dialogBox.showAndWait();
             throw null;
         }
@@ -81,7 +81,7 @@ public class AddNewPlaceController implements Initializable {
         } catch (NumberFormatException e) {
             logger.error(e.getMessage());
             dialogBox.setTitle("Ajouter une nouvelle Place");
-            dialogBox.setContentText("Veuillez entrez un nombre decimal pour la longitude ");
+            dialogBox.setContentText("Veuillez entrer un nombre decimal pour la longitude ");
             dialogBox.showAndWait();
             throw null;
         }
@@ -91,7 +91,7 @@ public class AddNewPlaceController implements Initializable {
         } catch (NumberFormatException e) {
             logger.error(e.getMessage());
             dialogBox.setTitle("Ajouter une nouvelle Place");
-            dialogBox.setContentText("Veuillez entrez un nombre decimal pour la latitude ");
+            dialogBox.setContentText("Veuillez entrer un nombre decimal pour la latitude ");
             dialogBox.showAndWait();
             throw null;
         }
@@ -145,7 +145,7 @@ public class AddNewPlaceController implements Initializable {
         boolean error = false;
         if(name.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez le nom de la place");
+            dialogBox.setContentText("Veuillez entrer le nom de la place");
             dialogBox.showAndWait();
             error = true;
         }else if(address.isEmpty()){
@@ -155,44 +155,44 @@ public class AddNewPlaceController implements Initializable {
             error = true;
         }else if(capacity <= 0){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une capacity superieur à 0");
+            dialogBox.setContentText("Veuillez entrer une capacity superieur à 0");
             dialogBox.showAndWait();
             error = true;
         }else if(type.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez le type de la place");
+            dialogBox.setContentText("Veuillez entrer le type de la place");
             dialogBox.showAndWait();
             error = true;
         }else if(longitude == null){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez la longitude de la place");
+            dialogBox.setContentText("Veuillez entrer la longitude de la place");
             dialogBox.showAndWait();
             error = true;
         }else if(latitude == null){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez la latitude de la place");
+            dialogBox.setContentText("Veuillez entrer la latitude de la place");
             dialogBox.showAndWait();
             error = true;
         }else if(description.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une description");
+            dialogBox.setContentText("Veuillez entrer une description");
             dialogBox.showAndWait();
             error = true;
         }
         else if(timePicker.getTime() == null){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une heure de pointe");
+            dialogBox.setContentText("Veuillez entrer une heure de pointe");
             dialogBox.showAndWait();
             error = true;
         }
         else if(longitude < -180 || longitude > 180){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une longitude valide, entre -180 et 180");
+            dialogBox.setContentText("Veuillez entrer une longitude valide, entre -180 et 180");
             dialogBox.showAndWait();
             error = true;
         }else if(latitude < -90 || latitude > 90){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une latitude valide, entre -90 et 90");
+            dialogBox.setContentText("Veuillez entrer une latitude valide, entre -90 et 90");
             dialogBox.showAndWait();
             error = true;
         }

@@ -54,7 +54,7 @@ public class AddNewAddressController {
         } catch (NumberFormatException e) {
             logger.error(e.getMessage());
             dialogBox.setTitle("Ajouter une nouvelle Adresse0");
-            dialogBox.setContentText("Veuillez entrez un nombre entier pour le numéro de rue");
+            dialogBox.setContentText("Veuillez entrer un nombre entier pour le numéro de rue");
             dialogBox.showAndWait();
             throw null;
         }
@@ -62,7 +62,7 @@ public class AddNewAddressController {
         if (!pattern.matcher(postalCode).matches()) {
             logger.error("Postal code must be in the format 12345");
             dialogBox.setTitle("Ajouter une nouvelle Adresse");
-            dialogBox.setContentText("Veuillez entrez un code postal valide");
+            dialogBox.setContentText("Veuillez entrer un code postal valide");
             dialogBox.showAndWait();
             return;
         }
@@ -107,7 +107,7 @@ public class AddNewAddressController {
         boolean error = false;
         if(name.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez le nom de la place");
+            dialogBox.setContentText("Veuillez entrer le nom de la place");
             dialogBox.showAndWait();
             error = true;
         }else if(address.isEmpty()){
@@ -117,12 +117,12 @@ public class AddNewAddressController {
             error = true;
         }else if(type.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez le type de la place");
+            dialogBox.setContentText("Veuillez entrer le type de la place");
             dialogBox.showAndWait();
             error = true;
         }else if(description.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrez une description");
+            dialogBox.setContentText("Veuillez entrer une description");
             dialogBox.showAndWait();
             error = true;
         }
