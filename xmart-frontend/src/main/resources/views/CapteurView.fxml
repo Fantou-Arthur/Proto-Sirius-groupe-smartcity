@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -12,68 +14,102 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.Capteur.CapteurController">
+<VBox prefHeight="557.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.Capteur.CapteurController">
    <children>
       <fx:include source="navBar.fxml" />
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="454.0" prefWidth="702.0" VBox.vgrow="ALWAYS">
          <children>
             <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
                <children>
-                  <TableView fx:id="tableauCapteurs" layoutX="50.0" layoutY="162.0" prefHeight="200.0" prefWidth="518.0">
+                  <TableView fx:id="tableauCapteurs" layoutX="12.0" layoutY="162.0" prefHeight="326.0" prefWidth="791.0">
                     <columns>
-                      <TableColumn fx:id="IdColumn" prefWidth="75.0" text="Id" />
-                      <TableColumn fx:id="NameColumn" prefWidth="75.0" text="Nom" />
-                        <TableColumn fx:id="StateColumn" prefWidth="75.0" text="État" />
-                        <TableColumn fx:id="Id_lieuColumn" prefWidth="75.0" text="Id_lieu" />
+                      <TableColumn fx:id="IdColumn" prefWidth="42.399993896484375" text="Id" />
+                      <TableColumn fx:id="NameColumn" prefWidth="82.4000244140625" text="Nom" />
+                        <TableColumn fx:id="StateColumn" prefWidth="63.999969482421875" text="État" />
+                        <TableColumn fx:id="Id_lieuColumn" prefWidth="43.20001220703125" text="Id_lieu" />
+                        <TableColumn fx:id="DescriptionColumn" prefWidth="146.40000915527344" text="Description" />
+                        <TableColumn fx:id="StatusColumn" prefWidth="112.00003051757812" text="Statut" />
+                        <TableColumn fx:id="ModelColumn" prefWidth="73.5999755859375" text="Modèle" />
+                        <TableColumn fx:id="InstalledColumn" prefWidth="77.5999755859375" text="Installation" />
+                        <TableColumn fx:id="LastMaintenanceColumn" prefWidth="49.60009765625" text="Maintenance" />
+                        <TableColumn fx:id="ManufacturerColumn" prefWidth="68.00006103515625" text="Concepteur" />
+                        <TableColumn fx:id="Id_affluenceColumn" prefWidth="72.7999267578125" text="Id_affluence" />
                     </columns>
                   </TableView>
-                  <Button fx:id="Error_Empty_TextField" layoutX="110.0" layoutY="39.0" mnemonicParsing="false" onAction="#LeaveErrorEmptyTextField" prefHeight="56.0" prefWidth="380.0" text="Toutes les cases doivent être remplies ET les types saisies corrects." textFill="#e42424" visible="false" />
                   <TextArea layoutX="-206.0" layoutY="-21.0" prefHeight="27.0" prefWidth="155.0" text="Gestion des capteurs">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextArea>
-                  <Button fx:id="addSensorButton" layoutX="41.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToAddCapteurView" prefHeight="25.0" prefWidth="118.0" text="Ajouter capteur" />
-                  <Text layoutX="244.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des capteurs">
+                  <Button fx:id="addSensorButton" layoutX="219.0" layoutY="119.0" mnemonicParsing="false" onAction="#GoToAddCapteurView" prefHeight="25.0" prefWidth="118.0" text="Ajouter capteur" />
+                  <Text layoutX="315.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des capteurs">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="editSensorButton" layoutX="263.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
-                  <Button fx:id="deleteSensorButton" layoutX="444.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToDeleteCapteurView" text="Supprimer capteur" />
-                  <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="207.0" prefWidth="600.0" text="Modifier capteur" visible="false">
+                  <Button fx:id="editSensorButton" layoutX="368.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToEditCapteurView" text="Éditer capteur" />
+                  <Button fx:id="deleteSensorButton" layoutX="494.0" layoutY="119.0" mnemonicParsing="false" onAction="#GoToDeleteCapteurView" text="Supprimer capteur" />
+                  <TitledPane fx:id="TitlePaneEditCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="400.0" prefWidth="809.0" text="Modifier capteur" visible="false">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="592.0" visible="false">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="646.0" visible="false">
                            <children>
                               <TextField fx:id="Edit_Id" layoutY="78.0" />
                               <TextField fx:id="Edit_Name" layoutX="150.0" layoutY="78.0" />
                               <TextField fx:id="Edit_State" layoutX="300.0" layoutY="78.0" />
-                              <TextField fx:id="Edit_Id_lieu" layoutX="450.0" layoutY="78.0" />
                               <Text layoutX="47.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_capteur" />
                               <Text layoutX="211.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
                               <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État (true/false)" />
-                              <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
-                              <Button fx:id="confirmEditSensorButton" layoutX="348.0" layoutY="121.0" mnemonicParsing="false" onAction="#confirmEditSensor" text="Valider" />
-                              <Button fx:id="AboartEditSensorButton" layoutX="196.0" layoutY="121.0" mnemonicParsing="false" onAction="#LeaveEditCapteurView" text="Annuler" />
+                              <Text layoutX="657.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
+                              <Button fx:id="confirmEditSensorButton" layoutX="456.0" layoutY="321.0" mnemonicParsing="false" onAction="#confirmEditSensor" text="Valider" />
+                              <Button fx:id="AboartEditSensorButton" layoutX="283.0" layoutY="321.0" mnemonicParsing="false" onAction="#LeaveEditCapteurView" text="Annuler" />
+                              <ComboBox fx:id="Edit_Status" layoutX="599.0" layoutY="174.0" prefWidth="150.0" />
+                              <ComboBox fx:id="Edit_Affluence" layoutX="449.0" layoutY="174.0" prefWidth="150.0" />
+                              <TextField fx:id="Edit_Manufacturer" layoutX="450.0" layoutY="78.0" />
+                              <TextField fx:id="Edit_Description" layoutY="174.0" />
+                              <TextField fx:id="Edit_Model" layoutX="150.0" layoutY="174.0" />
+                              <Text layoutX="64.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+                              <Text layoutX="213.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modèle" />
+                              <Text layoutX="492.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_affluence" />
+                              <Text layoutX="658.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statut" />
+                              <Text layoutX="190.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Installation" />
+                              <Text layoutX="468.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maintenance" wrappingWidth="83.7366943359375" />
+                              <DatePicker fx:id="Edit_Installed" layoutX="137.0" layoutY="261.0" />
+                              <DatePicker fx:id="Edit_Last_Maintenance" layoutX="422.0" layoutY="261.0" />
+                              <Text layoutX="494.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Concepteur" />
+                              <ComboBox fx:id="Edit_Id_lieu" layoutX="599.0" layoutY="78.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                      </content>
                   </TitledPane>
-                  <TitledPane fx:id="TitlePaneAddCapteur" animated="false" layoutX="8.0" layoutY="97.0" prefHeight="207.0" prefWidth="600.0" text="Ajouter Capteur" visible="false">
+                  <TitledPane fx:id="TitlePaneAddCapteur" animated="false" layoutY="67.0" prefHeight="416.0" prefWidth="817.0" text="Ajouter Capteur" visible="false">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="181.0" prefWidth="592.0" visible="false">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="816.0" visible="false">
                            <children>
                               <TextField fx:id="Adder_Id" layoutY="78.0" />
                               <TextField fx:id="Adder_Name" layoutX="150.0" layoutY="78.0" />
                               <TextField fx:id="Adder_State" layoutX="300.0" layoutY="78.0" />
-                              <TextField fx:id="Adder_Id_lieu" layoutX="450.0" layoutY="78.0" />
+                              <TextField fx:id="Adder_Manufacturer" layoutX="450.0" layoutY="78.0" />
                               <Text layoutX="47.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_capteur" />
                               <Text layoutX="211.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
                               <Text layoutX="312.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="État (true/false)" />
-                              <Text layoutX="507.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
-                              <Button fx:id="AboartAddSensorButton" layoutX="196.0" layoutY="118.0" mnemonicParsing="false" onAction="#LeaveAddCapteurView" text="Annuler" />
-                              <Button fx:id="confirmAddSensorButton" layoutX="349.0" layoutY="118.0" mnemonicParsing="false" onAction="#confirmAddSensor" text="Valider" />
+                              <Text layoutX="665.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_lieu" />
+                              <Button fx:id="AboartAddSensorButton" layoutX="270.0" layoutY="321.0" mnemonicParsing="false" onAction="#LeaveAddCapteurView" text="Annuler" />
+                              <Button fx:id="confirmAddSensorButton" layoutX="423.0" layoutY="321.0" mnemonicParsing="false" onAction="#confirmAddSensor" text="Valider" />
                               <Button fx:id="WarnIdNotUnique" layoutX="212.0" layoutY="14.0" mnemonicParsing="false" onAction="#Warn_Id_Not_Unique" prefHeight="42.0" prefWidth="174.0" text="Id_capteur doit être unique !" textFill="RED" visible="false" />
+                              <ComboBox fx:id="ComboBoxIdLieu" layoutX="600.0" layoutY="78.0" prefWidth="150.0" />
+                              <Text layoutX="666.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statut" />
+                              <Text layoutX="494.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Concepteur" />
+                              <Text layoutX="44.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+                              <TextField fx:id="Adder_Description" layoutX="1.0" layoutY="182.0" />
+                              <TextField fx:id="Adder_Model" layoutX="150.0" layoutY="182.0" />
+                              <Text layoutX="204.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modèle" />
+                              <Text layoutX="493.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id_affluence" />
+                              <ComboBox fx:id="ComboBoxStatus" layoutX="600.0" layoutY="182.0" prefWidth="150.0" />
+                              <DatePicker fx:id="Adder_Installed" layoutX="136.0" layoutY="270.0" />
+                              <DatePicker fx:id="Adder_Maintenance" layoutX="425.0" layoutY="270.0" />
+                              <Text layoutX="181.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Installation" />
+                              <Text layoutX="454.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dernière Maintenance" />
+                              <ComboBox fx:id="ComboBoxIdAffluence" layoutX="450.0" layoutY="182.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -89,6 +125,7 @@
                         </AnchorPane>
                     </content>
                   </TitledPane>
+                  <Button fx:id="Error_Empty_TextField" layoutX="160.0" layoutY="82.0" mnemonicParsing="false" onAction="#LeaveErrorEmptyTextField" prefHeight="125.0" prefWidth="527.0" text="Toutes les cases doivent être remplies ET les types saisies corrects." textFill="#e42424" visible="false" />
                </children>
             </Pane>
          </children>

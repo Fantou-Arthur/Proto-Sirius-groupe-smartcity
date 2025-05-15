@@ -59,6 +59,18 @@ public class PlaceService {
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(places));
     }
 
+    public Response SelectIdNamePlaces(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        //TODO: Handle error and send to the front
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Statement stmt = connection.createStatement();
+        final ResultSet resultSet = stmt.executeQuery(PlaceQueries.SELECT_ID_NAME_PLACES.getQuery());
+        Places places = new Places();
+        while (resultSet.next()) {
+            places.add(resultSetIdNameToPlace(resultSet));
+        }
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(places));
+    }
+
     public Response UpdatePlace(final Request request, final Connection connection) throws SQLException, IOException {
         //TODO: Handle error and send to the front
         final ObjectMapper objectMapper = new ObjectMapper();
@@ -108,6 +120,15 @@ public class PlaceService {
         place.setPeakHour(resultSet.getTime(8));
         place.setId_entity(resultSet.getInt(9));
         place.setId_address(resultSet.getInt(10));
+        return place;
+    }
+
+    private Place resultSetIdNameToPlace(final ResultSet resultSet) throws SQLException {
+        Place place = new Place();
+        place.setId(resultSet.getInt(1));
+        place.setName(resultSet.getString(2));
+        place.setAddress(0);
+        place.setMaxCapacity(0);
         return place;
     }
 
