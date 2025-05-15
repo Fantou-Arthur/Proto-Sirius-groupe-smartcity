@@ -71,7 +71,7 @@
                                         </HBox>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                             <children>
-                                                <Label prefWidth="100.0" text="Code Postale : " />
+                                                <Label prefWidth="100.0" text="Code Postal : " />
                                                 <TextField fx:id="codePostalTextField" prefHeight="26.0" prefWidth="350.0" />
                                             </children>
                                         </HBox>

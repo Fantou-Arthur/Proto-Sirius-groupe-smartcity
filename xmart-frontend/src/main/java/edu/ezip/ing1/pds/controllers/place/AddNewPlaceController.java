@@ -81,7 +81,7 @@ public class AddNewPlaceController implements Initializable {
         } catch (NumberFormatException e) {
             logger.error(e.getMessage());
             dialogBox.setTitle("Ajouter une nouvelle Place");
-            dialogBox.setContentText("Veuillez entrer un nombre decimal pour la longitude ");
+            dialogBox.setContentText("Veuillez entrer un nombre décimal pour la longitude ");
             dialogBox.showAndWait();
             throw null;
         }
@@ -139,6 +139,10 @@ public class AddNewPlaceController implements Initializable {
         nameTextField.setText("");
         descriptionTextArea.setText("");
         capacitySpinner.setText("");
+        longitudeSpinner.setText("");
+        latitudeSpinner.setText("");
+        typeComboBox.setValue("");
+        addressComboBox.setValue("");
     }
 
     boolean handleError(String name, String description, int capacity, String type, Double longitude, Double latitude, String address ){
@@ -150,17 +154,17 @@ public class AddNewPlaceController implements Initializable {
             error = true;
         }else if(address.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez selectionnez une address");
+            dialogBox.setContentText("Veuillez sélectionner  une adresse");
             dialogBox.showAndWait();
             error = true;
         }else if(capacity <= 0){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrer une capacity superieur à 0");
+            dialogBox.setContentText("Veuillez entrer une capacité supérieure à 0");
             dialogBox.showAndWait();
             error = true;
         }else if(type.isEmpty()){
             dialogBox.setTitle("Erreur");
-            dialogBox.setContentText("Veuillez entrer le type de la place");
+            dialogBox.setContentText("Veuillez sélectionner le type de la place");
             dialogBox.showAndWait();
             error = true;
         }else if(longitude == null){
