@@ -134,10 +134,12 @@ public class CapteurController implements Initializable {
             PlaceService placeService = new PlaceService(networkConfig);
             Places places = placeService.selectIdNamePlaces();
             ComboBoxIdLieu.getItems().clear();
+            Edit_Id_lieu.getItems().clear();
             logger.info("Liste Lieux et Id_Lieux : {}",places);
             for (Place place : places.getPlaces()){
                 IdNamePlace idNamePlace = new IdNamePlace(place.getId(),place.getName());
                 ComboBoxIdLieu.getItems().add(idNamePlace);
+                Edit_Id_lieu.getItems().add(idNamePlace);
             }
         }
         catch (IOException e) {
@@ -192,7 +194,6 @@ public class CapteurController implements Initializable {
         Edit_Id.setText("");
         Edit_Name.setText("");
         Edit_State.setText("");
-        Edit_Id_lieu.setText("");
     }
 
 
@@ -236,7 +237,6 @@ public class CapteurController implements Initializable {
         Edit_Id.setText(str_id);
         Edit_Name.setText(name);
         Edit_State.setText(str_state);
-        Edit_Id_lieu.setText(str_lieu);
         Edit_Manufacturer.setText(str_manufacturer);
         Edit_Description.setText(str_description);
         Edit_Model.setText(str_model);
@@ -275,7 +275,7 @@ public class CapteurController implements Initializable {
     @FXML
     private TextField Edit_State = new TextField();
     @FXML
-    private TextField Edit_Id_lieu = new TextField();
+    private ComboBox<IdNamePlace> Edit_Id_lieu = new ComboBox<>();
     @FXML
     private TextField Edit_Id = new TextField();
 
@@ -334,7 +334,9 @@ public class CapteurController implements Initializable {
         if (state == null) {
             // La chaîne est null
         }
-        String id_lieu = Edit_Id_lieu.getText();
+        IdNamePlace id_name_lieu = Edit_Id_lieu.getValue();
+        int intid_lieu = id_name_lieu.getId();
+        String id_lieu = Integer.toString(intid_lieu);
         if (id_lieu == null) {
             // La chaîne est null
         }
@@ -362,7 +364,7 @@ public class CapteurController implements Initializable {
         }
         String Edit_last_maintenance = String.valueOf(Edit_Last_Maintenance.getValue());
         if (Edit_last_maintenance == null) {
-            logger.info("Bah si c'est nul");
+            //
         }
 
         if ((Edit_name == "") || (state == "") || (id_lieu == "") || !EstConvertibleInt(id_lieu) || !EstConvertibleBool(state)) {
