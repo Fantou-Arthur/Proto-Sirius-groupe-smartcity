@@ -5,13 +5,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.ezip.ing1.pds.business.dto.affluence.Affluence;
 import edu.ezip.ing1.pds.business.dto.affluence.Affluences;
+import edu.ezip.ing1.pds.business.dto.affluence.TreeViewData;
 import edu.ezip.ing1.pds.client.commons.ClientRequest;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.requests.affluence.InsertAffluenceClientRequest;
 import edu.ezip.ing1.pds.requests.affluence.SelectAllAffluencesClientRequest;
+import edu.ezip.ing1.pds.requests.affluence.GetTreeViewClientRequest;
 import edu.ezip.ing1.pds.requests.affluence.DeleteAffluenceClientRequest;
 import edu.ezip.ing1.pds.requests.affluence.EditAffluenceClientRequest;
+import javafx.scene.control.TreeItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +29,7 @@ public class AffluenceService {
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     enum RequestOrder {
-        INSERT_AFFLUENCE, SELECT_ALL_AFFLUENCES, DELETE_AFFLUENCE, EDIT_AFFLUENCE,
+        INSERT_AFFLUENCE, SELECT_ALL_AFFLUENCES, DELETE_AFFLUENCE, EDIT_AFFLUENCE, GET_TREE_VIEW,
     };
 
     private NetworkConfig networkConfig;
@@ -81,6 +84,37 @@ public class AffluenceService {
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());
         }
+    }
+
+    public TreeViewData getTreeView() throws IOException {
+        int birthdate = 0;
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+
+        request.setRequestId(requestId);
+        request.setRequestOrder(RequestOrder.GET_TREE_VIEW.toString());
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        
+        try{
+
+            final GetTreeViewClientRequest getTreeViewClientRequest = new GetTreeViewClientRequest(
+                    networkConfig,
+                    birthdate++, request, null, requestBytes);
+
+            getTreeViewClientRequest.join();
+
+            TreeViewData treeitems = getTreeViewClientRequest.getResult();
+            
+            return treeitems;
+
+        }catch(IOException | InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+
+        return new TreeViewData();
     }
 
     public void deleteAffluence(Affluence affluence) throws IOException {

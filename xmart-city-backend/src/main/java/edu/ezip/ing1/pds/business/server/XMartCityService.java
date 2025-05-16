@@ -75,7 +75,7 @@ public class XMartCityService {
                 response = affluenceService.SelectAllAffluence(request, connection);
                 break;
             case GET_TREE_VIEW:
-                response = affluenceService.SelectAllAffluence(request, connection);
+                response = affluenceService.GetTreeView(request, connection);
                 break;
             case SELECT_ALL_PLACES:
                 response = placeService.SelectAllPlaces(request, connection);

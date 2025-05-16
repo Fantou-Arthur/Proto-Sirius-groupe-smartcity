@@ -7,13 +7,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TreeView;
+import javafx.scene.control.TreeItem;
+import edu.ezip.ing1.pds.business.dto.affluence.TreeData;
+import edu.ezip.ing1.pds.business.dto.affluence.TreeViewData;
+import edu.ezip.ing1.pds.business.dto.affluence.Pays;
+import edu.ezip.ing1.pds.business.dto.affluence.PCode;
+import edu.ezip.ing1.pds.business.dto.affluence.Ville;
+import edu.ezip.ing1.pds.business.dto.affluence.Rue;
+import edu.ezip.ing1.pds.business.dto.affluence.Lieu;
+import edu.ezip.ing1.pds.business.dto.affluence.Sensor;
+import edu.ezip.ing1.pds.business.dto.affluence.SensorInfos;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.collections.FXCollections;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.MouseButton;
 import edu.ezip.ing1.pds.business.dto.affluence.Affluence;
 import edu.ezip.ing1.pds.business.dto.affluence.Affluences;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
@@ -28,6 +41,11 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.lang.NumberFormatException;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Collection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -64,6 +82,12 @@ public class AffluenceController implements Initializable{
     private TableColumn<Affluence, Integer> NbrDepColumn;
     @FXML
     private TableColumn<Affluence, Integer> IdPlaceColumn;
+    @FXML
+    private TreeView<TreeItem> treeView;
+
+    private Set<TreeItem<TreeItem>> selectedItems = new HashSet<>();
+
+    private TreeViewData treeData = new TreeViewData();
 
 	public AffluenceController(){
 		this.affluenceService = new AffluenceService(networkConfig);
@@ -100,9 +124,20 @@ public class AffluenceController implements Initializable{
         NbrArrColumn.setCellValueFactory(new PropertyValueFactory<Affluence, Integer>("nbrDepart"));
         NbrDepColumn.setCellValueFactory(new PropertyValueFactory<Affluence, Integer>("nbrArriver"));
         IdPlaceColumn.setCellValueFactory(new PropertyValueFactory<Affluence, Integer>("idPlace"));
+        logger.info("---------");
+        logger.info("---------");
+        logger.info("---------");
+        
+        chargerTree();
 
+        logger.info("---------");
+        logger.info("---------");
+        logger.info("---------");
         logger.info("Affluence list : {}", affluences );
+
+        //treeView.setRoot(new TreeItem<Node>(new Node("test de node !")).addChildren(new TreeItem<Node>(new Node("test de node de node !"))));
         updateList();
+
         displayTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 
@@ -115,6 +150,68 @@ public class AffluenceController implements Initializable{
                 idPlaceTextField.setText(String.valueOf(newSelection.getIdPlace()));
             }
         });
+    }
+
+    public void selectionAffluenceCapteur(){
+
+    }
+
+    public void chargerTree(){
+        try{
+            treeData =  this.affluenceService.getTreeView();
+            logger.info("treeViewData : {}", treeData);
+
+            TreeItem root = new TreeItem("root");
+            root.setExpanded(true);
+            treeView.setShowRoot(false);
+
+            Map<String, TreeItem<String>> nodeMap = new HashMap<>();
+            
+            for ( SensorInfos sensorinfos : treeData.getData().values()){
+                TreeItem<String> curNode = root;
+                for(String node : sensorinfos.getPath()){
+                    
+                    if(!nodeMap.containsKey(node)){
+
+                        TreeItem<String> newElem = new TreeItem<>(node);
+                        curNode.getChildren().add(newElem);
+                        nodeMap.put(node, newElem);
+
+                    }
+
+                    curNode = nodeMap.get(node);
+                }
+                curNode.getChildren().add(new TreeItem<String>(sensorinfos.getSensor().getName()));
+
+            }
+
+            treeView.setRoot(root);
+            treeView.setOnMouseClicked(event -> handleMouseClick(event, treeView));
+        }catch(IOException e){
+            logger.debug(e.getMessage());
+        }
+    }
+
+    private void handleMouseClick(MouseEvent event, TreeView<TreeItem> treeView) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+            TreeItem<TreeItem> selectedItem = treeView.getSelectionModel().getSelectedItem();
+            if ( ( selectedItem != null ) && selectedItem.isLeaf() ) {
+                if (selectedItems.contains(selectedItem)) {
+                    selectedItems.remove(selectedItem);
+                } else {
+                    selectedItems.add(selectedItem);
+                }
+                logger.info("Selected items: {}", selectedItems);
+                for ( TreeItem<TreeItem> s :  selectedItems){
+                    
+                    logger.info("truc truc truc : {}", s);
+                    /*
+                    SensorInfos sensInf = treeData.getSensorData(s.getValue());
+                    logger.info("sensId : {}", sensInf);
+                    */
+                }
+            }
+        }
     }
 
     public void editAffluence(){
