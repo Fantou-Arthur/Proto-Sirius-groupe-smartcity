@@ -5,12 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.ezip.ing1.pds.business.dto.place.Place;
 import edu.ezip.ing1.pds.business.dto.place.Places;
+import edu.ezip.ing1.pds.business.dto.user.User;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
-import edu.ezip.ing1.pds.requests.place.DeletePlaceClientRequest;
-import edu.ezip.ing1.pds.requests.place.InsertPlaceClientRequest;
-import edu.ezip.ing1.pds.requests.place.SelectAllPlacesClientRequest;
-import edu.ezip.ing1.pds.requests.place.UpdatePlaceClientRequest;
+import edu.ezip.ing1.pds.requests.place.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +21,7 @@ public class PlaceService {
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     enum RequestOrder {
-        INSERT_PLACE, SELECT_ALL_PLACES, UPDATE_PLACE,DELETE_PLACE
+        INSERT_PLACE, SELECT_ALL_PLACES, UPDATE_PLACE,DELETE_PLACE, SELECT_ID_NAME_PLACES
     };
 
     private NetworkConfig networkConfig;
@@ -114,17 +112,43 @@ public class PlaceService {
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
+        int entityId = UserSession.getInstance().getEntityId();
+        User user = new User();
+        user.setEntityId(entityId);
 
         request.setRequestId(requestId);
+        request.setRequestContent(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(user));
         request.setRequestOrder(RequestOrder.SELECT_ALL_PLACES.toString());
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         try {
+
             final SelectAllPlacesClientRequest selectAllPlaceClientRequest = new SelectAllPlacesClientRequest(
                     networkConfig,
-                    birthdate++, request, null, requestBytes);
+                    birthdate++, request, user, requestBytes);
             selectAllPlaceClientRequest.join();
             Places places = selectAllPlaceClientRequest.getResult();
+            return places;
+        } catch (IOException | InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+        return null;
+    }
+    public Places selectIdNamePlaces() throws IOException {
+        int birthdate = 0;
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestOrder(RequestOrder.SELECT_ID_NAME_PLACES.toString());
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        try {
+            final SelectIdNamePlacesClientRequest selectIdNamePlacesClientRequest = new SelectIdNamePlacesClientRequest(
+                    networkConfig,
+                    birthdate++, request, null, requestBytes);
+            selectIdNamePlacesClientRequest.join();
+            Places places = selectIdNamePlacesClientRequest.getResult();
             return places;
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage());

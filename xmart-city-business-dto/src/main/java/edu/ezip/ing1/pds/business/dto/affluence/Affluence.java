@@ -2,6 +2,8 @@ package edu.ezip.ing1.pds.business.dto.affluence;
 
 public class Affluence{
     private int id;
+    private double density;
+    private boolean peak;
 	private int idPlace;
 	private int nbrPers;
 	private int nbrDepart;
@@ -9,18 +11,38 @@ public class Affluence{
 
 	public Affluence() {}
 
-    public Affluence(final int idPlace, final int nbrPers, final int nbrDepart, final int nbrArriver) {
+    public Affluence(final int idPlace, final boolean peak, final double density, final int nbrPers, final int nbrDepart, final int nbrArriver) {
         this.idPlace = idPlace;
+        this.nbrPers = nbrPers;
+        this.peak = peak;
+        this.density = density;
+        this.nbrDepart = nbrDepart;
+        this.nbrArriver = nbrArriver;
+    }
+    public Affluence(final int id, final int idPlace, final boolean peak, final double density, final int nbrPers, final int nbrDepart, final int nbrArriver) {
+        this.id = id;
+        this.idPlace = idPlace;
+        this.peak = peak;
+        this.density = density;
         this.nbrPers = nbrPers;
         this.nbrDepart = nbrDepart;
         this.nbrArriver = nbrArriver;
     }
-    public Affluence(final int id, final int idPlace, final int nbrPers, final int nbrDepart, final int nbrArriver) {
-        this.id = id;
-        this.idPlace = idPlace;
-        this.nbrPers = nbrPers;
-        this.nbrDepart = nbrDepart;
-        this.nbrArriver = nbrArriver;
+
+    public void setPeak(boolean peak){
+        this.peak = peak;
+    }
+
+    public boolean getPeak(){
+        return this.peak;
+    }
+
+    public double getDensity(){
+        return this.density;
+    }
+
+    public void setDensity(double density){
+        this.density = density;
     }
 
     public int getId() {
