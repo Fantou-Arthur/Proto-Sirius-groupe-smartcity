@@ -48,12 +48,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.affluence.AffluenceController">
+<VBox prefHeight="400.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.affluence.AffluenceController">
   <children>
     <fx:include source="navBar.fxml" />
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <SplitPane dividerPositions="0.29797979797979796" prefHeight="374.6666666666667" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.18215031315240085" prefHeight="375.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -153,22 +153,50 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <SplitPane dividerPositions="0.47745098039215683" layoutX="69.0" layoutY="46.0" orientation="VERTICAL" prefHeight="342.6666666666667" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <SplitPane dividerPositions="0.6673189823874756" layoutX="69.0" layoutY="46.0" orientation="VERTICAL" prefHeight="342.6666666666667" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <VBox layoutX="121.0" layoutY="29.0" prefHeight="284.0" prefWidth="441.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <VBox layoutX="121.0" layoutY="29.0" prefHeight="224.0" prefWidth="516.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <children>
                                                             <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
                                                               <items>
                                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                      <children>
-                                                                        <Label layoutX="36.0" layoutY="19.0" prefHeight="54.0" prefWidth="127.33333333333333" text="id" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                        <Label prefHeight="34.666666666666664" prefWidth="150.0" text="id" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                      </children>
                                                                   </AnchorPane>
                                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                      <children>
-                                                                        <TextField fx:id="idTextField" layoutX="18.0" layoutY="15.0" prefHeight="25.0" prefWidth="258.0" />
+                                                                        <TextField fx:id="idPlaceTextField" layoutX="19.0" prefHeight="25.0" prefWidth="262.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </items>
+                                                            </SplitPane>
+                                                            <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
+                                                              <items>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                     <children>
+                                                                        <Label layoutX="47.0" layoutY="6.0" prefHeight="29.333333333333332" prefWidth="150.0" text="peakStatus" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                     <children>
+                                                                        <TextField fx:id="PeakStatTextField" layoutX="19.333333333333332" prefHeight="28.0" prefWidth="262.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </items>
+                                                            </SplitPane>
+                                                            <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
+                                                              <items>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                     <children>
+                                                                        <Label layoutX="36.0" layoutY="19.0" prefHeight="54.0" prefWidth="127.33333333333333" text="density" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                     <children>
+                                                                        <TextField fx:id="NbrDensTextField" layoutX="18.0" layoutY="15.0" prefHeight="25.0" prefWidth="258.0" />
                                                                      </children>
                                                                   </AnchorPane>
                                                               </items>
@@ -187,7 +215,7 @@
                                                                   </AnchorPane>
                                                                </items>
                                                             </SplitPane>
-                                                            <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
+                                                            <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="483.0">
                                                                <items>
                                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                      <children>
@@ -233,15 +261,15 @@
                                                       </VBox>
                                                    </children>
                                                 </AnchorPane>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="155.0" prefWidth="517.0">
                                                    <children>
-                                                      <SplitPane dividerPositions="0.29844961240310086" orientation="VERTICAL" prefHeight="174.66666666666666" prefWidth="441.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <SplitPane dividerPositions="0.5752895752895753" orientation="VERTICAL" prefHeight="174.66666666666666" prefWidth="441.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                         <items>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="439.0">
                                                                <children>
-                                                                  <Button fx:id="editAffluenceButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#editAffluence" text="Edit" />
-                                                                  <Button fx:id="deleteAffluenceButton" layoutX="374.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteAffluence" text="Delete" />
-                                                                  <Button fx:id="addAffluenceButton" layoutX="200.0" layoutY="14.0" mnemonicParsing="false" onAction="#addAffluence" text="Add" />
+                                                                  <Button fx:id="editAffluenceButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#editAffluence" text="Modifier" />
+                                                                  <Button fx:id="deleteAffluenceButton" layoutX="374.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteAffluence" text="Supprimer" />
+                                                                  <Button fx:id="addAffluenceButton" layoutX="200.0" layoutY="14.0" mnemonicParsing="false" onAction="#addAffluence" text="Ajouter" />
                                                                </children>
                                                             </AnchorPane>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

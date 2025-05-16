@@ -57,6 +57,10 @@ public class AffluenceController implements Initializable{
 	@FXML
     private TextField idPlaceTextField;
     @FXML
+    private TextField NbrDensTextField;
+    @FXML
+    private TextField PeakStatTextField;
+    @FXML
     private TextField NbrPersTextField;
     @FXML
     private TextField NbrDepartTextField;
@@ -212,12 +216,14 @@ public class AffluenceController implements Initializable{
 
     	try{
 	    	int idPlace = Integer.parseInt(idPlaceTextField.getText());
+            boolean peak = Boolean.parseBoolean(PeakStatTextField.getText());
+            double density = Double.parseDouble(NbrDensTextField.getText());
 	        int nbrPersones = Integer.parseInt(NbrPersTextField.getText());
 	        int nbrDepart = Integer.parseInt(NbrDepartTextField.getText());
 	        int nbrArriver = Integer.parseInt(NbrArriveTextField.getText());
             int id = Integer.parseInt(idTextField.getText());
 
-            Affluence affluence = new Affluence(id, idPlace, nbrPersones, nbrDepart, nbrArriver);
+            Affluence affluence = new Affluence(id, idPlace, peak, density, nbrPersones, nbrDepart, nbrArriver);
 
             try {
                 this.affluenceService.editAffluence(affluence);
@@ -275,11 +281,13 @@ public class AffluenceController implements Initializable{
 
         try{
             int idPlace = Integer.parseInt(idPlaceTextField.getText());
+            boolean peak = Boolean.parseBoolean(PeakStatTextField.getText());
+            double density = Double.parseDouble(NbrDensTextField.getText());
             int nbrPersones = Integer.parseInt(NbrPersTextField.getText());
             int nbrDepart = Integer.parseInt(NbrDepartTextField.getText());
             int nbrArriver = Integer.parseInt(NbrArriveTextField.getText());
 
-            Affluence affluence = new Affluence(idPlace, nbrPersones, nbrDepart, nbrArriver);
+            Affluence affluence = new Affluence(idPlace, peak, density, nbrPersones, nbrDepart, nbrArriver);
 
             try {
                 this.affluenceService.insertAffluence(affluence);

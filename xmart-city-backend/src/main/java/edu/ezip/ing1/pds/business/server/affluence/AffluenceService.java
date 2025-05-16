@@ -34,9 +34,11 @@ public class AffluenceService {
         final Affluence affluence = mapper.readValue(request.getRequestBody(), Affluence.class);
         final PreparedStatement statement = connection.prepareStatement(Queries.INSERT_AFFLUENCE.getQuery());
         statement.setInt(1, affluence.getIdPlace());
-        statement.setInt(2, affluence.getNbrPers());
-        statement.setInt(3, affluence.getNbrDepart());
-        statement.setInt(4, affluence.getNbrArriver());
+        statement.setDouble(2, affluence.getDensity());
+        statement.setBoolean(3, affluence.getPeak());
+        statement.setInt(4, affluence.getNbrPers());
+        statement.setInt(5, affluence.getNbrDepart());
+        statement.setInt(6, affluence.getNbrArriver());
         logger.info("add statement : {}", statement);
         statement.executeUpdate();
 
@@ -94,8 +96,10 @@ public class AffluenceService {
         statement.setInt(1, affluence.getNbrPers());
         statement.setInt(2, affluence.getNbrDepart());
         statement.setInt(3, affluence.getNbrArriver());
-        statement.setInt(4, affluence.getId());
-        statement.setInt(5, affluence.getIdPlace());
+        statement.setDouble(4, affluence.getDensity());
+        statement.setBoolean(5, affluence.getPeak());
+        statement.setInt(6, affluence.getIdPlace());
+        statement.setInt(7, affluence.getId());
         logger.info("edit statement : {}", statement);
         statement.executeUpdate();
 

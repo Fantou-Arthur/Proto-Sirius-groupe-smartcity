@@ -86,6 +86,7 @@ public class SignUpController implements Initializable {
         for(Entity entity: entities.getEntities()){
             if(entity.getName() == selectItem){
                 selectedEntity = entity;
+                logger.info("id :{}", selectedEntity.getId());
             }
         }
     }
