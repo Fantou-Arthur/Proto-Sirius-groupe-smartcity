@@ -4,12 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ezip.ing1.pds.business.dto.affluence.Affluence;
 import edu.ezip.ing1.pds.business.dto.affluence.Affluences; 
-import edu.ezip.ing1.pds.business.dto.affluence.TreeData;
-import edu.ezip.ing1.pds.business.dto.affluence.Pays;
-import edu.ezip.ing1.pds.business.dto.affluence.PCode;
-import edu.ezip.ing1.pds.business.dto.affluence.Ville;
-import edu.ezip.ing1.pds.business.dto.affluence.Rue;
-import edu.ezip.ing1.pds.business.dto.affluence.Lieu;
 import edu.ezip.ing1.pds.business.dto.affluence.TreeViewData;
 import edu.ezip.ing1.pds.business.dto.affluence.SensorInfos;
 import edu.ezip.ing1.pds.business.dto.affluence.Sensor;
@@ -54,37 +48,6 @@ public class AffluenceService {
         final Statement stmt = connection.createStatement();
         final ResultSet res = stmt.executeQuery(Queries.GET_TREE_VIEW.getQuery());
 
-        //logger.info("res depuis la database de la demande de treeview data : {}", mapper.writeValueAsString(res));
-
-        /*
-        TreeData root = new TreeData("Root");
-
-        while (res.next()) {
-            
-            Pays pays = new Pays(res.getString(1));
-
-            root.addPays(pays);
-            
-            PCode pCode = new PCode(res.getString(4));
-
-            root.getPays(pays.getName()).addPCode(pCode);
-
-            Ville ville = new Ville(res.getString(2));
-
-            root.getPays(pays.getName()).getPCode(pCode.getName()).addVille(ville);
-
-            Rue rue = new Rue(res.getString(3));
-
-            root.getPays(pays.getName()).getPCode(pCode.getName()).getVille(ville.getName()).addRue(rue);
-
-            Lieu lieu = new Lieu(res.getString(7));
-
-            root.getPays(pays.getName()).getPCode(pCode.getName()).getVille(ville.getName()).getRue(rue.getName()).addLieu(lieu);
-
-            Sensor sensor = new Sensor(res.getInt(16), res.getString(13), res.getBoolean(15), res.getString(14), res.getInt(12) );
-
-            root.getPays(pays.getName()).getPCode(pCode.getName()).getVille(ville.getName()).getRue(rue.getName()).getLieu(lieu.addSensor(sensor);
-        }*/
         
         
         TreeViewData root = new TreeViewData();
