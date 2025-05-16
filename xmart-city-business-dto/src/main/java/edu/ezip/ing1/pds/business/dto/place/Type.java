@@ -5,5 +5,6 @@ public enum Type {
     STADE,
     MAIRIE,
     PARC,
-    ECOLE
+    ECOLE,
+    AUTRE,
 }
