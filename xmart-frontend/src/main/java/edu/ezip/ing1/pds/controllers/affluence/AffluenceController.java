@@ -202,7 +202,7 @@ public class AffluenceController implements Initializable{
                     selectedItems.add(selectedItem);
                 }
                 logger.info("Selected items: {}", selectedItems);
-                for ( TreeItem<TreeItem> s :  selectedItems.iterator()){
+                for ( TreeItem<TreeItem> s :  selectedItems){
                     
                     logger.info("truc truc truc : {}", s);
                     /*
