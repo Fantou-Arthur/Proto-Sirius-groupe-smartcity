@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.place.ListPlacesController">
+<VBox prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.place.ListPlacesController">
    <children>
       <fx:include source="navBar.fxml" />
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
@@ -14,12 +14,13 @@
             <VBox prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <HBox fx:id="hboxList" alignment="CENTER" prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="placeListTable">
+                  <TableView fx:id="placeListTable" prefHeight="373.0" prefWidth="800.0">
                     <columns>
-                      <TableColumn fx:id="nameColumn" minWidth="-1.0" prefWidth="138.0" text="Name" />
-                      <TableColumn fx:id="addressColumn" prefWidth="298.0" text="Address" />
-                        <TableColumn fx:id="capacityColumn" prefWidth="124.0" text="Capacity" />
-                        <TableColumn fx:id="actionColumn" prefWidth="79.0" text="Actions" />
+                      <TableColumn fx:id="nameColumn" minWidth="-1.0" prefWidth="162.0" text="Nom" />
+                        <TableColumn fx:id="typeColumn" prefWidth="111.0" text="Type" />
+                      <TableColumn fx:id="descriptionColumn" prefWidth="261.0" text="Description" />
+                        <TableColumn fx:id="capacityColumn" prefWidth="100.0" text="Capacité" />
+                        <TableColumn fx:id="actionColumn" prefWidth="165.0" text="Actions" />
                     </columns>
                   </TableView>
                </children></HBox>

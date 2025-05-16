@@ -8,7 +8,7 @@ import java.io.IOException;
 public class NavBarController {
     @FXML
     private void createNewPlace() throws IOException {
-        MainView.setRoot("addNewPlace");
+        MainView.setRoot("createPlace");
     }
 
     @FXML
@@ -25,5 +25,10 @@ public class NavBarController {
     @FXML
     private void  viewAffluence() throws IOException {
         MainView.setRoot("Affluence");
+    }
+
+    @FXML
+    private void  goToHome() throws IOException {
+        MainView.setRoot("mainView");
     }
 }
