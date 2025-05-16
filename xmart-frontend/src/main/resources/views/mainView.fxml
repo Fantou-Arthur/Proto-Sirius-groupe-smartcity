@@ -32,26 +32,83 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.MainViewController">
+<VBox prefHeight="584.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controllers.MainViewController">
   <children>
     <fx:include source="navBar.fxml" />
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" prefHeight="373.0" prefWidth="640.0" style="&#10;" text="Here is your Dashboard" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-      </children>
+         <children>
+            <Pane prefHeight="283.0" prefWidth="800.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Places" textAlignment="JUSTIFY" wrappingWidth="217.04100036621094">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="placeListView" layoutX="-1.0" layoutY="46.0" prefHeight="237.0" prefWidth="800.0" />
+               </children>
+            </Pane>
+         </children>
     </AnchorPane>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="271.0" prefWidth="646.0">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="271.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane prefHeight="271.0" prefWidth="248.0">
+                     <HBox.margin>
+                        <Insets bottom="45.0" right="20.0" top="45.0" />
+                     </HBox.margin>
+                     <children>
+                        <Text fx:id="NumberSensorText" layoutX="20.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: CENTER;" text="0" wrappingWidth="83.4359998703003">
+                           <font>
+                              <Font size="56.0" />
+                           </font>
+                        </Text>
+                        <Pane fx:id="sensorImage" layoutX="124.0" layoutY="38.0" prefHeight="105.0" prefWidth="114.0">
+                           <children>
+                              <ImageView fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/sensor.png" />
+                                    </image>
+                                </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="271.0" prefWidth="249.0">
+                     <HBox.margin>
+                        <Insets bottom="45.0" left="20.0" top="45.0" />
+                     </HBox.margin>
+                     <children>
+                        <Text fx:id="NumberAlertText" layoutX="25.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: CENTER;" text="0" wrappingWidth="83.4359998703003">
+                           <font>
+                              <Font size="56.0" />
+                           </font>
+                        </Text>
+                        <Pane fx:id="alertImage" layoutX="125.0" layoutY="32.0" prefHeight="105.0" prefWidth="114.0">
+                           <children>
+                              <ImageView fitHeight="105.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/foule.png" />
+                                    </image>
+                                </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
   </children>
 </VBox>

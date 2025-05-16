@@ -8,6 +8,8 @@ import edu.ezip.ing1.pds.business.dto.affluence.TreeViewData;
 import edu.ezip.ing1.pds.business.dto.affluence.SensorInfos;
 import edu.ezip.ing1.pds.business.dto.affluence.Sensor;
 import edu.ezip.ing1.pds.business.server.queries.Queries;
+import edu.ezip.ing1.pds.business.dto.affluence.Affluences;
+import edu.ezip.ing1.pds.business.server.affluence.AffluenceQueries;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 
@@ -47,7 +49,6 @@ public class AffluenceService {
 
         final Statement stmt = connection.createStatement();
         final ResultSet res = stmt.executeQuery(Queries.GET_TREE_VIEW.getQuery());
-
         
         
         TreeViewData root = new TreeViewData();

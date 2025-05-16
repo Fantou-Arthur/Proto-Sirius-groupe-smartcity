@@ -18,7 +18,7 @@
          <children>
             <BorderPane prefHeight="373.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <Label text="Create New Place" BorderPane.alignment="CENTER">
+                  <Label text="Ajouter une place" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -33,17 +33,17 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label text="Name : " />
+                                          <Label text="Nom : " />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label text="Address : " />
+                                          <Label text="Adresse : " />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label text="Capacity : " />
+                                          <Label text="Capacité : " />
                                        </children>
                                     </HBox>
                                  </children>
